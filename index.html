@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TravelMind AI — Yapay Zeka Destekli Kişisel Seyahat Danışmanı</title>
+<meta name="description" content="Bütçenize, seyahat sürenize ve ilgi alanlarınıza göre saat saat planlanmış, kişiselleştirilmiş seyahat rotaları.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#C96C4A;
+  --primary-dark:#B05A3A;
+  --primary-soft:#F6E3DA;
+  --secondary:#E8B27D;
+  --secondary-soft:#FBEEDD;
+  --bg:#FFF8F2;
+  --card:#FFFFFF;
+  --text:#2D3748;
+  --text-light:#718096;
+  --border:#F1E4D8;
+  --success:#5E9C76;
+  --success-soft:#E7F2EB;
+  --info:#6B8CAE;
+  --info-soft:#EAF1F7;
+  --radius:16px;
+  --radius-sm:10px;
+  --shadow-sm:0 1px 3px rgba(45,55,72,.05), 0 4px 14px rgba(201,108,74,.06);
+  --shadow-md:0 4px 10px rgba(45,55,72,.06), 0 14px 38px rgba(201,108,74,.10);
+  --font-display:"DM Sans",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;letter-spacing:-.01em}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:1rem;color:var(--text)}
+a{color:inherit;text-decoration:none}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+.hidden{display:none !important}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-display);font-weight:600;font-size:1rem;padding:14px 28px;border-radius:999px;transition:all .2s ease;white-space:nowrap}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 6px 18px rgba(201,108,74,.28)}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 8px 22px rgba(201,108,74,.34)}
+.btn-ghost{background:transparent;color:var(--primary);border:1.5px solid var(--border)}
+.btn-ghost:hover{border-color:var(--primary);background:var(--primary-soft)}
+.btn-soft{background:var(--primary-soft);color:var(--primary-dark)}
+.btn-soft:hover{background:#F0D5C8}
+.btn-sm{padding:9px 18px;font-size:.9rem}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--secondary);outline-offset:2px}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+
+/* ---------- Navbar ---------- */
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,248,242,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1.25rem;color:var(--text)}
+.logo-mark{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:grid;place-items:center;color:#fff;flex-shrink:0}
+.logo span em{font-style:normal;color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:28px;font-size:.95rem;font-weight:500;color:var(--text-light)}
+.nav-links a{transition:color .15s}
+.nav-links a:hover{color:var(--primary)}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.nav-burger{display:none;width:42px;height:42px;border-radius:10px;border:1.5px solid var(--border);color:var(--text);place-items:center}
+.mobile-menu{display:none;border-top:1px solid var(--border);padding:14px 24px 20px;background:var(--bg)}
+.mobile-menu a{display:block;padding:10px 0;font-weight:500;color:var(--text)}
+.mobile-menu.open{display:block}
+
+/* ---------- Hero ---------- */
+.hero{padding:84px 0 64px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-220px;right:-180px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,var(--secondary-soft) 0%,transparent 68%);pointer-events:none}
+.hero::after{content:"";position:absolute;bottom:-260px;left:-200px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--primary-soft) 0%,transparent 68%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:7px 16px;font-size:.85rem;font-weight:600;color:var(--primary);box-shadow:var(--shadow-sm)}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--success);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{font-size:clamp(2.3rem,5vw,3.6rem);font-weight:800;margin:22px 0 18px}
+.hero h1 .accent{color:var(--primary);position:relative;white-space:nowrap}
+.hero h1 .accent svg{position:absolute;left:0;bottom:-8px;width:100%;height:12px}
+.hero p.lead{font-size:1.13rem;color:var(--text-light);max-width:520px;margin-bottom:30px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap}
+.hero-stat b{display:block;font-family:var(--font-display);font-size:1.45rem;font-weight:800;color:var(--text)}
+.hero-stat span{font-size:.85rem;color:var(--text-light)}
+
+/* hero mock plan card — signature element */
+.mock-card{background:var(--card);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow-md);padding:26px;position:relative}
+.mock-card::before{content:"";position:absolute;inset:14px -14px -14px 14px;border-radius:22px;border:1.5px dashed var(--border);z-index:-1}
+.mock-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.mock-head h3{font-size:1.05rem;font-weight:700}
+.mock-head small{color:var(--text-light);font-size:.8rem}
+.mock-badge{background:var(--success-soft);color:var(--success);font-size:.75rem;font-weight:600;padding:5px 12px;border-radius:999px;display:flex;align-items:center;gap:6px}
+.mock-item{display:flex;gap:14px;padding:11px 0;border-bottom:1px dashed var(--border);opacity:0;animation:rise .6s ease forwards}
+.mock-item:last-of-type{border-bottom:none}
+.mock-item:nth-child(3){animation-delay:.25s}
+.mock-item:nth-child(4){animation-delay:.5s}
+.mock-item:nth-child(5){animation-delay:.75s}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.mock-time{font-family:var(--font-display);font-weight:700;font-size:.85rem;color:var(--primary);min-width:48px;padding-top:2px}
+.mock-item b{display:block;font-size:.95rem;font-weight:600}
+.mock-item span{font-size:.82rem;color:var(--text-light)}
+.mock-budget{margin-top:18px;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:16px}
+.mock-budget small{font-size:.78rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:.05em}
+.mock-bars{display:flex;gap:6px;margin-top:10px;height:10px;border-radius:99px;overflow:hidden}
+.mock-bars i{display:block;height:100%;border-radius:99px;animation:grow 1s ease .6s backwards}
+@keyframes grow{from{width:0 !important}}
+.mock-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:.76rem;color:var(--text-light)}
+.mock-legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.float-chip{position:absolute;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-md);padding:10px 16px;font-size:.85rem;font-weight:600;display:flex;align-items:center;gap:8px;animation:floaty 5s ease-in-out infinite}
+.float-chip.c1{top:-18px;left:-26px}
+.float-chip.c2{bottom:36px;right:-22px;animation-delay:2.2s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ---------- Sections ---------- */
+section.block{padding:84px 0}
+.contact-form{max-width:560px;margin:0 auto}
+.contact-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.section-head{text-align:center;max-width:640px;margin:0 auto 54px}
+.section-head .tag{display:inline-block;font-size:.82rem;font-weight:700;color:var(--primary);background:var(--primary-soft);padding:6px 16px;border-radius:999px;margin-bottom:16px;letter-spacing:.04em;text-transform:uppercase}
+.section-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:800;margin-bottom:14px}
+.section-head p{color:var(--text-light);font-size:1.05rem}
+
+/* nasıl çalışır */
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;position:relative}
+.step-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);position:relative;transition:transform .2s,box-shadow .2s}
+.step-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.step-num{font-family:var(--font-display);font-weight:800;font-size:.85rem;color:var(--primary);background:var(--primary-soft);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;margin-bottom:18px}
+.step-card h3{font-size:1.15rem;margin-bottom:10px}
+.step-card p{color:var(--text-light);font-size:.95rem}
+
+/* özellikler */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.feature-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s}
+.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.feature-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;color:var(--primary);background:var(--primary-soft)}
+.feature-card:nth-child(3n+2) .feature-icon{color:#B07B3E;background:var(--secondary-soft)}
+.feature-card:nth-child(3n) .feature-icon{color:var(--success);background:var(--success-soft)}
+.feature-card h3{font-size:1.12rem;margin-bottom:9px}
+.feature-card p{color:var(--text-light);font-size:.94rem}
+
+/* örnek plan */
+.sample-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+.sample-info h3{font-size:1.5rem;margin-bottom:14px}
+.sample-info p{color:var(--text-light);margin-bottom:20px}
+.sample-list{list-style:none;display:grid;gap:12px;margin-bottom:26px}
+.sample-list li{display:flex;gap:11px;align-items:flex-start;font-size:.96rem}
+.sample-list svg{flex-shrink:0;margin-top:3px;color:var(--success)}
+.sample-card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);overflow:hidden}
+.sample-card-head{background:linear-gradient(120deg,var(--primary),var(--secondary));color:#fff;padding:22px 26px}
+.sample-card-head h4{font-size:1.15rem}
+.sample-card-head span{font-size:.85rem;opacity:.9}
+.sample-card-body{padding:10px 26px 24px}
+.tl-item{display:flex;gap:16px;position:relative;padding:13px 0}
+.tl-rail{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.tl-dot{width:11px;height:11px;border-radius:50%;background:var(--primary);border:2.5px solid var(--primary-soft);margin-top:6px;flex-shrink:0}
+.tl-line{flex:1;width:2px;background:var(--border);margin-top:4px}
+.tl-item:last-child .tl-line{display:none}
+.tl-time{font-family:var(--font-display);font-weight:700;color:var(--primary);font-size:.86rem;min-width:46px;padding-top:3px}
+.tl-body b{display:block;font-weight:600;font-size:.96rem}
+.tl-body span{color:var(--text-light);font-size:.85rem}
+.tl-cost{margin-left:auto;align-self:flex-start;font-size:.8rem;font-weight:600;color:var(--primary-dark);background:var(--primary-soft);border-radius:999px;padding:3px 11px;white-space:nowrap}
+
+/* yorumlar */
+.quotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.quote-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm)}
+.stars{color:var(--secondary);letter-spacing:3px;margin-bottom:14px;font-size:.95rem}
+.quote-card p{font-size:.95rem;color:var(--text);margin-bottom:20px}
+.quote-who{display:flex;align-items:center;gap:12px}
+.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;color:#fff;font-size:.9rem}
+.quote-who b{display:block;font-size:.92rem}
+.quote-who span{font-size:.8rem;color:var(--text-light)}
+
+/* SSS */
+.faq-list{max-width:760px;margin:0 auto;display:grid;gap:14px}
+.faq{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:19px 24px;font-family:var(--font-display);font-weight:600;cursor:pointer}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary svg{flex-shrink:0;color:var(--primary);transition:transform .25s}
+.faq[open] summary svg{transform:rotate(45deg)}
+.faq .faq-body{padding:0 24px 20px;color:var(--text-light);font-size:.95rem}
+
+/* CTA band */
+.cta-band{background:linear-gradient(120deg,var(--primary),#D98B5F 55%,var(--secondary));border-radius:26px;padding:58px 48px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;top:-90px;right:-60px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.12)}
+.cta-band h2{font-size:clamp(1.6rem,3.2vw,2.2rem);margin-bottom:12px;position:relative}
+.cta-band p{opacity:.93;margin-bottom:28px;position:relative}
+.cta-band .btn{background:#fff;color:var(--primary-dark);position:relative}
+.cta-band .btn:hover{transform:translateY(-2px)}
+
+/* ---------- Footer ---------- */
+footer{background:#FBF1E8;border-top:1px solid var(--border);padding:56px 0 30px;margin-top:40px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px}
+.footer-grid p{color:var(--text-light);font-size:.92rem;margin-top:14px;max-width:300px}
+.footer-grid h4{font-size:.95rem;margin-bottom:16px}
+.footer-grid ul{list-style:none;display:grid;gap:10px}
+.footer-grid ul a{color:var(--text-light);font-size:.92rem;transition:color .15s}
+.footer-grid ul a:hover{color:var(--primary)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--text-light);font-size:.86rem}
+
+/* ---------- Wizard ---------- */
+.wizard-wrap{max-width:720px;margin:0 auto;padding:56px 24px 90px}
+.wizard-head{text-align:center;margin-bottom:34px}
+.wizard-head h1{font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:8px}
+.wizard-head p{color:var(--text-light)}
+.progress{display:flex;align-items:center;gap:0;margin-bottom:38px}
+.p-step{display:flex;flex-direction:column;align-items:center;gap:8px;flex:0 0 auto;width:84px}
+.p-dot{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:.9rem;background:var(--card);border:2px solid var(--border);color:var(--text-light);transition:all .25s}
+.p-step.active .p-dot{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 4px 14px rgba(201,108,74,.35)}
+.p-step.done .p-dot{background:var(--success);border-color:var(--success);color:#fff}
+.p-step span{font-size:.74rem;font-weight:600;color:var(--text-light);text-align:center}
+.p-step.active span{color:var(--primary)}
+.p-bar{flex:1;height:3px;background:var(--border);border-radius:99px;margin:0 4px 26px;position:relative;overflow:hidden}
+.p-bar i{position:absolute;inset:0;background:var(--success);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.p-bar.filled i{transform:scaleX(1)}
+.wizard-card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);padding:38px}
+.wizard-card h2{font-size:1.3rem;margin-bottom:6px}
+.wizard-card .sub{color:var(--text-light);font-size:.94rem;margin-bottom:28px}
+.field{margin-bottom:22px}
+.field label{display:block;font-family:var(--font-display);font-weight:600;font-size:.93rem;margin-bottom:8px}
+.field .hint{font-weight:400;color:var(--text-light);font-size:.82rem;margin-left:6px}
+.input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg);transition:border .15s,box-shadow .15s}
+.input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px var(--primary-soft);background:#fff}
+textarea.input{resize:vertical;min-height:96px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.choice-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;inset:0}
+.choice .chip{display:flex;flex-direction:column;gap:3px;border:1.5px solid var(--border);border-radius:13px;padding:13px 15px;cursor:pointer;transition:all .15s;background:var(--bg);height:100%}
+.choice .chip b{font-family:var(--font-display);font-weight:600;font-size:.93rem;display:flex;align-items:center;gap:8px}
+.choice .chip small{color:var(--text-light);font-size:.78rem}
+.choice input:checked + .chip{border-color:var(--primary);background:var(--primary-soft);box-shadow:0 0 0 1px var(--primary)}
+.choice input:focus-visible + .chip{outline:3px solid var(--secondary);outline-offset:2px}
+.choice .chip svg{color:var(--primary);flex-shrink:0}
+.wizard-nav{display:flex;justify-content:space-between;gap:14px;margin-top:32px}
+.err{display:none;color:#C0392B;font-size:.85rem;margin-top:14px;background:#FDEDEA;border:1px solid #F5C9C0;border-radius:10px;padding:10px 14px}
+.err.show{display:block}
+.summary-box{background:var(--bg);border:1.5px dashed var(--border);border-radius:14px;padding:18px 20px;margin-top:6px}
+.summary-box h4{font-size:.9rem;margin-bottom:10px;color:var(--primary)}
+.summary-box dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:.88rem}
+.summary-box dt{color:var(--text-light)}
+.summary-box dd{font-weight:600}
+
+/* ---------- Loading ---------- */
+.loading-wrap{max-width:560px;margin:0 auto;padding:110px 24px;text-align:center}
+.brain{width:84px;height:84px;border-radius:26px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:grid;place-items:center;margin:0 auto 28px;color:#fff;animation:breathe 1.8s ease-in-out infinite;box-shadow:0 14px 34px rgba(201,108,74,.35)}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.loading-wrap h2{font-size:1.5rem;margin-bottom:10px}
+.loading-wrap > p{color:var(--text-light);margin-bottom:34px}
+.load-steps{display:grid;gap:13px;text-align:left;max-width:380px;margin:0 auto}
+.load-step{display:flex;align-items:center;gap:12px;font-size:.94rem;color:var(--text-light);opacity:.4;transition:opacity .3s}
+.load-step.on{opacity:1;color:var(--text)}
+.load-step .ic{width:26px;height:26px;border-radius:50%;border:2px solid var(--border);display:grid;place-items:center;flex-shrink:0;font-size:.7rem;transition:all .3s}
+.load-step.on .ic{border-color:var(--primary)}
+.load-step.ok .ic{background:var(--success);border-color:var(--success);color:#fff}
+.load-step.on:not(.ok) .ic::after{content:"";width:10px;height:10px;border-radius:50%;border:2px solid var(--primary);border-top-color:transparent;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- Result ---------- */
+.result-wrap{padding:48px 0 90px}
+.result-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+.result-top h1{font-size:clamp(1.6rem,3vw,2.2rem)}
+.result-top .meta{color:var(--text-light);margin-top:6px;font-size:.95rem}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap}
+.r-grid{display:grid;grid-template-columns:1.65fr 1fr;gap:26px;align-items:start}
+.r-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:28px;margin-bottom:26px}
+.r-card h3{font-size:1.12rem;display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.r-card h3 .h-ic{width:34px;height:34px;border-radius:10px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;flex-shrink:0}
+.ai-summary{background:linear-gradient(135deg,#FFF4EC,#FDF8F1);border:1px solid var(--border)}
+.ai-summary p{color:var(--text);font-size:.98rem}
+.ai-tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.ai-tag{font-size:.78rem;font-weight:600;background:#fff;border:1px solid var(--border);color:var(--primary-dark);padding:5px 12px;border-radius:999px}
+.day-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.day-tab{font-family:var(--font-display);font-weight:600;font-size:.88rem;padding:9px 16px;border-radius:999px;border:1.5px solid var(--border);background:var(--bg);color:var(--text-light);transition:all .15s}
+.day-tab.on{background:var(--primary);border-color:var(--primary);color:#fff}
+.day-title{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--primary-dark);margin-bottom:6px}
+.day-sub{color:var(--text-light);font-size:.88rem;margin-bottom:14px}
+.budget-total{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.budget-total b{font-family:var(--font-display);font-size:1.9rem;font-weight:800}
+.budget-total span{color:var(--text-light);font-size:.88rem}
+.budget-pp{color:var(--text-light);font-size:.85rem;margin-bottom:18px}
+.b-row{margin-bottom:15px}
+.b-row .b-label{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:6px}
+.b-row .b-label b{font-weight:600}
+.b-row .b-label span{color:var(--text-light)}
+.b-track{height:9px;border-radius:99px;background:var(--bg);border:1px solid var(--border);overflow:hidden}
+.b-fill{height:100%;border-radius:99px;transition:width .8s ease}
+.tip-grid{display:grid;gap:14px}
+.tip{display:flex;gap:13px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:13px;padding:14px 16px}
+.tip .t-ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex-shrink:0;background:var(--card);border:1px solid var(--border);color:var(--primary)}
+.tip b{display:block;font-size:.9rem;font-family:var(--font-display)}
+.tip span{font-size:.86rem;color:var(--text-light)}
+.gem{display:flex;gap:13px;padding:13px 0;border-bottom:1px dashed var(--border)}
+.gem:last-child{border-bottom:none;padding-bottom:0}
+.gem .g-ic{width:34px;height:34px;border-radius:50%;background:var(--secondary-soft);color:#B07B3E;display:grid;place-items:center;flex-shrink:0}
+.gem b{display:block;font-size:.93rem}
+.gem span{font-size:.85rem;color:var(--text-light)}
+.rain-card{background:var(--info-soft);border:1px solid #D8E4EF}
+.rain-card h3 .h-ic{background:#fff;color:var(--info)}
+.rain-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;font-size:.92rem}
+.rain-item svg{flex-shrink:0;margin-top:3px;color:var(--info)}
+.alt-note{background:var(--secondary-soft);border:1px solid #F0DCC0;border-radius:12px;padding:13px 16px;font-size:.88rem;color:#8A6232;margin-bottom:18px;display:none}
+.alt-note.show{display:block}
+.toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,80px);background:var(--text);color:#fff;padding:13px 22px;border-radius:999px;font-size:.92rem;font-weight:500;display:flex;align-items:center;gap:9px;box-shadow:0 10px 30px rgba(0,0,0,.22);opacity:0;transition:all .35s;z-index:200;pointer-events:none}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+/* ---------- Saved ---------- */
+.saved-wrap{padding:56px 0 90px;min-height:60vh}
+.saved-head{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:34px}
+.saved-head h1{font-size:clamp(1.6rem,3vw,2.1rem)}
+.trips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.trip-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.trip-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.trip-cover{height:108px;display:flex;align-items:flex-end;padding:16px 20px;color:#fff;position:relative}
+.trip-cover h3{font-size:1.25rem;position:relative;z-index:1}
+.trip-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 20%,rgba(0,0,0,.25))}
+.trip-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:14px;flex:1}
+.trip-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:.84rem;color:var(--text-light)}
+.trip-meta span{display:flex;align-items:center;gap:5px}
+.trip-tags{display:flex;gap:7px;flex-wrap:wrap}
+.trip-tag{font-size:.74rem;font-weight:600;background:var(--primary-soft);color:var(--primary-dark);padding:4px 10px;border-radius:999px}
+.trip-foot{display:flex;gap:10px;margin-top:auto}
+.empty-state{text-align:center;padding:70px 24px;background:var(--card);border:1.5px dashed var(--border);border-radius:20px}
+.empty-state .e-ic{width:70px;height:70px;border-radius:22px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;margin:0 auto 20px}
+.empty-state h3{font-size:1.25rem;margin-bottom:8px}
+.empty-state p{color:var(--text-light);margin-bottom:24px}
+
+/* ---------- Responsive ---------- */
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .hero{padding:56px 0 48px}
+  .steps-grid,.features-grid,.quotes-grid,.trips-grid{grid-template-columns:repeat(2,1fr)}
+  .sample-wrap{grid-template-columns:1fr}
+  .r-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav-links,.nav-cta .btn-ghost{display:none}
+  .nav-burger{display:grid}
+}
+@media(max-width:600px){
+  section.block{padding:60px 0}
+  .steps-grid,.features-grid,.quotes-grid,.trips-grid{grid-template-columns:1fr}
+  .field-row,.choice-grid,.choice-grid.cols-3,.contact-form-row{grid-template-columns:1fr}
+  .wizard-card{padding:26px 20px}
+  .p-step{width:64px}
+  .p-step span{display:none}
+  .footer-grid{grid-template-columns:1fr}
+  .float-chip{display:none}
+  .cta-band{padding:44px 24px}
+  .hero-stats{gap:22px}
+  .result-actions{width:100%}
+  .result-actions .btn{flex:1}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="#" class="logo" onclick="go('home');return false;">
+      <span class="logo-mark"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 19 21l-7-4-7 4Z"/></svg></span>
+      <span>TravelMind <em>AI</em></span>
+    </a>
+    <div class="nav-links">
+      <a href="#nasil" onclick="goSection('nasil');return false;">Nasıl Çalışır</a>
+      <a href="#ozellikler" onclick="goSection('ozellikler');return false;">Özellikler</a>
+      <a href="#ornek" onclick="goSection('ornek');return false;">Örnek Plan</a>
+      <a href="#sss" onclick="goSection('sss');return false;">SSS</a>
+      <a href="#iletisim" onclick="goSection('iletisim');return false;">İletişim</a>
+      <a href="#" onclick="go('saved');return false;">Kayıtlı Seyahatler</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn btn-ghost btn-sm" onclick="go('saved')">Seyahatlerim</button>
+      <button class="btn btn-primary btn-sm" onclick="startWizard()">Seyahatimi Planla</button>
+      <button class="nav-burger" aria-label="Menüyü aç" onclick="document.getElementById('mmenu').classList.toggle('open')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mmenu">
+    <a href="#" onclick="goSection('nasil');return false;">Nasıl Çalışır</a>
+    <a href="#" onclick="goSection('ozellikler');return false;">Özellikler</a>
+    <a href="#" onclick="goSection('ornek');return false;">Örnek Plan</a>
+    <a href="#" onclick="goSection('sss');return false;">SSS</a>
+    <a href="#" onclick="goSection('iletisim');return false;">İletişim</a>
+    <a href="#" onclick="go('saved');return false;">Kayıtlı Seyahatler</a>
+  </div>
+</nav>
+
+<!-- ============ HOME ============ -->
+<main id="view-home">
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span> Yapay zeka destekli seyahat danışmanı</span>
+        <h1>Seyahatinizi planlamayın, <span class="accent">danışın<svg viewBox="0 0 200 12" preserveAspectRatio="none" fill="none"><path d="M3 9 C 60 2, 140 2, 197 8" stroke="#E8B27D" stroke-width="5" stroke-linecap="round"/></svg></span></h1>
+        <p class="lead">TravelMind AI; bütçenize, sürenize, ilgi alanlarınıza ve seyahat tarzınıza göre saat saat planlanmış kişisel bir rota oluşturur. Bütçeyi dengeler, günü mantıklı sıraya koyar, gizli kalmış mekanları önerir.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="startWizard()">Seyahatimi Planla
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </button>
+          <button class="btn btn-ghost" onclick="goSection('ornek')">Örnek Planı İncele</button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>40+ sn</b><span>ortalama plan süresi</span></div>
+          <div class="hero-stat"><b>%96</b><span>bütçe içinde kalma oranı</span></div>
+          <div class="hero-stat"><b>120+</b><span>desteklenen şehir</span></div>
+        </div>
+      </div>
+      <div style="position:relative">
+        <div class="float-chip c1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E9C76" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Bütçe dengede</div>
+        <div class="float-chip c2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C96C4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8Z"/></svg> Gizli mekan eklendi</div>
+        <div class="mock-card" aria-hidden="true">
+          <div class="mock-head">
+            <div><h3>Roma · 2. Gün</h3><small>Tarih + Gastronomi ağırlıklı</small></div>
+            <span class="mock-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>AI planı hazır</span>
+          </div>
+          <div class="mock-item"><span class="mock-time">08:30</span><div><b>Trastevere'de kahvaltı</b><span>Mahalle fırınında cornetto &amp; espresso</span></div></div>
+          <div class="mock-item"><span class="mock-time">10:00</span><div><b>Kolezyum turu</b><span>Sıra beklemeden giriş, ~2 saat</span></div></div>
+          <div class="mock-item"><span class="mock-time">13:00</span><div><b>Testaccio pazarında öğle</b><span>Yerel lezzet durakları</span></div></div>
+          <div class="mock-item"><span class="mock-time">16:30</span><div><b>Aventino Tepesi</b><span>Anahtar deliği manzarası · gizli mekan</span></div></div>
+          <div class="mock-budget">
+            <small>Bütçe dağılımı · ₺38.500</small>
+            <div class="mock-bars">
+              <i style="width:42%;background:#C96C4A"></i>
+              <i style="width:24%;background:#E8B27D"></i>
+              <i style="width:14%;background:#5E9C76"></i>
+              <i style="width:12%;background:#6B8CAE"></i>
+              <i style="width:8%;background:#CBB8A6"></i>
+            </div>
+            <div class="mock-legend">
+              <span><i style="background:#C96C4A"></i>Konaklama</span>
+              <span><i style="background:#E8B27D"></i>Yemek</span>
+              <span><i style="background:#5E9C76"></i>Aktivite</span>
+              <span><i style="background:#6B8CAE"></i>Ulaşım</span>
+              <span><i style="background:#CBB8A6"></i>Acil</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nasıl Çalışır -->
+  <section class="block" id="nasil">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">Nasıl Çalışır</span>
+        <h2>Üç adımda kişisel seyahat planınız</h2>
+        <p>Form doldurursunuz, yapay zeka karar verir, siz sadece seyahatin keyfini çıkarırsınız.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Tercihlerinizi anlatın</h3>
+          <p>Şehir, gün sayısı, bütçe, kişi sayısı, seyahat tarzı ve ilgi alanlarınızı 4 kısa adımda paylaşın. İki dakikanızı alır.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>AI sizin için karar versin</h3>
+          <p>TravelMind AI bütçenizi kalemlere dağıtır, mekanları ilgi alanlarınıza göre seçer ve günü mantıklı bir sıraya koyar.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Planı görüntüleyin ve kaydedin</h3>
+          <p>Saat saat günlük rota, bütçe grafiği, yerel tavsiyeler ve yağmurlu hava alternatifi tek ekranda. Beğenmediyseniz tek tıkla yeniden oluşturun.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Özellikler -->
+  <section class="block" id="ozellikler" style="background:#FDF3EA;border-block:1px solid var(--border)">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">Özellikler</span>
+        <h2>Rota veren değil, karar veren bir danışman</h2>
+        <p>TravelMind AI yalnızca "nereye gidilir" demez; bütçenize, tarzınıza ve gün sayınıza göre en doğru kararı verir.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3>Saat saat günlük rota</h3>
+          <p>Her gün kahvaltıdan akşam programına kadar planlanır. Mekanlar arası mesafe ve tempo gözetilerek sıralanır.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7" rx="1"/><rect x="12" y="7" width="3" height="11" rx="1"/><rect x="17" y="13" width="3" height="5" rx="1"/></svg></div>
+          <h3>Akıllı bütçe dağılımı</h3>
+          <p>Toplam bütçeniz konaklama, yemek, ulaşım, aktivite ve acil durum payına otomatik bölünür; seyahat tarzınıza göre oranlar değişir.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 1 6 6c0 4-6 12-6 12S6 13 6 9a6 6 0 0 1 6-6Z"/><circle cx="12" cy="9" r="2"/></svg></div>
+          <h3>Gizli kalmış mekanlar</h3>
+          <p>Turist kalabalığının dışında, yerellerin gittiği mahalleler, pazarlar ve manzara noktaları planınıza eklenir.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.6A5 5 0 0 0 18 7h-1.3A7 7 0 1 0 5 15.9"/><path d="M8 19v2M12 18v3M16 19v2"/></svg></div>
+          <h3>Yağmurlu hava alternatifi</h3>
+          <p>Hava bozarsa plan çökmez. Her seyahat için kapalı mekan ağırlıklı bir B planı otomatik hazırlanır.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v7a4 4 0 0 0 4 4h12"/><path d="m16 11 4 4-4 4"/><path d="M20 4v3"/></svg></div>
+          <h3>Alternatif plan &amp; yeniden oluşturma</h3>
+          <p>Plan içinize sinmediyse tek tıkla farklı bir kurgu deneyin ya da tercihleri değiştirip baştan oluşturun.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg></div>
+          <h3>Kaydet, geri dön, kıyasla</h3>
+          <p>Oluşturduğunuz tüm planlar "Kayıtlı Seyahatler" sayfasında kart yapısında saklanır; dilediğinizde açıp inceleyin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Örnek Plan -->
+  <section class="block" id="ornek">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">Örnek Çıktı</span>
+        <h2>AI çıktısı nasıl görünür?</h2>
+        <p>Metin yığını değil; kartlar, zaman çizelgesi ve bütçe grafiğiyle okunabilir bir plan.</p>
+      </div>
+      <div class="sample-wrap">
+        <div class="sample-info">
+          <h3>İstanbul · 3 gün · 2 kişi · ₺25.000</h3>
+          <p>"Bu plan tarih ve gastronomi ağırlıklı deneyimler sunarken bütçenizi aşmadan şehri verimli şekilde keşfetmenizi sağlar." — TravelMind AI seyahat özeti</p>
+          <ul class="sample-list">
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Seyahat özeti:</b> size özel kısa değerlendirme</span></li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Günlük plan:</b> 08:00'den geceye saat saat rota</span></li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Bütçe dağılımı:</b> 5 kalemde görsel grafik</span></li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Yerel tavsiyeler:</b> ulaşım, güvenlik, kültür ipuçları</span></li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Gizli mekanlar + yağmur alternatifi</b></span></li>
+          </ul>
+          <button class="btn btn-primary" onclick="startWizard()">Kendi planımı oluştur</button>
+        </div>
+        <div class="sample-card">
+          <div class="sample-card-head">
+            <h4>1. Gün — Tarihi Yarımada</h4>
+            <span>Yürüyüş ağırlıklı · tahmini günlük harcama ₺2.600</span>
+          </div>
+          <div class="sample-card-body">
+            <div class="tl-item"><div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div><span class="tl-time">08:30</span><div class="tl-body"><b>Karaköy'de kahvaltı</b><span>Sahil hattında klasik serpme kahvaltı</span></div><span class="tl-cost">₺450</span></div>
+            <div class="tl-item"><div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div><span class="tl-time">10:00</span><div class="tl-body"><b>Ayasofya &amp; Sultanahmet</b><span>Erken saat, kalabalık öncesi giriş</span></div><span class="tl-cost">₺800</span></div>
+            <div class="tl-item"><div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div><span class="tl-time">13:00</span><div class="tl-body"><b>Esnaf lokantasında öğle</b><span>Sirkeci'de yerel mutfak</span></div><span class="tl-cost">₺500</span></div>
+            <div class="tl-item"><div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div><span class="tl-time">15:00</span><div class="tl-body"><b>Yerebatan Sarnıcı</b><span>Fotoğraf için ideal ışık saati</span></div><span class="tl-cost">₺600</span></div>
+            <div class="tl-item"><div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div><span class="tl-time">19:30</span><div class="tl-body"><b>Galata'da akşam yemeği</b><span>Kule manzaralı meyhane</span></div><span class="tl-cost">₺1.100</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Yorumlar -->
+  <section class="block" id="yorumlar" style="background:#FDF3EA;border-block:1px solid var(--border)">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">Kullanıcı Yorumları</span>
+        <h2>Gezginler TravelMind AI hakkında ne diyor?</h2>
+      </div>
+      <div class="quotes-grid">
+        <div class="quote-card">
+          <div class="stars">★★★★★</div>
+          <p>"Barselona için 4 günlük plan istedim; bütçe dağılımı o kadar gerçekçiydi ki dönüşte hesap yaptım, sapma %5'in altındaydı. Gizli mekan önerileri gezinin en iyi kısmıydı."</p>
+          <div class="quote-who"><span class="avatar" style="background:#C96C4A">EK</span><div><b>Elif K.</b><span>Pazarlama Yöneticisi · İstanbul</span></div></div>
+        </div>
+        <div class="quote-card">
+          <div class="stars">★★★★★</div>
+          <p>"Ailecek Roma'ya gittik. Çocuklu seyahat için tempo ayarı ve öğle araları kusursuzdu. Yağmur bastırınca B planını açtık, gün boşa gitmedi."</p>
+          <div class="quote-who"><span class="avatar" style="background:#E8B27D">MA</span><div><b>Murat A.</b><span>Yazılım Mühendisi · Ankara</span></div></div>
+        </div>
+        <div class="quote-card">
+          <div class="stars">★★★★☆</div>
+          <p>"Tek başıma Amsterdam'a gittim. Plan saat saat hazırdı; ben sadece 'yeniden oluştur' deyip gece hayatı ağırlıklı versiyonu seçtim. Saatlerce blog okumaktan kurtardı."</p>
+          <div class="quote-who"><span class="avatar" style="background:#5E9C76">SD</span><div><b>Selin D.</b><span>Mimar · İzmir</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SSS -->
+  <section class="block" id="sss">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">SSS</span>
+        <h2>Sık sorulan sorular</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq" open>
+          <summary>TravelMind AI planı neye göre oluşturuyor?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+          <div class="faq-body">Şehir, gün sayısı, toplam bütçe, kişi sayısı, seyahat tipi, ilgi alanları ve ulaşım tercihinizi birlikte değerlendirir. Bütçeyi kalemlere dağıtır, mekanları ilgi alanlarınıza göre seçer ve günü coğrafi olarak mantıklı bir sıraya koyar.</div>
+        </details>
+        <details class="faq">
+          <summary>Otel veya uçak rezervasyonu yapıyor musunuz?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+          <div class="faq-body">Hayır, bilinçli olarak yapmıyoruz. TravelMind AI bir rezervasyon motoru değil, bir seyahat danışmanıdır. Konaklama ve ulaşım için bütçe payı ile öneri verir; satın almayı dilediğiniz platformda yaparsınız.</div>
+        </details>
+        <details class="faq">
+          <summary>Planı beğenmezsem ne olur?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+          <div class="faq-body">Sonuç sayfasındaki "Yeniden Oluştur" ile aynı tercihlerle farklı bir kurgu alabilir, "Alternatif Plan" ile farklı ağırlıkta bir versiyon görebilir ya da forma dönüp tercihlerinizi değiştirebilirsiniz.</div>
+        </details>
+        <details class="faq">
+          <summary>Bütçe dağılımı ne kadar gerçekçi?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+          <div class="faq-body">Dağılım; şehir, kişi sayısı, gün sayısı ve seyahat tarzınıza (ekonomik, dengeli, lüks) göre hesaplanır. Her planda öngörülemeyen harcamalar için ayrı bir acil durum payı bulunur.</div>
+        </details>
+        <details class="faq">
+          <summary>Kaydettiğim planlara nereden ulaşırım?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+          <div class="faq-body">Üst menüdeki "Kayıtlı Seyahatler" sayfasında tüm planlarınız kart görünümünde listelenir. Buradan planı açabilir veya silebilirsiniz.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- İletişim -->
+  <section class="block" id="iletisim">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">İletişim</span>
+        <h2>Bize ulaşın</h2>
+      </div>
+      <form id="contactForm" class="contact-form" action="https://formspree.io/f/xpqeyzwo" method="POST" onsubmit="return submitContactForm(event)">
+        <div class="contact-form-row">
+          <div>
+            <label for="c-name" style="display:block;margin-bottom:6px;font-weight:600;font-size:.9rem">Ad Soyad</label>
+            <input class="input" id="c-name" name="name" type="text" required placeholder="Adınız Soyadınız">
+          </div>
+          <div>
+            <label for="c-email" style="display:block;margin-bottom:6px;font-weight:600;font-size:.9rem">E-posta</label>
+            <input class="input" id="c-email" name="email" type="email" required placeholder="ornek@eposta.com">
+          </div>
+        </div>
+        <div style="margin-top:16px">
+          <label for="c-message" style="display:block;margin-bottom:6px;font-weight:600;font-size:.9rem">Mesajınız</label>
+          <textarea class="input" id="c-message" name="message" required placeholder="Mesajınızı buraya yazın…"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit" style="margin-top:20px">Gönder</button>
+        <p id="contactFormStatus" style="margin-top:12px;font-size:.9rem"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="block" style="padding-top:20px">
+    <div class="container">
+      <div class="cta-band">
+        <h2>Bir sonraki seyahatiniz iki dakika uzakta</h2>
+        <p>Formu doldurun, kişisel seyahat danışmanınız planı hazırlasın.</p>
+        <button class="btn" onclick="startWizard()">Seyahatimi Planla</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ WIZARD ============ -->
+<main id="view-planner" class="hidden">
+  <div class="wizard-wrap">
+    <div class="wizard-head">
+      <h1>Seyahatinizi planlayalım</h1>
+      <p>4 kısa adım — yaklaşık 2 dakika</p>
+    </div>
+    <div class="progress" id="progress"></div>
+    <div class="wizard-card" id="wizardCard"></div>
+  </div>
+</main>
+
+<!-- ============ LOADING ============ -->
+<main id="view-loading" class="hidden">
+  <div class="loading-wrap">
+    <div class="brain"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4 4 4 0 0 0-3 6.5A4 4 0 0 0 8 19a4 4 0 0 0 8 0 4 4 0 0 0 3-6.5A4 4 0 0 0 16 6a4 4 0 0 0-4-4Z"/><path d="M12 6v12"/></svg></div>
+    <h2>TravelMind AI planınızı oluşturuyor</h2>
+    <p id="loadingCity">Tercihleriniz analiz ediliyor…</p>
+    <div class="load-steps" id="loadSteps">
+      <div class="load-step"><span class="ic"></span> Tercihler analiz ediliyor</div>
+      <div class="load-step"><span class="ic"></span> Bütçe kalemlere dağıtılıyor</div>
+      <div class="load-step"><span class="ic"></span> Günlük rota sıralanıyor</div>
+      <div class="load-step"><span class="ic"></span> Gizli mekanlar ve yerel tavsiyeler ekleniyor</div>
+      <div class="load-step"><span class="ic"></span> Yağmurlu hava alternatifi hazırlanıyor</div>
+    </div>
+  </div>
+</main>
+
+<!-- ============ RESULT ============ -->
+<main id="view-result" class="hidden">
+  <div class="container result-wrap" id="resultRoot"></div>
+</main>
+
+<!-- ============ SAVED ============ -->
+<main id="view-saved" class="hidden">
+  <div class="container saved-wrap">
+    <div class="saved-head">
+      <div>
+        <h1>Kayıtlı Seyahatler</h1>
+        <p style="color:var(--text-light);margin-top:6px">Oluşturduğunuz planlar burada saklanır.</p>
+      </div>
+      <button class="btn btn-primary" onclick="startWizard()">+ Yeni Seyahat Planla</button>
+    </div>
+    <div id="savedRoot"></div>
+  </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="logo" onclick="go('home');return false;">
+          <span class="logo-mark"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 19 21l-7-4-7 4Z"/></svg></span>
+          <span>TravelMind <em>AI</em></span>
+        </a>
+        <p>Bütçenize ve tarzınıza göre karar veren yapay zeka destekli kişisel seyahat danışmanı.</p>
+      </div>
+      <div>
+        <h4>Ürün</h4>
+        <ul>
+          <li><a href="#" onclick="goSection('nasil');return false;">Nasıl Çalışır</a></li>
+          <li><a href="#" onclick="goSection('ozellikler');return false;">Özellikler</a></li>
+          <li><a href="#" onclick="goSection('ornek');return false;">Örnek Plan</a></li>
+          <li><a href="#" onclick="go('saved');return false;">Kayıtlı Seyahatler</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Şirket</h4>
+        <ul>
+          <li><a href="#">Hakkımızda</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Kariyer</a></li>
+          <li><a href="#" onclick="goSection('iletisim');return false;">İletişim</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Yasal</h4>
+        <ul>
+          <li><a href="#">Gizlilik Politikası</a></li>
+          <li><a href="#">Kullanım Şartları</a></li>
+          <li><a href="#">KVKK Aydınlatma Metni</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 TravelMind AI. Tüm hakları saklıdır.</span>
+      <span>Türkiye'de ❤ ile tasarlandı</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =================================================================
+   TravelMind AI — istemci tarafı uygulama
+   ================================================================= */
+
+/* ---------- Yardımcılar ---------- */
+const $ = s => document.querySelector(s);
+const fmt = n => "₺" + Math.round(n).toLocaleString("tr-TR");
+const cap = s => s ? s.charAt(0).toLocaleUpperCase("tr-TR") + s.slice(1) : s;
+let toastT;
+function toast(msg){
+  const t = $("#toast"); t.innerHTML = msg; t.classList.add("show");
+  clearTimeout(toastT); toastT = setTimeout(()=>t.classList.remove("show"), 2600);
+}
+
+/* ---------- İletişim formu (Formspree) ---------- */
+function submitContactForm(e){
+  e.preventDefault();
+  const form = e.target;
+  const status = $("#contactFormStatus");
+  const btn = form.querySelector("button[type=submit]");
+  btn.disabled = true;
+  status.textContent = "Gönderiliyor…";
+  status.style.color = "var(--text-light)";
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form),
+    headers: { "Accept": "application/json" }
+  }).then(res => {
+    if(res.ok){
+      status.textContent = "Mesajınız gönderildi, teşekkürler!";
+      status.style.color = "var(--secondary)";
+      form.reset();
+      toast("Mesajınız başarıyla gönderildi");
+    } else {
+      status.textContent = "Bir hata oluştu, lütfen tekrar deneyin.";
+      status.style.color = "var(--primary)";
+    }
+  }).catch(() => {
+    status.textContent = "Bir hata oluştu, lütfen tekrar deneyin.";
+    status.style.color = "var(--primary)";
+  }).finally(() => { btn.disabled = false; });
+  return false;
+}
+
+/* ---------- Görünüm yönlendirme ---------- */
+const views = ["home","planner","loading","result","saved"];
+function go(v){
+  views.forEach(x => $("#view-"+x).classList.toggle("hidden", x!==v));
+  $("#mmenu").classList.remove("open");
+  window.scrollTo({top:0, behavior:"instant"});
+  if(v==="saved") renderSaved();
+}
+function goSection(id){
+  go("home");
+  requestAnimationFrame(()=> document.getElementById(id)?.scrollIntoView({behavior:"smooth"}));
+}
+
+/* ---------- Şehir bilgi tabanı + genel üretici ---------- */
+const CITY_DB = {
+  "istanbul": {
+    name:"İstanbul", country:"Türkiye", cover:["#C96C4A","#E8B27D"],
+    cost: 1.0,
+    acts: {
+      tarih:[["Ayasofya ve Sultanahmet Meydanı","Erken saatte, kalabalık öncesi ziyaret"],["Topkapı Sarayı","Harem bölümü dahil ~2,5 saat ayırın"],["Yerebatan Sarnıcı","Serin ve fotojenik; öğle sıcağında ideal"],["Galata Kulesi ve çevresi","Kule meydanından Karaköy'e iniş rotası"],["Kariye (Chora) Mozaikleri","Bizans mozaiklerinin en iyi korunmuş örnekleri"],["Süleymaniye Camii ve avlusu","Haliç manzaralı avluda mola"]],
+      gastronomi:[["Kadıköy çarşı lezzet turu","Turşucu, kuruyemişçi ve tarihi dükkân hattı"],["Karaköy'de balık-ekmek ve midye","Sahil hattında ayaküstü klasikler"],["Mısır Çarşısı ve baharat keşfi","Kahve, lokum ve baharat tadımı"],["Beyoğlu meyhane akşamı","Meze ağırlıklı uzun sofra deneyimi"],["Vefa'da boza ve tarihi esnaf","Asırlık tatlar rotası"]],
+      doga:[["Boğaz vapur turu","Avrupa–Anadolu hattında 1,5 saatlik tur"],["Emirgan Korusu yürüyüşü","Köşkler ve Boğaz manzaralı patikalar"],["Büyükada bisiklet turu","Faytonsuz ada turu, çam koruları"],["Fenerbahçe sahil yürüyüşü","Gün batımı için ideal hat"]],
+      fotografcilik:[["Balat renkli sokaklar","Sabah ışığında cumbalı evler"],["Pierre Loti Tepesi","Haliç'in en iyi panoraması"],["Galata gün batımı çekimi","Kule silüeti ve çatı manzaraları"]],
+      macera:[["Boğaz'da sup / kano","Kuruçeşme çıkışlı gözetimli parkur"],["Adalar koşu-yürüyüş parkuru","Hafif tempolu doğa parkuru"],["Tarihi yarımada bisiklet turu","Sahil hattında rehberli tur"]],
+      gece:[["Kadıköy barlar bölgesi","Yerel craft mekanlar ve canlı müzik"],["Beyoğlu'nda canlı müzik","Asmalımescit hattında akşam"],["Ortaköy gece atıştırması","Kumpir ve sahilde gece manzarası"]],
+      luks:[["Boğaz manzaralı fine dining","Şefin tadım menüsü, rezervasyon önerilir"],["Tarihi hamamda spa ritüeli","Geleneksel kese-köpük ve masaj"],["Özel tekneyle Boğaz turu","Gün batımı saatinde 2 saatlik özel tur"]]
+    },
+    lunch:[["Sirkeci'de esnaf lokantası","Günlük ev yemekleri"],["Kadıköy'de yerel öğle","Çarşı içinde esnaf klasiği"],["Karaköy'de modern Türk mutfağı","Hafif ve hızlı öğle menüsü"]],
+    dinner:[["Galata'da kule manzaralı akşam","Meze ve ızgara ağırlıklı"],["Beşiktaş çarşıda akşam yemeği","Canlı ve uygun fiyatlı"],["Sultanahmet'te Osmanlı mutfağı","Tarihi konak restoranı"]],
+    breakfast:[["Karaköy'de serpme kahvaltı","Sahil hattında klasik başlangıç"],["Beşiktaş kahvaltıcılar sokağı","Kalabalık ama değer"],["Moda'da deniz kenarı kahvaltı","Sakin ve manzaralı"]],
+    gems:[["Kuzguncuk","Boğaz'ın en sakin mahallesi; renkli evler ve sanat atölyeleri"],["Çukurcuma antikacıları","Beyoğlu'nun arka sokaklarında nostalji avı"],["Yeldeğirmeni duvar resimleri","Kadıköy'ün sanat mahallesi, üçüncü dalga kahveciler"],["Fener-Balat sahaf ve kafeleri","Turist rotasının bir sokak arkası"]],
+    rainy:[["İstanbul Modern","Boğaz manzaralı çağdaş sanat müzesi"],["Pera Müzesi","Oryantalist resim koleksiyonu"],["Kapalıçarşı keşfi","4.000 dükkânlı kapalı labirent"],["Salt Galata","Tarihi banka binasında sergi + kütüphane"]],
+    tips:{
+      ulasim:"İstanbulkart alın; vapur, metro ve tramvayda geçerli. Trafik saatlerinde (08–10 / 17–20) raylı sistem ve vapuru tercih edin.",
+      guvenlik:"Kalabalık turistik noktalarda çantanızı önde taşıyın. Taksilerde taksimetre açtırın veya uygulama üzerinden çağırın.",
+      kultur:"Camilere girerken omuz ve diz kapalı olmalı; kadınlar için başörtüsü girişlerde verilir. Pazarda pazarlık doğaldır.",
+      ipucu:"Müze girişlerinde Müzekart/MuseumPass değerlendirin. Boğaz hattı şehir vapuru, turistik tekne turunun yarı fiyatına benzer manzara sunar."
+    }
+  },
+  "roma": {
+    name:"Roma", country:"İtalya", cover:["#B05A3A","#E8B27D"], cost: 1.5,
+    acts:{
+      tarih:[["Kolezyum ve Forum Romanum","Sıra beklememek için sabah ilk seans"],["Pantheon","Girişi ücretsiz dönemlerde erken gidin"],["Vatikan Müzeleri ve Sistine Şapeli","Online bilet şart; ~3 saat ayırın"],["Castel Sant'Angelo","Teras manzarası gün batımında güzel"],["Palatino Tepesi","İmparatorluk kalıntıları arasında yürüyüş"]],
+      gastronomi:[["Testaccio pazarı lezzet turu","Roma'nın mutfak mahallesi"],["Trastevere'de carbonara durağı","Klasik Roma makarnaları"],["Campo de' Fiori sabah pazarı","Peynir, şarküteri ve taze ürün"],["Gelato tadım rotası","Üç farklı tarihi dondurmacı"]],
+      doga:[["Villa Borghese bahçeleri","Sandal kiralanabilen göl ve teraslar"],["Gianicolo Tepesi yürüyüşü","Şehrin en iyi panoramalarından"],["Appia Antica yolu","Antik taş yolda bisiklet/yürüyüş"]],
+      fotografcilik:[["Aventino anahtar deliği","San Pietro kubbesine çerçevelenmiş bakış"],["Trevi Çeşmesi gün doğumu","Kalabalıksız tek saat"],["Trastevere arka sokakları","Sarmaşıklı cepheler, akşamüstü ışığı"]],
+      macera:[["Vespa ile şehir turu","Rehberli 2 saatlik klasik tur"],["Appia Antica bisiklet parkuru","Antik yol boyunca kır manzarası"],["Tiber kıyısı koşu hattı","Sabah sporu için ideal"]],
+      gece:[["Trastevere akşam hayatı","Aperitivo ve canlı sokak atmosferi"],["Monti mahallesinde şarap barları","Yerellerin tercihi butik mekanlar"],["Testaccio gece kulüpleri","Roma'nın eğlence bölgesi"]],
+      luks:[["Çatı terasında aperitivo","Pantheon manzaralı otel terası"],["Michelin yıldızlı akşam yemeği","Modern İtalyan tadım menüsü"],["Özel rehberli Vatikan turu","Kapanış sonrası özel giriş seçenekleri"]]
+    },
+    lunch:[["Trastevere trattoria'sı","Günün makarnası + ev şarabı"],["Testaccio'da street food","Trapizzino ve supplì"],["Monti'de hafif öğle","Salata ve bruschetta ağırlıklı"]],
+    dinner:[["Roma usulü pizza akşamı","İnce hamur, odun fırını"],["Kampo çevresinde osteria","Mevsim menüsü"],["Trastevere'de uzun akşam","Antipasti'den dolce'ye"]],
+    breakfast:[["Bar'da cornetto + espresso","Ayakta, Roma usulü hızlı başlangıç"],["Trastevere fırın kahvaltısı","Taze maritozzo denenmeli"],["Monti'de brunch","Geç başlayan günler için"]],
+    gems:[["Quartiere Coppedè","Masalsı art-nouveau mimarili mini mahalle"],["Aventino Portakal Bahçesi","Sessiz teras, harika şehir manzarası"],["Centrale Montemartini","Antik heykeller eski elektrik santralinde"],["Garbatella mahallesi","Turistsiz, renkli avlulu Roma"]],
+    rainy:[["Vatikan Müzeleri","Tam gün geçirilebilecek kapalı rota"],["Galleria Borghese","Bernini heykelleri (rezervasyon şart)"],["Pantheon + kiliseler rotası","Caravaggio tabloları ücretsiz görülebilir"],["MAXXI Müzesi","Zaha Hadid imzalı çağdaş sanat"]],
+    tips:{
+      ulasim:"Merkez yürünebilir ölçekte; metro yalnızca uzak noktalar için gerekli. 72 saatlik toplu taşıma kartı ekonomik olabilir.",
+      guvenlik:"Termini Garı ve kalabalık meydanlarda yankesicilere dikkat. Çeşme önlerinde 'bileklik hediye' yaklaşanları kibarca geçin.",
+      kultur:"Kiliselere girişte omuzlar kapalı olmalı. Öğle 13:00–15:30 arası birçok küçük dükkân kapanır; planı buna göre kurduk.",
+      ipucu:"Masada oturmak yerine barda içilen kahve yarı fiyattır. 'Coperto' (kuver) hesaba eklenir, bahşiş zorunlu değildir."
+    }
+  },
+  "paris": {
+    name:"Paris", country:"Fransa", cover:["#6B8CAE","#E8B27D"], cost: 1.7,
+    acts:{
+      tarih:[["Louvre Müzesi","Saatli online bilet alın; 3 saatlik seçili rota önerilir"],["Notre-Dame ve Île de la Cité","Restorasyon sonrası yeniden açık"],["Versailles Sarayı (yarım gün)","Bahçeler için ayrıca süre ayırın"],["Sainte-Chapelle","Vitraylar için güneşli saatleri seçin"],["Panthéon","Büyük Fransızların anıt mezarı"]],
+      gastronomi:[["Marais'de fırın-peynirci turu","Baget, peynir ve şarküteri tadımı"],["Saint-Germain pastane rotası","Klasik Fransız pastacılığı"],["Rue Mouffetard pazarı","Canlı pazar sokağında öğlen keşfi"],["Crêpe ve galette molası","Breton usulü tuzlu-tatlı ikili"]],
+      doga:[["Luxembourg Bahçeleri","Sandalyede kitap, havuzda yelkenli"],["Seine kıyısı yürüyüşü","Pont Neuf'ten Eyfel'e sahil hattı"],["Buttes-Chaumont Parkı","Yerellerin piknik parkı"],["Tuileries'den Orsay'a yürüyüş","Nehir manzaralı klasik hat"]],
+      fotografcilik:[["Trocadéro'da gün doğumu","Eyfel'in en temiz karesi"],["Montmartre arka sokakları","Sabah erken, turist öncesi"],["Passages couverts","Camlı tarihi pasajlarda detay çekimi"]],
+      macera:[["Seine'de tekne + bisiklet kombini","Şehri iki hızda görün"],["Katakomblar","Yeraltı Paris'i (dar alan uyarısı)"],["Vincennes ormanında kano","Şehir içinde doğa molası"]],
+      gece:[["Seine gece tekne turu","Işıklandırılmış köprüler altında 1 saat"],["Marais kokteyl barları","Butik ve kalabalıksız seçenekler"],["Montmartre'da kabare akşamı","Klasik Paris gecesi"]],
+      luks:[["Eyfel manzaralı tadım menüsü","Pencere kenarı için erken rezervasyon"],["Galeries Lafayette kişisel alışveriş","Kubbe manzaralı teras dahil"],["Spa ve hamam ritüeli","Şehir yorgunluğuna kapanış"]]
+    },
+    lunch:[["Bistro'da günün menüsü","'Formule midi' en ekonomik seçenek"],["Marais'de falafel sokağı","Hızlı ve doyurucu"],["Pazar tezgâhından piknik","Baget + peynir + park üçlüsü"]],
+    dinner:[["Klasik bistro akşamı","Confit de canard denenmeli"],["Saint-Germain'de brasserie","Deniz ürünleri tabağı"],["Yerel şarap barında akşam","Küçük tabaklar + doğal şarap"]],
+    breakfast:[["Köşe kafede kruvasan + café crème","Paris sabah ritüeli"],["Boulangerie kahvaltısı","Taze viennoiserie çeşitleri"],["Canal Saint-Martin brunch","Hafta sonu favorisi"]],
+    gems:[["Canal Saint-Martin","Yerellerin kanal kıyısı; butikler ve kafeler"],["Rue Crémieux","Pastel renkli ev sırası (sakin saatte gidin)"],["Marché des Enfants Rouges","Paris'in en eski kapalı pazarı"],["Belleville teras manzarası","Eyfel'i uzaktan, kalabalıksız izleyin"]],
+    rainy:[["Orsay Müzesi","Empresyonist koleksiyon, eski gar binası"],["Passages couverts turu","Üstü kapalı tarihi pasajlar hattı"],["Pompidou Merkezi","Modern sanat + çatı manzarası"],["Carnavalet Müzesi","Paris'in tarihi, girişi ücretsiz"]],
+    tips:{
+      ulasim:"Navigo Easy kart + 10'lu carnet ekonomiktir. Metro yoğun; 3 duraktan kısa mesafeleri yürüyün.",
+      guvenlik:"Metro ve turistik meydanlarda telefon/cüzdan önde dursun. 'İmza kampanyası' yaklaşımlarına durmayın.",
+      kultur:"Mekana girerken 'Bonjour' demek beklenir; küçük bir selam hizmeti gözle görülür iyileştirir. Akşam yemeği 19:30 öncesi başlamaz.",
+      ipucu:"Birçok müze ayın ilk pazarı ücretsizdir. Su istemek için 'une carafe d'eau' deyin — musluk suyu ücretsiz servis edilir."
+    }
+  },
+  "barselona": {
+    name:"Barselona", country:"İspanya", cover:["#D98B5F","#6B8CAE"], cost: 1.4,
+    acts:{
+      tarih:[["Sagrada Família","Saatli bilet + kule çıkışı önerilir"],["Gotik Mahalle yürüyüşü","Katedral ve ortaçağ sokakları"],["Park Güell","Sabah ilk seans, manzara + Gaudí"],["Casa Batlló veya La Pedrera","İkisinden biri yeterli; Batlló önerimiz"],["Montjuïc Kalesi","Teleferikle çıkış, liman manzarası"]],
+      gastronomi:[["Boqueria pazarı tadım turu","Jamón, peynir ve taze meyve suları"],["El Born tapas rotası","3 mekan, 6 tapas kuralı"],["Barceloneta'da paella","Deniz kenarında öğle klasiği"],["Vermut saati","Yerel öğlen ritüeli, zeytin eşliğinde"]],
+      doga:[["Barceloneta sahil yürüyüşü","Sabah koşucularına katılın"],["Bunkers del Carmel","360° şehir panoraması"],["Ciutadella Parkı","Sandal ve yeşil alan molası"],["Tibidabo tepesi","Funiküler ile çıkış"]],
+      fotografcilik:[["Gotik Mahalle ara sokakları","Sabah ışığında taş dokular"],["Sagrada Família iç mekan","Öğleden sonra vitray ışığı"],["Bunkers'ta gün batımı","Şehrin en iyi golden hour noktası"]],
+      macera:[["Akdeniz'de kayak/sup","Barceloneta çıkışlı"],["Montserrat günübirlik tırmanış","Trenle 1 saat, via ferrata seçeneği"],["Bisikletle sahil hattı","Forum'a kadar düz parkur"]],
+      gece:[["El Born kokteyl barları","Gizli kapılı speakeasy'ler"],["Gràcia meydanlarında akşam","Yerel ve samimi atmosfer"],["Flamenko gecesi","Tablao'da 1 saatlik gösteri"]],
+      luks:[["Sahil klübünde gün","Şezlong + öğle menüsü"],["Michelin tadım menüsü","Modern Katalan mutfağı"],["Özel yelkenli ile gün batımı","2 saatlik marina çıkışı"]]
+    },
+    lunch:[["Menú del día","3 kalem + içecek sabit fiyat"],["Boqueria tezgâh barı","Pazar içinde taze deniz ürünü"],["Gràcia'da yerel öğle","Turist fiyatlarından uzak"]],
+    dinner:[["Tapas gezme akşamı","Mekan değiştirerek 3 durak"],["Barceloneta'da deniz ürünleri","Mariscada paylaşım tabağı"],["El Born'da modern Katalan","Şarap eşleşmeli menü"]],
+    breakfast:[["Pa amb tomàquet + kahve","Katalan usulü başlangıç"],["Granja'da churros","Sıcak çikolataya batırın"],["Sahil kafesinde kahvaltı","Deniz manzaralı başlangıç"]],
+    gems:[["Sant Antoni pazarı çevresi","Yükselen mahalle, hafta sonu sahaf pazarı"],["Hospital de Sant Pau","Gaudí gölgesinde kalmış modernist şaheser"],["Carrer de Blai","Pintxo barları sokağı, tanesi 1–2 €"],["Horta Labirenti","Şehrin en eski bahçesi, neredeyse turistsiz"]],
+    rainy:[["Picasso Müzesi","Erken dönem eserler, El Born'da"],["Santa Caterina Pazarı","Renkli çatı altında tadım"],["MNAC","Ulusal sanat + kubbe terası"],["CosmoCaixa","Bilim müzesi, aileler için ideal"]],
+    tips:{
+      ulasim:"T-casual (10 yolculuk) kartı tekil bilete göre çok ekonomik. Metro gece 24:00'e, cuma-cumartesi daha geç çalışır.",
+      guvenlik:"La Rambla ve metroda yankesicilik yaygın; telefon arka cepte durmasın. Sahilde eşyalarınızı yalnız bırakmayın.",
+      kultur:"Öğle yemeği 14:00, akşam 21:00 civarı başlar; erken giderseniz restoranlar boş olur. Katalanca selamlama ('Bon dia') memnuniyet yaratır.",
+      ipucu:"Sagrada Família ve Park Güell biletlerini günler önce alın; kapıda çoğu gün bilet kalmaz."
+    }
+  },
+  "kapadokya": {
+    name:"Kapadokya", country:"Türkiye", cover:["#B07B3E","#C96C4A"], cost: 0.9,
+    acts:{
+      tarih:[["Göreme Açık Hava Müzesi","Kaya kiliseleri ve freskler"],["Derinkuyu Yeraltı Şehri","8 kata inen tünel sistemi"],["Uçhisar Kalesi","Bölgenin en yüksek noktası"],["Zelve Açık Hava Müzesi","Terk edilmiş kaya köyü"]],
+      gastronomi:[["Testi kebabı deneyimi","Masada kırılan klasik"],["Yerel şarap evi tadımı","Volkanik toprak bağları"],["Avanos'ta çömlek + kahve","Kızılırmak kenarında mola"]],
+      doga:[["Balon izleme / gün doğumu","Saat 05:30, manzara noktasından"],["Güllüdere (Rose Valley) yürüyüşü","2 saatlik orta zorlukta parkur"],["Ihlara Vadisi","Kanyon tabanında dere boyu yürüyüş"],["Kızılçukur gün batımı","Vadinin kızıla döndüğü an"]],
+      fotografcilik:[["Balonlarla gün doğumu çekimi","Yılın en ikonik karesi"],["Peri bacaları golden hour","Paşabağ vadisinde akşam ışığı"],["Mağara otel terasları","Sabah siluet çekimleri"]],
+      macera:[["Sıcak hava balonu uçuşu","1 saatlik uçuş, önceden rezervasyon"],["ATV vadi turu","Gün batımı seansı popüler"],["At ile vadi safari","'Güzel atlar diyarı'na yakışır"]],
+      gece:[["Şarap tadım akşamı","Yerel üzümlerle eşleştirme"],["Mağara restoranda yöresel gece","Canlı müzik eşliğinde"],["Yıldız gözlemi","Işık kirliliği düşük noktalar"]],
+      luks:[["Mağara süitte konaklama deneyimi","Jakuzili teras odalar"],["Özel balon sepeti","Yalnızca sizin için uçuş"],["Vadi manzaralı özel akşam yemeği","Terasta kurulu sofra"]]
+    },
+    lunch:[["Göreme'de gözleme + ayran","Hafif ve hızlı"],["Avanos kasaba lokantası","Güveç çeşitleri"],["Vadi manzaralı kafe","Yürüyüş arası mola"]],
+    dinner:[["Testi kebabı akşamı","Rezervasyonla, mağara mekanda"],["Yerel bağ evinde akşam","Mevsim menüsü + yerel şarap"],["Uçhisar manzara restoranı","Gün batımına denk getirin"]],
+    breakfast:[["Otel terasında köy kahvaltısı","Balon manzarası eşliğinde"],["Göreme meydan kahvaltıcısı","Bal-kaymak klasiği"],["Bağ evi kahvaltısı","Organik yerel ürünler"]],
+    gems:[["Çavuşin eski köyü","Terk edilmiş kaya evleri, turist azlığı"],["Mustafapaşa (Sinasos)","Rum mimarisi taş konaklar"],["Keşlik Manastırı","Ziyaretçisi az bir bizans kompleksi"],["Sobesos Antik Kenti","Bölgenin az bilinen Roma kalıntısı"]],
+    rainy:[["Yeraltı şehirleri turu","Zaten yer altında — yağmurdan etkilenmez"],["Güray Müze (çömlek)","Yer altına oyulmuş seramik müzesi"],["Hamam ve spa","Mağara hamamı deneyimi"],["Şarap mahzeni tadımı","Kapalı mekanda uzun tadım"]],
+    tips:{
+      ulasim:"Bölge köyler arası dağınık; 1–2 gün araç kiralamak en verimlisi. Balon sabahı transferler 04:30'da başlar.",
+      guvenlik:"Vadi yürüyüşlerinde patika dışına çıkmayın ve yanınıza su alın. ATV turlarında kask şart.",
+      kultur:"Balon uçuşları hava koşuluna bağlıdır; planın ilk sabahına koyduk ki iptal olursa ertesi gün şansı kalsın.",
+      ipucu:"Balonları ille de binmeden de yaşayabilirsiniz: gün doğumunda manzara terasları ücretsiz ve en az uçuş kadar etkileyici."
+    }
+  }
+};
+
+/* Genel (her şehir için) içerik üretici — manuel içerik girişi gerektirmez */
+function genericCity(name){
+  const N = cap(name);
+  return {
+    name:N, country:"", cover:["#C96C4A","#E8B27D"], cost:1.1,
+    acts:{
+      tarih:[[N+" tarihi merkez yürüyüşü","Eski şehir dokusunda rehbersiz keşif"],["Şehir müzesi ziyareti",N+" tarihini özetleyen ana koleksiyon"],["Simge yapı ve meydan turu","Şehrin en bilinen anıt aksı"],["Tarihi mahalle keşfi","Korunmuş sokak dokusu"]],
+      gastronomi:[["Yerel pazar lezzet turu","Bölgesel ürünler ve tadım durakları"],["Geleneksel mutfak deneyimi",N+" mutfağının imza yemekleri"],["Tarihî kafe molası","Şehrin klasikleşmiş durağı"],["Sokak lezzetleri rotası","Yerellerin tercih ettiği tezgâhlar"]],
+      doga:[["Şehir parkı yürüyüşü","Yeşil alanda sabah temposu"],["Nehir/sahil hattı keşfi","Su kenarında yürüyüş rotası"],["Panorama noktası","Şehre yukarıdan bakış"]],
+      fotografcilik:[["Golden hour panorama çekimi","Gün batımına denk getirin"],["Eski şehir detay çekimleri","Kapılar, cepheler, dokular"],["Yerel pazar renkleri","Canlı kareler için ideal"]],
+      macera:[["Bisikletle şehir turu","Kiralık bisikletle ana aks"],["Günübirlik doğa parkuru","Şehre yakın yürüyüş rotası"],["Su sporları / aktivite","Mevsime göre yerel seçenek"]],
+      gece:[["Yerel barlar bölgesi","Akşam canlanan mahalle"],["Canlı müzik mekânı","Yerel sahneyi keşfedin"],["Gece yürüyüşü","Işıklandırılmış merkez turu"]],
+      luks:[["Manzaralı fine dining","Şehrin öne çıkan restoranı"],["Spa / hamam deneyimi","Yorgunluğa kapanış"],["Özel rehberli tur","Size özel tempo ve içerik"]]
+    },
+    lunch:[["Yerel lokantada öğle","Günün menüsü en ekonomik seçim"],["Pazar çevresinde öğle","Taze ve hızlı"],["Merkezde hafif öğle","Yürüyüş arasında pratik mola"]],
+    dinner:[["Geleneksel restoranda akşam","Bölge mutfağından seçki"],["Manzaralı akşam yemeği","Rezervasyon önerilir"],["Mahalle restoranında akşam","Yerellerin tercihi"]],
+    breakfast:[["Merkez kafede kahvaltı","Güne sakin başlangıç"],["Fırın kahvaltısı","Taze ve pratik"],["Otel çevresinde kahvaltı","Erken çıkışlar için ideal"]],
+    gems:[["Turistsiz mahalle keşfi","Merkeze 15 dk; yerel kafeler ve atölyeler"],["İkinci el / antika pazarı","Hafta sonları kurulan yerel pazar"],["Az bilinen manzara terası","Kalabalıksız gün batımı noktası"]],
+    rainy:[["Ana müze ziyareti","Tam gün geçirilebilecek kapalı rota"],["Kapalı pazar / pasaj keşfi","Üstü kapalı alışveriş ve tadım"],["Kafe + galeri rotası","Yağmurlu öğleden sonra programı"]],
+    tips:{
+      ulasim:"Şehre vardığınızda günlük/haftalık toplu taşıma kartını araştırın; tekil biletten genellikle %30+ ekonomiktir.",
+      guvenlik:"Kalabalık turistik alanlarda değerli eşyalarınızı önde taşıyın; lisanslı taksi veya uygulama tercih edin.",
+      kultur:"Yerel selamlaşma kalıplarını öğrenmek hizmet kalitesini gözle görülür iyileştirir; dini mekânlarda kıyafet kurallarına dikkat edin.",
+      ipucu:"Müze ve simge yapı biletlerini online alarak hem sıra bekleyişini hem de çoğu zaman birkaç yüz lirayı geride bırakırsınız."
+    }
+  };
+}
+function getCity(input){
+  const k = input.toLocaleLowerCase("tr-TR").trim()
+    .replace("i̇","i").replace(/ı/g,"i").replace(/ü/g,"u").replace(/ö/g,"o").replace(/ş/g,"s").replace(/ç/g,"c").replace(/ğ/g,"g");
+  if(k.includes("istanbul")) return CITY_DB.istanbul;
+  if(k.includes("roma")||k.includes("rome")) return CITY_DB.roma;
+  if(k.includes("paris")) return CITY_DB.paris;
+  if(k.includes("barselona")||k.includes("barcelona")) return CITY_DB.barselona;
+  if(k.includes("kapadokya")||k.includes("cappadocia")||k.includes("goreme")||k.includes("urgup")||k.includes("nevsehir")) return CITY_DB.kapadokya;
+  return genericCity(input.trim());
+}
+
+/* ---------- Form durumu ---------- */
+const INTERESTS = [
+  ["tarih","Tarih","M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"],
+  ["gastronomi","Gastronomi","M7 3v8a2 2 0 0 0 4 0V3M9 3v18M17 3c-2 1-3 3-3 6v4h3v8"],
+  ["doga","Doğa","M12 3 5 13h4l-3 8h12l-3-8h4L12 3Z"],
+  ["fotografcilik","Fotoğrafçılık","M3 8h4l2-3h6l2 3h4v12H3V8Zm9 9a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"],
+  ["macera","Macera","m13 2-9 13h6l-2 7 9-13h-6l2-7Z"],
+  ["gece","Gece Hayatı","M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10Z"],
+  ["luks","Lüks Deneyimler","M6 3h12l3 6-9 12L3 9l3-6ZM3 9h18M9 9l3 12M15 9l-3 12"]
+];
+const blankForm = () => ({city:"",days:3,budget:25000,people:2,type:"",style:"",interests:[],transport:"",notes:""});
+let form = blankForm();
+let step = 1;
+let currentPlan = null;
+let savedTrips = [
+  /* Vitrin amaçlı önceden kaydedilmiş iki örnek plan */
+];
+
+/* ---------- Sihirbaz ---------- */
+function startWizard(){ form = blankForm(); step = 1; go("planner"); renderWizard(); }
+const STEP_LABELS = ["Şehir & Süre","Bütçe & Kişi","Tarz & İlgi","Ek Bilgiler"];
+
+function renderProgress(){
+  let h = "";
+  for(let i=1;i<=4;i++){
+    h += `<div class="p-step ${i===step?"active":""} ${i<step?"done":""}">
+      <div class="p-dot">${i<step?'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>':i}</div>
+      <span>${STEP_LABELS[i-1]}</span></div>`;
+    if(i<4) h += `<div class="p-bar ${i<step?"filled":""}"><i></i></div>`;
+  }
+  $("#progress").innerHTML = h;
+}
+
+function chip(name, value, label, sub, icon, checked, type="radio"){
+  return `<label class="choice">
+    <input type="${type}" name="${name}" value="${value}" ${checked?"checked":""}>
+    <span class="chip"><b>${icon?`<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="${icon}"/></svg>`:""}${label}</b>${sub?`<small>${sub}</small>`:""}</span>
+  </label>`;
+}
+
+function renderWizard(){
+  renderProgress();
+  const c = $("#wizardCard");
+  let h = "";
+  if(step===1){
+    h = `<h2>Nereye gidiyorsunuz?</h2><p class="sub">Şehri ve kaç gün kalacağınızı belirtin.</p>
+    <div class="field"><label>Hangi şehre gideceksiniz?</label>
+      <input class="input" id="f-city" list="cityList" placeholder="örn. İstanbul, Roma, Paris…" value="${form.city}">
+      <datalist id="cityList"><option value="İstanbul"><option value="Roma"><option value="Paris"><option value="Barselona"><option value="Kapadokya"></datalist>
+    </div>
+    <div class="field"><label>Kaç gün kalacaksınız? <span class="hint">1–14 gün</span></label>
+      <input class="input" id="f-days" type="number" min="1" max="14" value="${form.days}">
+    </div>`;
+  }
+  if(step===2){
+    h = `<h2>Bütçe ve kişi sayısı</h2><p class="sub">Toplam bütçenizi yazın; AI kalemlere dağıtsın.</p>
+    <div class="field-row">
+      <div class="field"><label>Toplam bütçeniz (₺)</label>
+        <input class="input" id="f-budget" type="number" min="1000" step="500" value="${form.budget}"></div>
+      <div class="field"><label>Kaç kişi gideceksiniz?</label>
+        <input class="input" id="f-people" type="number" min="1" max="12" value="${form.people}"></div>
+    </div>
+    <div class="field"><label>Seyahat tipi</label>
+      <div class="choice-grid">
+        ${chip("f-type","solo","Tek başına","Kendi temponuzda özgür keşif","M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4 0-7 2-7 5v2h14v-2c0-3-3-5-7-5Z",form.type==="solo")}
+        ${chip("f-type","cift","Çift","Romantik duraklar öncelikli","M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6.5 5.5 5.5 0 0 1 21.5 12C19 16.4 12 21 12 21Z",form.type==="cift")}
+        ${chip("f-type","aile","Aile","Çocuk dostu tempo ve molalar","M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8 1a2.5 2.5 0 1 0 0-5M2 21v-1c0-3 3-5 7-5s7 2 7 5v1M17 14c3 0 5 1.6 5 4v3",form.type==="aile")}
+        ${chip("f-type","arkadas","Arkadaş grubu","Sosyal ve hareketli program","M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8 0a3 3 0 1 0 0-6M1 21v-1c0-3 3-5 7-5s7 2 7 5v1m1-6c3 .5 5 2.2 5 5v1",form.type==="arkadas")}
+      </div>
+    </div>`;
+  }
+  if(step===3){
+    h = `<h2>Tarzınız ve ilgi alanlarınız</h2><p class="sub">Plan tam size göre şekillensin.</p>
+    <div class="field"><label>Seyahat tarzınız</label>
+      <div class="choice-grid cols-3">
+        ${chip("f-style","ekonomik","Ekonomik","Akıllı harcama, yerel seçimler","M12 8c-2.5 0-4 1-4 2.5S9.5 13 12 13s4 1 4 2.5S14.5 18 12 18m0-10V6m0 12v2m0-12c2 0 3.3.7 3.8 1.7M8.2 16.3C8.7 17.3 10 18 12 18",form.style==="ekonomik")}
+        ${chip("f-style","dengeli","Dengeli","Konfor ve bütçe dengesi","M12 3v18M5 7l7-4 7 4M5 7c0 3 1.5 5 3.5 5S12 10 12 7M12 7c0 3 1.5 5 3.5 5S19 10 19 7",form.style==="dengeli")}
+        ${chip("f-style","luks","Lüks","Premium deneyim öncelikli","M6 3h12l3 6-9 12L3 9l3-6Z",form.style==="luks")}
+      </div>
+    </div>
+    <div class="field"><label>İlgi alanlarınız <span class="hint">birden fazla seçebilirsiniz</span></label>
+      <div class="choice-grid cols-3">
+        ${INTERESTS.map(([v,l,ic])=>chip("f-int",v,l,"",ic,form.interests.includes(v),"checkbox")).join("")}
+      </div>
+    </div>
+    <div class="field"><label>Ulaşım tercihiniz</label>
+      <div class="choice-grid">
+        ${chip("f-tr","yuruyus","Yürüyüş","Şehri adımlayarak keşif","M13 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM9 23l2-7-3-2 1-7 5-1 3 4 3 1m-9-5-3 3-3 9",form.transport==="yuruyus")}
+        ${chip("f-tr","toplu","Toplu taşıma","Metro, tramvay, otobüs","M5 17h14M7 21l1-2m9 2-1-2M6 3h12a1 1 0 0 1 1 1v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a1 1 0 0 1 1-1Zm-1 8h14M8.5 15h.01m7 0h.01",form.transport==="toplu")}
+        ${chip("f-tr","taksi","Taksi","Konfor ve hız öncelikli","M5 11l1.5-5h11L19 11m-14 0h14a2 2 0 0 1 2 2v4h-2a2 2 0 1 1-4 0H9a2 2 0 1 1-4 0H3v-4a2 2 0 0 1 2-2Zm4-8h6",form.transport==="taksi")}
+        ${chip("f-tr","karma","Karma","Duruma göre en mantıklısı","M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7",form.transport==="karma")}
+      </div>
+    </div>`;
+  }
+  if(step===4){
+    const intLabels = form.interests.map(i=>INTERESTS.find(x=>x[0]===i)[1]).join(", ");
+    h = `<h2>Son dokunuşlar</h2><p class="sub">Varsa özel isteklerinizi ekleyin, özeti kontrol edin.</p>
+    <div class="field"><label>Ek notlar <span class="hint">isteğe bağlı</span></label>
+      <textarea class="input" id="f-notes" placeholder="örn. Vejetaryen restoran önceliği, sabahları geç başlayalım, müze yoğunluğu az olsun…">${form.notes}</textarea>
+    </div>
+    <div class="summary-box">
+      <h4>Plan özeti</h4>
+      <dl>
+        <dt>Şehir</dt><dd>${cap(form.city)}</dd>
+        <dt>Süre</dt><dd>${form.days} gün</dd>
+        <dt>Bütçe</dt><dd>${fmt(form.budget)} · ${form.people} kişi</dd>
+        <dt>Tip / Tarz</dt><dd>${typeLabel(form.type)} · ${cap(form.style)}</dd>
+        <dt>İlgi alanları</dt><dd>${intLabels||"—"}</dd>
+        <dt>Ulaşım</dt><dd>${trLabel(form.transport)}</dd>
+      </dl>
+    </div>`;
+  }
+  h += `<div class="err" id="wErr"></div>
+  <div class="wizard-nav">
+    ${step>1?`<button class="btn btn-ghost" onclick="prevStep()">← Geri</button>`:`<button class="btn btn-ghost" onclick="go('home')">İptal</button>`}
+    ${step<4?`<button class="btn btn-primary" onclick="nextStep()">Devam Et →</button>`
+            :`<button class="btn btn-primary" onclick="submitWizard()">Planımı Oluştur ✦</button>`}
+  </div>`;
+  c.innerHTML = h;
+}
+function typeLabel(t){return {solo:"Tek başına",cift:"Çift",aile:"Aile",arkadas:"Arkadaş grubu"}[t]||"—"}
+function trLabel(t){return {yuruyus:"Yürüyüş",toplu:"Toplu taşıma",taksi:"Taksi",karma:"Karma"}[t]||"—"}
+
+function collectStep(){
+  if(step===1){ form.city = $("#f-city").value.trim(); form.days = +$("#f-days").value; }
+  if(step===2){
+    form.budget = +$("#f-budget").value; form.people = +$("#f-people").value;
+    form.type = document.querySelector('input[name="f-type"]:checked')?.value || "";
+  }
+  if(step===3){
+    form.style = document.querySelector('input[name="f-style"]:checked')?.value || "";
+    form.interests = [...document.querySelectorAll('input[name="f-int"]:checked')].map(i=>i.value);
+    form.transport = document.querySelector('input[name="f-tr"]:checked')?.value || "";
+  }
+  if(step===4){ form.notes = $("#f-notes").value.trim(); }
+}
+function validateStep(){
+  if(step===1){
+    if(!form.city) return "Lütfen bir şehir yazın.";
+    if(!(form.days>=1 && form.days<=14)) return "Gün sayısı 1 ile 14 arasında olmalı.";
+  }
+  if(step===2){
+    if(!(form.budget>=1000)) return "Toplam bütçe en az ₺1.000 olmalı.";
+    if(!(form.people>=1 && form.people<=12)) return "Kişi sayısı 1 ile 12 arasında olmalı.";
+    if(!form.type) return "Lütfen seyahat tipinizi seçin.";
+  }
+  if(step===3){
+    if(!form.style) return "Lütfen seyahat tarzınızı seçin.";
+    if(form.interests.length===0) return "En az bir ilgi alanı seçin.";
+    if(!form.transport) return "Lütfen ulaşım tercihinizi seçin.";
+  }
+  return "";
+}
+function nextStep(){
+  collectStep();
+  const e = validateStep();
+  const eb = $("#wErr");
+  if(e){ eb.textContent = e; eb.classList.add("show"); return; }
+  step++; renderWizard(); window.scrollTo({top:0,behavior:"smooth"});
+}
+function prevStep(){ collectStep(); step--; renderWizard(); }
+function submitWizard(){
+  collectStep();
+  runAI(0);
+}
+
+/* ---------- AI plan motoru ---------- */
+function seededShuffle(arr, seed){
+  const a = [...arr];
+  let s = seed + 7;
+  for(let i=a.length-1;i>0;i--){
+    s = (s*9301+49297)%233280;
+    const j = Math.floor((s/233280)*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function pickPool(city, interests, seed){
+  /* Seçili ilgi alanlarından havuz oluştur; boşsa tarih+gastronomi varsay */
+  const keys = interests.length ? interests : ["tarih","gastronomi"];
+  let pool = [];
+  keys.forEach(k => (city.acts[k]||[]).forEach(a => pool.push({...{t:a[0],d:a[1]},cat:k})));
+  /* tamamlayıcı: havuz küçükse diğer kategorilerden ekle */
+  if(pool.length < 12){
+    Object.keys(city.acts).filter(k=>!keys.includes(k)).forEach(k=>{
+      (city.acts[k]||[]).slice(0,2).forEach(a=>pool.push({t:a[0],d:a[1],cat:k}));
+    });
+  }
+  return seededShuffle(pool, seed);
+}
+
+function buildPlan(f, variant){
+  const city = getCity(f.city);
+  const seed = (variant*131) + f.days*17 + f.people*5 + (f.budget%97);
+
+  /* --- Bütçe dağılımı --- */
+  const styleAdj = {
+    ekonomik:{kon:.34, yemek:.26, ulasim:.12, akt:.16, acil:.12},
+    dengeli:{kon:.40, yemek:.24, ulasim:.10, akt:.16, acil:.10},
+    luks:{kon:.46, yemek:.24, ulasim:.07, akt:.17, acil:.06}
+  }[f.style] || {kon:.40, yemek:.24, ulasim:.10, akt:.16, acil:.10};
+  if(f.transport==="taksi"){ styleAdj.ulasim+= .04; styleAdj.akt-=.02; styleAdj.kon-=.02; }
+  if(f.transport==="yuruyus"){ styleAdj.ulasim-=.04; styleAdj.yemek+=.02; styleAdj.akt+=.02; }
+  const budget = {
+    "Konaklama": Math.round(f.budget*styleAdj.kon),
+    "Yemek": Math.round(f.budget*styleAdj.yemek),
+    "Ulaşım": Math.round(f.budget*styleAdj.ulasim),
+    "Aktiviteler": Math.round(f.budget*styleAdj.akt),
+    "Acil Durum Payı": 0
+  };
+  budget["Acil Durum Payı"] = f.budget - budget["Konaklama"] - budget["Yemek"] - budget["Ulaşım"] - budget["Aktiviteler"];
+
+  /* --- Günlük plan --- */
+  const pool = pickPool(city, f.interests, seed);
+  const bf = seededShuffle(city.breakfast, seed+1);
+  const lu = seededShuffle(city.lunch, seed+2);
+  const di = seededShuffle(city.dinner, seed+3);
+  const slow = f.type==="aile";
+  const nightlife = f.interests.includes("gece");
+  let pi = 0;
+  const nextAct = () => pool[(pi++) % pool.length];
+  const dayCost = Math.round((budget["Yemek"]+budget["Aktiviteler"]) / f.days);
+
+  const dayThemes = [];
+  const days = [];
+  for(let d=0; d<f.days; d++){
+    const items = [];
+    const a1 = nextAct(), a2 = nextAct(), a3 = nextAct();
+    items.push({time: slow?"09:00":"08:30", t:bf[d%bf.length][0], d:bf[d%bf.length][1], cat:"yemek"});
+    items.push({time:"10:00", ...a1});
+    if(!slow) items.push({time:"12:00", ...a2});
+    items.push({time: slow?"12:30":"13:30", t:lu[d%lu.length][0], d:lu[d%lu.length][1], cat:"yemek"});
+    items.push({time:"15:00", ...(slow?a2:a3)});
+    if(!slow && f.days<=4) items.push({time:"17:00", ...nextAct()});
+    items.push({time:"19:30", t:di[d%di.length][0], d:di[d%di.length][1], cat:"yemek"});
+    if(nightlife){
+      const g = city.acts.gece[(d+variant)%city.acts.gece.length];
+      items.push({time:"21:30", t:g[0], d:g[1], cat:"gece"});
+    } else {
+      items.push({time:"21:00", t:"Akşam yürüyüşü ve dinlenme", d:"Konaklama çevresinde kısa tur, erken dinlenme", cat:"serbest"});
+    }
+    const catCounts = {};
+    items.forEach(i=>{ if(i.cat && i.cat!=="yemek" && i.cat!=="serbest") catCounts[i.cat]=(catCounts[i.cat]||0)+1; });
+    const top = Object.entries(catCounts).sort((a,b)=>b[1]-a[1])[0];
+    const themeMap = {tarih:"Tarih Rotası",gastronomi:"Lezzet Günü",doga:"Doğa & Nefes",fotografcilik:"Kadraj Günü",macera:"Macera Günü",gece:"Şehir & Gece",luks:"Premium Gün"};
+    dayThemes.push(top?themeMap[top[0]]:"Keşif Günü");
+    days.push({items, theme:dayThemes[d], cost:dayCost});
+  }
+
+  /* --- Özet metni --- */
+  const intNames = (f.interests.length?f.interests:["tarih","gastronomi"]).map(i=>INTERESTS.find(x=>x[0]===i)[1].toLocaleLowerCase("tr-TR"));
+  const intText = intNames.length>1 ? intNames.slice(0,-1).join(", ")+" ve "+intNames.at(-1) : intNames[0];
+  const styleText = {ekonomik:"bütçenizi koruyarak", dengeli:"konfor ve bütçeyi dengeleyerek", luks:"premium deneyimlere öncelik vererek"}[f.style];
+  const typeText = {solo:"tek başına seyahatinize uygun esnek bir tempoyla", cift:"ikiniz için romantik duraklar gözetilerek", aile:"aile dostu bir tempoyla ve düzenli molalarla", arkadas:"grubunuz için sosyal ve hareketli bir kurguyla"}[f.type];
+  const summary = `Bu ${f.days} günlük ${city.name} planı, ${intText} ağırlıklı deneyimler sunarken ${styleText} şehri verimli şekilde keşfetmenizi sağlar. Rota ${typeText} hazırlandı; günler coğrafi olarak mantıklı sıraya kondu ve toplam ${fmt(f.budget)} bütçeniz beş kaleme dağıtıldı.${f.notes?` Notunuz dikkate alındı: "${f.notes}"`:""}`;
+
+  const gems = seededShuffle(city.gems, seed+4).slice(0,3);
+  const rainy = seededShuffle(city.rainy, seed+5).slice(0,3);
+
+  return {
+    id: Date.now() + Math.random(),
+    createdAt: new Date().toLocaleDateString("tr-TR",{day:"numeric",month:"long",year:"numeric"}),
+    form: {...f}, cityName: city.name, country: city.country, cover: city.cover,
+    variant, summary, budget, days, gems, rainy, tips: city.tips
+  };
+}
+
+/* ---------- Yükleme animasyonu + sonuç ---------- */
+function runAI(variant){
+  go("loading");
+  $("#loadingCity").textContent = `${cap(form.city)} için ${form.days} günlük plan hazırlanıyor…`;
+  const steps = [...document.querySelectorAll("#loadSteps .load-step")];
+  steps.forEach(s=>s.classList.remove("on","ok"));
+  let i = 0;
+  const tick = () => {
+    if(i>0) steps[i-1].classList.add("ok");
+    if(i<steps.length){ steps[i].classList.add("on"); i++; setTimeout(tick, 620); }
+    else {
+      currentPlan = buildPlan(form, variant);
+      setTimeout(()=>{ renderResult(); go("result"); }, 350);
+    }
+  };
+  tick();
+}
+
+const BUDGET_COLORS = {"Konaklama":"#C96C4A","Yemek":"#E8B27D","Ulaşım":"#6B8CAE","Aktiviteler":"#5E9C76","Acil Durum Payı":"#CBB8A6"};
+const ICONS = {
+  yemek:'M7 3v8a2 2 0 0 0 4 0V3M9 3v18M17 3c-2 1-3 3-3 6v4h3v8',
+  serbest:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-14v5l3 2'
+};
+
+function renderResult(){
+  const p = currentPlan;
+  const f = p.form;
+  let activeDay = 0;
+
+  const dayHTML = (di) => {
+    const day = p.days[di];
+    return `
+      <div class="day-title">${di+1}. Gün — ${day.theme}</div>
+      <div class="day-sub">${trLabel(f.transport)} ağırlıklı · tahmini günlük harcama ${fmt(day.cost)}</div>
+      ${day.items.map(it=>`
+        <div class="tl-item">
+          <div class="tl-rail"><div class="tl-dot" style="${it.cat==='yemek'?'background:#E8B27D;border-color:#FBEEDD':''}"></div><div class="tl-line"></div></div>
+          <span class="tl-time">${it.time}</span>
+          <div class="tl-body"><b>${it.t}</b><span>${it.d}</span></div>
+        </div>`).join("")}`;
+  };
+
+  const totalB = Object.values(p.budget).reduce((a,b)=>a+b,0);
+  $("#resultRoot").innerHTML = `
+    <div class="result-top">
+      <div>
+        <h1>${p.cityName} Seyahat Planınız</h1>
+        <div class="meta">${f.days} gün · ${f.people} kişi · ${typeLabel(f.type)} · ${cap(f.style)} tarz · ${p.createdAt}</div>
+      </div>
+      <div class="result-actions">
+        <button class="btn btn-soft" onclick="altPlan()">⇄ Alternatif Plan</button>
+        <button class="btn btn-ghost" onclick="runAI(${p.variant})" title="Aynı tercihlerle farklı kurgu">↻ Yeniden Oluştur</button>
+        <button class="btn btn-primary" onclick="saveTrip()">Planı Kaydet</button>
+      </div>
+    </div>
+    <div class="alt-note ${p.variant>0?'show':''}">Alternatif kurgu görüntülüyorsunuz (Plan ${String.fromCharCode(65+p.variant)}). Orijinaline dönmek için tekrar "Alternatif Plan"a basın.</div>
+
+    <div class="r-grid">
+      <div>
+        <!-- AI Özet -->
+        <div class="r-card ai-summary">
+          <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 0-3 3 3 3 0 0 0-2.2 5A3 3 0 0 0 9 16a3 3 0 0 0 6 0 3 3 0 0 0 2.2-5A3 3 0 0 0 15 6a3 3 0 0 0-3-3Z"/><path d="M12 7v9"/></svg></span>Seyahat Özeti</h3>
+          <p>${p.summary}</p>
+          <div class="ai-tagrow">
+            ${(f.interests.length?f.interests:["tarih","gastronomi"]).map(i=>`<span class="ai-tag">${INTERESTS.find(x=>x[0]===i)[1]}</span>`).join("")}
+            <span class="ai-tag">${trLabel(f.transport)}</span>
+          </div>
+        </div>
+
+        <!-- Günlük Plan -->
+        <div class="r-card">
+          <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 10h18"/></svg></span>Günlük Rota</h3>
+          <div class="day-tabs" id="dayTabs">
+            ${p.days.map((d,i)=>`<button class="day-tab ${i===0?'on':''}" data-d="${i}">${i+1}. Gün</button>`).join("")}
+          </div>
+          <div id="dayBody">${dayHTML(0)}</div>
+        </div>
+
+        <!-- Yağmurlu hava -->
+        <div class="r-card rain-card">
+          <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.6A5 5 0 0 0 18 7h-1.3A7 7 0 1 0 5 15.9"/><path d="M8 19v2M12 18v3M16 19v2"/></svg></span>Yağmurlu Hava Alternatifi</h3>
+          <p style="font-size:.9rem;color:var(--text-light);margin-bottom:8px">Hava bozarsa o günün açık hava duraklarını şu kapalı mekanlarla değiştirin:</p>
+          ${p.rainy.map(g=>`<div class="rain-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>${g[0]}</b> — <span style="color:var(--text-light)">${g[1]}</span></div></div>`).join("")}
+        </div>
+      </div>
+
+      <div>
+        <!-- Bütçe -->
+        <div class="r-card">
+          <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7" rx="1"/><rect x="12" y="7" width="3" height="11" rx="1"/><rect x="17" y="13" width="3" height="5" rx="1"/></svg></span>Bütçe Dağılımı</h3>
+          <div class="budget-total"><b>${fmt(totalB)}</b><span>toplam</span></div>
+          <div class="budget-pp">≈ ${fmt(totalB/f.people/f.days)} / kişi / gün</div>
+          ${Object.entries(p.budget).map(([k,v])=>`
+            <div class="b-row">
+              <div class="b-label"><b>${k}</b><span>${fmt(v)} · %${Math.round(v/totalB*100)}</span></div>
+              <div class="b-track"><div class="b-fill" style="width:${(v/totalB*100)}%;background:${BUDGET_COLORS[k]}"></div></div>
+            </div>`).join("")}
+        </div>
+
+        <!-- Yerel tavsiyeler -->
+        <div class="r-card">
+          <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2H9c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3Z"/></svg></span>Yerel Tavsiyeler</h3>
+          <div class="tip-grid">
+            <div class="tip"><span class="t-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12a1 1 0 0 1 1 1v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a1 1 0 0 1 1-1Zm-1 8h14M8.5 15h.01m7 0h.01M7 21l1-2m9 2-1-2"/></svg></span><div><b>Ulaşım</b><span>${p.tips.ulasim}</span></div></div>
+            <div class="tip"><span class="t-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v5c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6l-8-3Z"/></svg></span><div><b>Güvenlik</b><span>${p.tips.guvenlik}</span></div></div>
+            <div class="tip"><span class="t-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9Z"/></svg></span><div><b>Kültür</b><span>${p.tips.kultur}</span></div></div>
+            <div class="tip"><span class="t-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-9 13h6l-2 7 9-13h-6l2-7Z"/></svg></span><div><b>Yerel İpucu</b><span>${p.tips.ipucu}</span></div></div>
+          </div>
+        </div>
+
+        <!-- Gizli mekanlar -->
+        <div class="r-card">
+          <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 1 6 6c0 4-6 12-6 12S6 13 6 9a6 6 0 0 1 6-6Z"/><circle cx="12" cy="9" r="2"/></svg></span>Gizli Kalmış Mekanlar</h3>
+          ${p.gems.map(g=>`<div class="gem"><span class="g-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l3 6-9 12L3 9l3-6Z"/></svg></span><div><b>${g[0]}</b><span>${g[1]}</span></div></div>`).join("")}
+        </div>
+      </div>
+    </div>`;
+
+  $("#dayTabs").addEventListener("click", e=>{
+    const b = e.target.closest(".day-tab"); if(!b) return;
+    document.querySelectorAll(".day-tab").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");
+    $("#dayBody").innerHTML = dayHTML(+b.dataset.d);
+  });
+}
+
+function altPlan(){
+  const v = currentPlan.variant>0 ? 0 : 1;
+  form = {...currentPlan.form};
+  runAI(v);
+}
+function saveTrip(){
+  if(savedTrips.some(t=>t.id===currentPlan.id)){ toast("Bu plan zaten kayıtlı ✓"); return; }
+  savedTrips.unshift(currentPlan);
+  toast(`"${currentPlan.cityName}" planı kaydedildi ✓`);
+}
+
+/* ---------- Kayıtlı seyahatler ---------- */
+function renderSaved(){
+  const root = $("#savedRoot");
+  if(savedTrips.length===0){
+    root.innerHTML = `<div class="empty-state">
+      <div class="e-ic"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 19 21l-7-4-7 4Z"/></svg></div>
+      <h3>Henüz kayıtlı seyahatiniz yok</h3>
+      <p>İlk planınızı oluşturun; sonuç sayfasındaki "Planı Kaydet" ile buraya ekleyin.</p>
+      <button class="btn btn-primary" onclick="startWizard()">Seyahatimi Planla</button>
+    </div>`;
+    return;
+  }
+  root.innerHTML = `<div class="trips-grid">` + savedTrips.map(t=>`
+    <div class="trip-card">
+      <div class="trip-cover" style="background:linear-gradient(120deg,${t.cover[0]},${t.cover[1]})"><h3>${t.cityName}</h3></div>
+      <div class="trip-body">
+        <div class="trip-meta">
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 10h18"/></svg>${t.form.days} gün</span>
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>${t.form.people} kişi</span>
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M16 15h2"/></svg>${fmt(t.form.budget)}</span>
+        </div>
+        <div class="trip-tags">
+          ${(t.form.interests.slice(0,3)).map(i=>`<span class="trip-tag">${INTERESTS.find(x=>x[0]===i)?.[1]||i}</span>`).join("")}
+          <span class="trip-tag" style="background:var(--secondary-soft);color:#8A6232">${cap(t.form.style)}</span>
+        </div>
+        <div style="font-size:.8rem;color:var(--text-light)">Oluşturulma: ${t.createdAt}</div>
+        <div class="trip-foot">
+          <button class="btn btn-soft btn-sm" style="flex:1" onclick="openTrip(${JSON.stringify(t.id)})">Planı Aç</button>
+          <button class="btn btn-ghost btn-sm" onclick="deleteTrip(${JSON.stringify(t.id)})" aria-label="Planı sil"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2m1 0-1 14H8L7 6"/></svg></button>
+        </div>
+      </div>
+    </div>`).join("") + `</div>`;
+}
+function openTrip(id){
+  const t = savedTrips.find(x=>x.id===id); if(!t) return;
+  currentPlan = t; renderResult(); go("result");
+}
+function deleteTrip(id){
+  savedTrips = savedTrips.filter(x=>x.id!==id);
+  renderSaved(); toast("Plan silindi");
+}
+
+/* ---------- Vitrin için örnek kayıtlı planlar ---------- */
+(function seed(){
+  const ex1 = buildPlan({city:"İstanbul",days:3,budget:25000,people:2,type:"cift",style:"dengeli",interests:["tarih","gastronomi"],transport:"yuruyus",notes:""},0);
+  ex1.createdAt = "28 Mayıs 2026";
+  const ex2 = buildPlan({city:"Kapadokya",days:2,budget:18000,people:4,type:"arkadas",style:"ekonomik",interests:["doga","macera","fotografcilik"],transport:"karma",notes:""},0);
+  ex2.createdAt = "9 Nisan 2026";
+  savedTrips = [ex1, ex2];
+})();
+</script>
+</body>
+</html>
