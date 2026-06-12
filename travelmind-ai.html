@@ -116,8 +116,6 @@ a{color:inherit;text-decoration:none}
 
 /* ---------- Sections ---------- */
 section.block{padding:84px 0}
-.contact-form{max-width:560px;margin:0 auto}
-.contact-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .section-head{text-align:center;max-width:640px;margin:0 auto 54px}
 .section-head .tag{display:inline-block;font-size:.82rem;font-weight:700;color:var(--primary);background:var(--primary-soft);padding:6px 16px;border-radius:999px;margin-bottom:16px;letter-spacing:.04em;text-transform:uppercase}
 .section-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:800;margin-bottom:14px}
@@ -244,6 +242,18 @@ textarea.input{resize:vertical;min-height:96px}
 .summary-box dt{color:var(--text-light)}
 .summary-box dd{font-weight:600}
 
+/* ---------- Yorumlar ve Sorular ---------- */
+.fb-card{max-width:640px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);padding:32px}
+.fb-tabs{display:inline-flex;gap:8px;margin-bottom:18px;background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px}
+.fb-tab{padding:10px 26px;border:none;border-radius:999px;background:none;font-family:var(--font-display);font-weight:600;font-size:.92rem;color:var(--text-light);cursor:pointer;transition:all .15s}
+.fb-tab:hover{color:var(--primary)}
+.fb-tab.active{color:#fff;background:var(--primary);box-shadow:var(--shadow-sm)}
+.fb-form.hidden{display:none}
+.star-rate{display:flex;gap:10px;font-size:2.6rem;line-height:1;margin-top:4px}
+.star-rate .star{background:none;border:none;cursor:pointer;color:var(--border);transition:color .12s,transform .12s;padding:0;line-height:1}
+.star-rate .star:hover{transform:scale(1.15)}
+.star-rate .star.on{color:#F5A623}
+
 /* ---------- Loading ---------- */
 .loading-wrap{max-width:560px;margin:0 auto;padding:110px 24px;text-align:center}
 .brain{width:84px;height:84px;border-radius:26px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:grid;place-items:center;margin:0 auto 28px;color:#fff;animation:breathe 1.8s ease-in-out infinite;box-shadow:0 14px 34px rgba(201,108,74,.35)}
@@ -302,8 +312,72 @@ textarea.input{resize:vertical;min-height:96px}
 .rain-card h3 .h-ic{background:#fff;color:var(--info)}
 .rain-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;font-size:.92rem}
 .rain-item svg{flex-shrink:0;margin-top:3px;color:var(--info)}
+
+/* ---------- Result v2: hotels, item cards, transit, totals ---------- */
+.hotel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.hotel-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:8px;transition:transform .2s,box-shadow .2s}
+.hotel-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.hotel-card.match{border-color:var(--primary);box-shadow:0 0 0 1px var(--primary)}
+.hotel-tier{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--primary);background:var(--primary-soft);padding:4px 10px;border-radius:999px;width:fit-content}
+.hotel-card h4{font-size:1rem;margin-top:2px}
+.hotel-card .h-price{font-family:var(--font-display);font-weight:800;font-size:1.25rem}
+.hotel-card .h-price small{font-size:.76rem;font-weight:500;color:var(--text-light)}
+.hotel-card .h-rating{font-size:.82rem;color:var(--secondary);font-weight:700;display:flex;align-items:center;gap:5px}
+.hotel-card .h-rating span{color:var(--text-light);font-weight:500}
+.hotel-card p{font-size:.86rem;color:var(--text-light)}
+.hotel-card .h-total{font-size:.78rem;color:var(--text-light);margin-top:auto;padding-top:6px;border-top:1px dashed var(--border)}
+
+.tl-item2{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:0}
+.tl-item2 .tl-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:5px}
+.tl-item2 .tl-headline{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.tl-item2 .tl-name{font-family:var(--font-display);font-weight:700;font-size:.98rem}
+.tl-item2 .tl-cat{font-size:.7rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.05em;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:2px 9px}
+.tl-item2 .tl-desc{font-size:.88rem;color:var(--text-light);margin-bottom:8px}
+.tl-item2 .tl-reason{font-size:.85rem;color:var(--primary-dark);background:var(--primary-soft);border-radius:10px;padding:8px 12px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start}
+.tl-item2 .tl-reason svg{flex-shrink:0;margin-top:2px}
+.tl-meta-row{display:flex;gap:8px;flex-wrap:wrap}
+.meta-chip{display:flex;align-items:center;gap:5px;font-size:.78rem;font-weight:600;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:999px;padding:4px 11px}
+.meta-chip svg{color:var(--primary);flex-shrink:0}
+.meta-chip.rating{color:#8A6232}
+.meta-chip.rating svg{color:var(--secondary)}
+
+.transit-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 14px;margin:6px 0;font-size:.8rem;color:var(--text-light);background:var(--card);border:1px dashed var(--border);border-radius:12px}
+.transit-row b{color:var(--text);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;flex-shrink:0}
+.transit-opts{display:flex;gap:14px;flex-wrap:wrap}
+.transit-opt{display:flex;align-items:center;gap:5px}
+.transit-opt svg{flex-shrink:0;color:var(--text-light)}
+.transit-opt.rec{color:var(--primary-dark);font-weight:700}
+.transit-opt.rec svg{color:var(--primary)}
+
+.day-footer{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px dashed var(--border)}
+.day-stat{flex:1;min-width:130px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 14px;text-align:center}
+.day-stat b{display:block;font-family:var(--font-display);font-size:1.15rem}
+.day-stat span{font-size:.78rem;color:var(--text-light)}
+
+.local-card{display:flex;gap:13px;padding:13px 0;border-bottom:1px dashed var(--border)}
+.local-card:last-child{border-bottom:none;padding-bottom:0}
+.local-card .l-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+.local-card b{display:block;font-size:.93rem}
+.local-card span{font-size:.85rem;color:var(--text-light)}
+.prep-card{margin-top:24px}
+.prep-head{margin-bottom:16px}
+.prep-title{font-family:var(--font-display);font-weight:700;font-size:1.02rem;margin-bottom:6px}
+.prep-weather{font-size:.9rem;color:var(--text-light);background:var(--info-soft);border-radius:10px;padding:10px 14px}
+.prep-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:16px}
+.prep-section h4{font-size:.86rem;font-weight:700;color:var(--primary);margin-bottom:8px}
+.prep-section ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.prep-section li{font-size:.88rem;padding-left:18px;position:relative}
+.prep-section li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:2px;background:var(--primary-soft);border:1.5px solid var(--primary)}
+.prep-tip{font-size:.9rem;color:var(--primary-dark);background:var(--primary-soft);border-radius:10px;padding:10px 14px}
+
 .alt-note{background:var(--secondary-soft);border:1px solid #F0DCC0;border-radius:12px;padding:13px 16px;font-size:.88rem;color:#8A6232;margin-bottom:18px;display:none}
 .alt-note.show{display:block}
+.booking-card{margin-bottom:24px}
+.booking-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:6px}
+.booking-item{display:flex;flex-direction:column;gap:4px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+.booking-item b{font-size:.85rem;color:var(--primary)}
+.booking-item span{font-size:.92rem}
+.booking-note{margin-top:12px;font-size:.88rem;color:var(--text-light);display:flex;gap:8px;align-items:flex-start;background:var(--primary-soft);border-radius:10px;padding:10px 14px}
 .toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,80px);background:var(--text);color:#fff;padding:13px 22px;border-radius:999px;font-size:.92rem;font-weight:500;display:flex;align-items:center;gap:9px;box-shadow:0 10px 30px rgba(0,0,0,.22);opacity:0;transition:all .35s;z-index:200;pointer-events:none}
 .toast.show{transform:translate(-50%,0);opacity:1}
 
@@ -335,6 +409,8 @@ textarea.input{resize:vertical;min-height:96px}
   .steps-grid,.features-grid,.quotes-grid,.trips-grid{grid-template-columns:repeat(2,1fr)}
   .sample-wrap{grid-template-columns:1fr}
   .r-grid{grid-template-columns:1fr}
+  .hotel-grid{grid-template-columns:1fr}
+  .booking-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr}
   .nav-links,.nav-cta .btn-ghost{display:none}
   .nav-burger{display:grid}
@@ -342,7 +418,7 @@ textarea.input{resize:vertical;min-height:96px}
 @media(max-width:600px){
   section.block{padding:60px 0}
   .steps-grid,.features-grid,.quotes-grid,.trips-grid{grid-template-columns:1fr}
-  .field-row,.choice-grid,.choice-grid.cols-3,.contact-form-row{grid-template-columns:1fr}
+  .field-row,.choice-grid,.choice-grid.cols-3{grid-template-columns:1fr}
   .wizard-card{padding:26px 20px}
   .p-step{width:64px}
   .p-step span{display:none}
@@ -352,6 +428,9 @@ textarea.input{resize:vertical;min-height:96px}
   .hero-stats{gap:22px}
   .result-actions{width:100%}
   .result-actions .btn{flex:1}
+  .day-footer{flex-direction:column}
+  .transit-row{flex-direction:column;align-items:flex-start;gap:8px}
+  .prep-grid{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;transition:none !important}
@@ -373,7 +452,6 @@ textarea.input{resize:vertical;min-height:96px}
       <a href="#ozellikler" onclick="goSection('ozellikler');return false;">Özellikler</a>
       <a href="#ornek" onclick="goSection('ornek');return false;">Örnek Plan</a>
       <a href="#sss" onclick="goSection('sss');return false;">SSS</a>
-      <a href="#iletisim" onclick="goSection('iletisim');return false;">İletişim</a>
       <a href="#" onclick="go('saved');return false;">Kayıtlı Seyahatler</a>
     </div>
     <div class="nav-cta">
@@ -389,7 +467,6 @@ textarea.input{resize:vertical;min-height:96px}
     <a href="#" onclick="goSection('ozellikler');return false;">Özellikler</a>
     <a href="#" onclick="goSection('ornek');return false;">Örnek Plan</a>
     <a href="#" onclick="goSection('sss');return false;">SSS</a>
-    <a href="#" onclick="goSection('iletisim');return false;">İletişim</a>
     <a href="#" onclick="go('saved');return false;">Kayıtlı Seyahatler</a>
   </div>
 </nav>
@@ -616,31 +693,49 @@ textarea.input{resize:vertical;min-height:96px}
     </div>
   </section>
 
-  <!-- İletişim -->
-  <section class="block" id="iletisim">
+  <!-- Yorumlar ve Sorular -->
+  <section class="block" id="feedback">
     <div class="container">
       <div class="section-head">
-        <span class="tag">İletişim</span>
-        <h2>Bize ulaşın</h2>
+        <div class="fb-tabs">
+          <button class="fb-tab active" id="fb-tab-sorular" onclick="fbTab('sorular')">Sorular</button>
+          <button class="fb-tab" id="fb-tab-yorumlar" onclick="fbTab('yorumlar')">Yorumlar</button>
+        </div>
+        <h2>Görüşlerinizi ve sorularınızı bizimle paylaşın</h2>
+        <p>Yukarıdaki butonlardan birini seçerek bir soru sorabilir veya deneyiminizi diğer kullanıcılarla paylaşabilirsiniz.</p>
       </div>
-      <form id="contactForm" class="contact-form" action="https://formspree.io/f/xpqeyzwo" method="POST" onsubmit="return submitContactForm(event)">
-        <div class="contact-form-row">
-          <div>
-            <label for="c-name" style="display:block;margin-bottom:6px;font-weight:600;font-size:.9rem">Ad Soyad</label>
-            <input class="input" id="c-name" name="name" type="text" required placeholder="Adınız Soyadınız">
-          </div>
-          <div>
-            <label for="c-email" style="display:block;margin-bottom:6px;font-weight:600;font-size:.9rem">E-posta</label>
-            <input class="input" id="c-email" name="email" type="email" required placeholder="ornek@eposta.com">
-          </div>
-        </div>
-        <div style="margin-top:16px">
-          <label for="c-message" style="display:block;margin-bottom:6px;font-weight:600;font-size:.9rem">Mesajınız</label>
-          <textarea class="input" id="c-message" name="message" required placeholder="Mesajınızı buraya yazın…"></textarea>
-        </div>
-        <button class="btn btn-primary" type="submit" style="margin-top:20px">Gönder</button>
-        <p id="contactFormStatus" style="margin-top:12px;font-size:.9rem"></p>
-      </form>
+      <div class="fb-card">
+        <form class="fb-form" id="fb-form-sorular" onsubmit="submitQuestion(event)">
+          <div class="field"><label>Adınız ve soyadınız</label>
+            <input class="input" id="q-name" placeholder="örn. Ayşe Yılmaz" autocomplete="off" required></div>
+          <div class="field"><label>Sorunuz</label>
+            <textarea class="input" id="q-text" placeholder="Sormak istediğiniz soruyu yazın…" autocomplete="off" required></textarea></div>
+          <div class="field"><label>Email bilgisi</label>
+            <input class="input" id="q-email" type="email" placeholder="ornek@mail.com" autocomplete="off" required></div>
+          <button class="btn btn-primary" type="submit">Soruyu Gönder</button>
+        </form>
+
+        <form class="fb-form hidden" id="fb-form-yorumlar" onsubmit="submitReview(event)">
+          <div class="field"><label>Puanınız</label>
+            <div class="star-rate" id="r-stars">
+              <button type="button" class="star" data-v="1">★</button>
+              <button type="button" class="star" data-v="2">★</button>
+              <button type="button" class="star" data-v="3">★</button>
+              <button type="button" class="star" data-v="4">★</button>
+              <button type="button" class="star" data-v="5">★</button>
+            </div>
+            <input type="hidden" id="r-rating" value="0"></div>
+          <div class="field"><label>Yorumunuz</label>
+            <textarea class="input" id="r-text" placeholder="Deneyiminizi anlatın…" autocomplete="off" required></textarea></div>
+          <div class="field"><label>Adınız ve soyadınız</label>
+            <input class="input" id="r-name" placeholder="örn. Mehmet Demir" autocomplete="off" required></div>
+          <div class="field"><label>Seyahat ettiğiniz şehir</label>
+            <input class="input" id="r-city" placeholder="örn. İstanbul" autocomplete="off" required></div>
+          <div class="field"><label>Email bilgisi</label>
+            <input class="input" id="r-email" type="email" placeholder="ornek@mail.com" autocomplete="off" required></div>
+          <button class="btn btn-primary" type="submit">Yorumu Gönder</button>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -729,7 +824,7 @@ textarea.input{resize:vertical;min-height:96px}
           <li><a href="#">Hakkımızda</a></li>
           <li><a href="#">Blog</a></li>
           <li><a href="#">Kariyer</a></li>
-          <li><a href="#" onclick="goSection('iletisim');return false;">İletişim</a></li>
+          <li><a href="#">İletişim</a></li>
         </ul>
       </div>
       <div>
@@ -765,34 +860,31 @@ function toast(msg){
   clearTimeout(toastT); toastT = setTimeout(()=>t.classList.remove("show"), 2600);
 }
 
-/* ---------- İletişim formu (Formspree) ---------- */
-function submitContactForm(e){
+/* ---------- Yorumlar ve Sorular ---------- */
+function fbTab(tab){
+  $("#fb-tab-sorular").classList.toggle("active", tab==="sorular");
+  $("#fb-tab-yorumlar").classList.toggle("active", tab==="yorumlar");
+  $("#fb-form-sorular").classList.toggle("hidden", tab!=="sorular");
+  $("#fb-form-yorumlar").classList.toggle("hidden", tab!=="yorumlar");
+}
+document.querySelectorAll("#r-stars .star").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const v = +btn.dataset.v;
+    $("#r-rating").value = v;
+    document.querySelectorAll("#r-stars .star").forEach(s=> s.classList.toggle("on", +s.dataset.v <= v));
+  });
+});
+function submitQuestion(e){
   e.preventDefault();
-  const form = e.target;
-  const status = $("#contactFormStatus");
-  const btn = form.querySelector("button[type=submit]");
-  btn.disabled = true;
-  status.textContent = "Gönderiliyor…";
-  status.style.color = "var(--text-light)";
-  fetch(form.action, {
-    method: "POST",
-    body: new FormData(form),
-    headers: { "Accept": "application/json" }
-  }).then(res => {
-    if(res.ok){
-      status.textContent = "Mesajınız gönderildi, teşekkürler!";
-      status.style.color = "var(--secondary)";
-      form.reset();
-      toast("Mesajınız başarıyla gönderildi");
-    } else {
-      status.textContent = "Bir hata oluştu, lütfen tekrar deneyin.";
-      status.style.color = "var(--primary)";
-    }
-  }).catch(() => {
-    status.textContent = "Bir hata oluştu, lütfen tekrar deneyin.";
-    status.style.color = "var(--primary)";
-  }).finally(() => { btn.disabled = false; });
-  return false;
+  e.target.reset();
+  toast("Sorunuz alındı, en kısa sürede yanıtlanacaktır.");
+}
+function submitReview(e){
+  e.preventDefault();
+  e.target.reset();
+  document.querySelectorAll("#r-stars .star").forEach(s=> s.classList.remove("on"));
+  $("#r-rating").value = 0;
+  toast("Yorumunuz için teşekkürler!");
 }
 
 /* ---------- Görünüm yönlendirme ---------- */
@@ -811,8 +903,8 @@ function goSection(id){
 /* ---------- Şehir bilgi tabanı + genel üretici ---------- */
 const CITY_DB = {
   "istanbul": {
-    name:"İstanbul", country:"Türkiye", cover:["#C96C4A","#E8B27D"],
-    cost: 1.0,
+    key:"istanbul", name:"İstanbul", country:"Türkiye", cover:["#C96C4A","#E8B27D"],
+    cost: 1.0, climateOffset: 0,
     acts: {
       tarih:[["Ayasofya ve Sultanahmet Meydanı","Erken saatte, kalabalık öncesi ziyaret"],["Topkapı Sarayı","Harem bölümü dahil ~2,5 saat ayırın"],["Yerebatan Sarnıcı","Serin ve fotojenik; öğle sıcağında ideal"],["Galata Kulesi ve çevresi","Kule meydanından Karaköy'e iniş rotası"],["Kariye (Chora) Mozaikleri","Bizans mozaiklerinin en iyi korunmuş örnekleri"],["Süleymaniye Camii ve avlusu","Haliç manzaralı avluda mola"]],
       gastronomi:[["Kadıköy çarşı lezzet turu","Turşucu, kuruyemişçi ve tarihi dükkân hattı"],["Karaköy'de balık-ekmek ve midye","Sahil hattında ayaküstü klasikler"],["Mısır Çarşısı ve baharat keşfi","Kahve, lokum ve baharat tadımı"],["Beyoğlu meyhane akşamı","Meze ağırlıklı uzun sofra deneyimi"],["Vefa'da boza ve tarihi esnaf","Asırlık tatlar rotası"]],
@@ -827,6 +919,14 @@ const CITY_DB = {
     breakfast:[["Karaköy'de serpme kahvaltı","Sahil hattında klasik başlangıç"],["Beşiktaş kahvaltıcılar sokağı","Kalabalık ama değer"],["Moda'da deniz kenarı kahvaltı","Sakin ve manzaralı"]],
     gems:[["Kuzguncuk","Boğaz'ın en sakin mahallesi; renkli evler ve sanat atölyeleri"],["Çukurcuma antikacıları","Beyoğlu'nun arka sokaklarında nostalji avı"],["Yeldeğirmeni duvar resimleri","Kadıköy'ün sanat mahallesi, üçüncü dalga kahveciler"],["Fener-Balat sahaf ve kafeleri","Turist rotasının bir sokak arkası"]],
     rainy:[["İstanbul Modern","Boğaz manzaralı çağdaş sanat müzesi"],["Pera Müzesi","Oryantalist resim koleksiyonu"],["Kapalıçarşı keşfi","4.000 dükkânlı kapalı labirent"],["Salt Galata","Tarihi banka binasında sergi + kütüphane"]],
+    viewpoints:[["Çamlıca Tepesi","Şehrin iki yakasını birden gören en yüksek nokta"],["Galata Kulesi terası","360° panorama, gün batımı için ideal"],["Pierre Loti Tepesi","Haliç manzarası, teleferikle kolay çıkış"]],
+    locals:[["Moda sahili","Kadıköylülerin akşamüstü buluşma ve yürüyüş noktası"],["Bebek sahil parkı","Boğaz kenarında yerel halkın piknik alanı"],["Beşiktaş çarşı içi esnaf lokantaları","Mahalle sakinlerinin günlük tercih ettiği ev yemeği mekanları"]],
+    cafes:[["Karaköy üçüncü dalga kahveci","Sahil hattında kaliteli kahve molası"],["Cihangir manzara kafesi","Boğaz manzaralı sakin teras"],["Çukurcuma'da vintage kafe","Antikacılar arasında nostaljik dekor"]],
+    hotels:{
+      economic:[["Sultanahmet Otel & Hostel",850,"Tarihi yarımadaya yürüme mesafesinde, sade ve temiz odalar"],["Taksim Konfor Otel",1100,"Meydana yakın, kahvaltı dahil ekonomik konaklama"]],
+      mid:[["Galata Boutique Otel",2400,"Restore edilmiş tarihi binada kule manzaralı odalar"],["Beşiktaş Sahil Otel",2750,"Boğaz manzarası, kahvaltı ve spa dahil"]],
+      premium:[["Çırağan Sarayı Oteli",9500,"Boğaz kıyısında saray otel, özel plaj ve spa"],["Pera Palace Hotel",7800,"Tarihi lüks otel, Orient Ekspres mirası"]]
+    },
     tips:{
       ulasim:"İstanbulkart alın; vapur, metro ve tramvayda geçerli. Trafik saatlerinde (08–10 / 17–20) raylı sistem ve vapuru tercih edin.",
       guvenlik:"Kalabalık turistik noktalarda çantanızı önde taşıyın. Taksilerde taksimetre açtırın veya uygulama üzerinden çağırın.",
@@ -835,7 +935,7 @@ const CITY_DB = {
     }
   },
   "roma": {
-    name:"Roma", country:"İtalya", cover:["#B05A3A","#E8B27D"], cost: 1.5,
+    key:"roma", name:"Roma", country:"İtalya", cover:["#B05A3A","#E8B27D"], cost: 1.5, climateOffset: 2,
     acts:{
       tarih:[["Kolezyum ve Forum Romanum","Sıra beklememek için sabah ilk seans"],["Pantheon","Girişi ücretsiz dönemlerde erken gidin"],["Vatikan Müzeleri ve Sistine Şapeli","Online bilet şart; ~3 saat ayırın"],["Castel Sant'Angelo","Teras manzarası gün batımında güzel"],["Palatino Tepesi","İmparatorluk kalıntıları arasında yürüyüş"]],
       gastronomi:[["Testaccio pazarı lezzet turu","Roma'nın mutfak mahallesi"],["Trastevere'de carbonara durağı","Klasik Roma makarnaları"],["Campo de' Fiori sabah pazarı","Peynir, şarküteri ve taze ürün"],["Gelato tadım rotası","Üç farklı tarihi dondurmacı"]],
@@ -850,6 +950,14 @@ const CITY_DB = {
     breakfast:[["Bar'da cornetto + espresso","Ayakta, Roma usulü hızlı başlangıç"],["Trastevere fırın kahvaltısı","Taze maritozzo denenmeli"],["Monti'de brunch","Geç başlayan günler için"]],
     gems:[["Quartiere Coppedè","Masalsı art-nouveau mimarili mini mahalle"],["Aventino Portakal Bahçesi","Sessiz teras, harika şehir manzarası"],["Centrale Montemartini","Antik heykeller eski elektrik santralinde"],["Garbatella mahallesi","Turistsiz, renkli avlulu Roma"]],
     rainy:[["Vatikan Müzeleri","Tam gün geçirilebilecek kapalı rota"],["Galleria Borghese","Bernini heykelleri (rezervasyon şart)"],["Pantheon + kiliseler rotası","Caravaggio tabloları ücretsiz görülebilir"],["MAXXI Müzesi","Zaha Hadid imzalı çağdaş sanat"]],
+    viewpoints:[["Gianicolo Tepesi","Tüm Roma'nın panoramik manzarası, gün batımı için ideal"],["Aventino anahtar deliği","San Pietro kubbesine çerçevelenmiş ikonik bakış"],["Pincio Terası","Villa Borghese sınırında geniş şehir manzarası"]],
+    locals:[["Testaccio mahallesi","Romalıların hafta sonu pazarına ve trattorialarına gittiği semt"],["Garbatella","Turist akınından uzak, yerel kahvehaneler ve avlular"],["Tiber kıyısı akşam yürüyüşü","Yerellerin koşu ve sohbet rotası"]],
+    cafes:[["Monti'de üçüncü dalga kahveci","Sakin sokakta espresso molası"],["Trastevere kafe-bar","Aperitivo öncesi dinlenme noktası"],["Campo de' Fiori kahve durağı","Pazar canlılığı eşliğinde kısa mola"]],
+    hotels:{
+      economic:[["Termini Yakını Aile Oteli",1400,"İstasyona yürüme mesafesinde sade odalar"],["Trastevere Hostel & Otel",1650,"Canlı mahallede ekonomik ve samimi konaklama"]],
+      mid:[["Monti Boutique Hotel",3600,"Tarihi merkeze yakın, şık ve konforlu odalar"],["Prati Sokak Oteli",3950,"Vatikan'a yürüme mesafesinde aile dostu otel"]],
+      premium:[["Hotel de Russie",14500,"Spagna Meydanı yakınında lüks bahçeli otel"],["Hassler Roma",16800,"Trinità dei Monti üzerinde ikonik manzara ve hizmet"]]
+    },
     tips:{
       ulasim:"Merkez yürünebilir ölçekte; metro yalnızca uzak noktalar için gerekli. 72 saatlik toplu taşıma kartı ekonomik olabilir.",
       guvenlik:"Termini Garı ve kalabalık meydanlarda yankesicilere dikkat. Çeşme önlerinde 'bileklik hediye' yaklaşanları kibarca geçin.",
@@ -858,7 +966,7 @@ const CITY_DB = {
     }
   },
   "paris": {
-    name:"Paris", country:"Fransa", cover:["#6B8CAE","#E8B27D"], cost: 1.7,
+    key:"paris", name:"Paris", country:"Fransa", cover:["#6B8CAE","#E8B27D"], cost: 1.7, climateOffset: -2,
     acts:{
       tarih:[["Louvre Müzesi","Saatli online bilet alın; 3 saatlik seçili rota önerilir"],["Notre-Dame ve Île de la Cité","Restorasyon sonrası yeniden açık"],["Versailles Sarayı (yarım gün)","Bahçeler için ayrıca süre ayırın"],["Sainte-Chapelle","Vitraylar için güneşli saatleri seçin"],["Panthéon","Büyük Fransızların anıt mezarı"]],
       gastronomi:[["Marais'de fırın-peynirci turu","Baget, peynir ve şarküteri tadımı"],["Saint-Germain pastane rotası","Klasik Fransız pastacılığı"],["Rue Mouffetard pazarı","Canlı pazar sokağında öğlen keşfi"],["Crêpe ve galette molası","Breton usulü tuzlu-tatlı ikili"]],
@@ -873,6 +981,14 @@ const CITY_DB = {
     breakfast:[["Köşe kafede kruvasan + café crème","Paris sabah ritüeli"],["Boulangerie kahvaltısı","Taze viennoiserie çeşitleri"],["Canal Saint-Martin brunch","Hafta sonu favorisi"]],
     gems:[["Canal Saint-Martin","Yerellerin kanal kıyısı; butikler ve kafeler"],["Rue Crémieux","Pastel renkli ev sırası (sakin saatte gidin)"],["Marché des Enfants Rouges","Paris'in en eski kapalı pazarı"],["Belleville teras manzarası","Eyfel'i uzaktan, kalabalıksız izleyin"]],
     rainy:[["Orsay Müzesi","Empresyonist koleksiyon, eski gar binası"],["Passages couverts turu","Üstü kapalı tarihi pasajlar hattı"],["Pompidou Merkezi","Modern sanat + çatı manzarası"],["Carnavalet Müzesi","Paris'in tarihi, girişi ücretsiz"]],
+    viewpoints:[["Trocadéro Terası","Eyfel Kulesi'nin en iyi karesi, gün doğumunda boş"],["Sacré-Cœur Basilikası önü","Montmartre'dan tüm Paris manzarası"],["Belleville Parkı","Şehir merkezine kalabalıksız bakış"]],
+    locals:[["Canal Saint-Martin kıyısı","Parislilerin akşamüstü piknik ve sohbet noktası"],["Rue Mouffetard","Mahalle sakinlerinin günlük pazar ve esnaf rotası"],["Buttes-Chaumont Parkı","Yerel ailelerin hafta sonu kaçışı"]],
+    cafes:[["Marais'de küçük kahveci","Sokak arasında sakin espresso molası"],["Saint-Germain pastane-kafe","Klasik Fransız pastası eşliğinde mola"],["Canal kenarı kahve durağı","Su kenarında kısa dinlenme"]],
+    hotels:{
+      economic:[["Montmartre Sırt Çantacı Oteli",1900,"Sacré-Cœur'a yürüme mesafesinde sade odalar"],["République Bütçe Oteli",2100,"Metroya yakın, kompakt ve temiz konaklama"]],
+      mid:[["Le Marais Boutique Hotel",4600,"Tarihi mahallede şık, orta ölçekli otel"],["Saint-Germain Charme Hotel",5100,"Kafe kültürünün ortasında konforlu konaklama"]],
+      premium:[["Hôtel Plaza Athénée",22000,"Eyfel manzaralı ikonik lüks otel"],["Le Meurice",20500,"Tuileries Bahçeleri karşısında saray oteli"]]
+    },
     tips:{
       ulasim:"Navigo Easy kart + 10'lu carnet ekonomiktir. Metro yoğun; 3 duraktan kısa mesafeleri yürüyün.",
       guvenlik:"Metro ve turistik meydanlarda telefon/cüzdan önde dursun. 'İmza kampanyası' yaklaşımlarına durmayın.",
@@ -881,7 +997,7 @@ const CITY_DB = {
     }
   },
   "barselona": {
-    name:"Barselona", country:"İspanya", cover:["#D98B5F","#6B8CAE"], cost: 1.4,
+    key:"barselona", name:"Barselona", country:"İspanya", cover:["#D98B5F","#6B8CAE"], cost: 1.4, climateOffset: 3,
     acts:{
       tarih:[["Sagrada Família","Saatli bilet + kule çıkışı önerilir"],["Gotik Mahalle yürüyüşü","Katedral ve ortaçağ sokakları"],["Park Güell","Sabah ilk seans, manzara + Gaudí"],["Casa Batlló veya La Pedrera","İkisinden biri yeterli; Batlló önerimiz"],["Montjuïc Kalesi","Teleferikle çıkış, liman manzarası"]],
       gastronomi:[["Boqueria pazarı tadım turu","Jamón, peynir ve taze meyve suları"],["El Born tapas rotası","3 mekan, 6 tapas kuralı"],["Barceloneta'da paella","Deniz kenarında öğle klasiği"],["Vermut saati","Yerel öğlen ritüeli, zeytin eşliğinde"]],
@@ -896,6 +1012,14 @@ const CITY_DB = {
     breakfast:[["Pa amb tomàquet + kahve","Katalan usulü başlangıç"],["Granja'da churros","Sıcak çikolataya batırın"],["Sahil kafesinde kahvaltı","Deniz manzaralı başlangıç"]],
     gems:[["Sant Antoni pazarı çevresi","Yükselen mahalle, hafta sonu sahaf pazarı"],["Hospital de Sant Pau","Gaudí gölgesinde kalmış modernist şaheser"],["Carrer de Blai","Pintxo barları sokağı, tanesi 1–2 €"],["Horta Labirenti","Şehrin en eski bahçesi, neredeyse turistsiz"]],
     rainy:[["Picasso Müzesi","Erken dönem eserler, El Born'da"],["Santa Caterina Pazarı","Renkli çatı altında tadım"],["MNAC","Ulusal sanat + kubbe terası"],["CosmoCaixa","Bilim müzesi, aileler için ideal"]],
+    viewpoints:[["Bunkers del Carmel","360° şehir ve deniz manzarası, gün batımı klasiği"],["Montjuïc Kalesi terası","Liman ve şehir manzarası"],["Park Güell üst teras","Gaudí mozaikleri eşliğinde panorama"]],
+    locals:[["Gràcia mahallesi","Yerellerin akşam buluşma meydanları"],["Sant Antoni pazarı","Mahalle sakinlerinin günlük alışveriş rotası"],["Poble Sec sokakları","Turist akınından uzak vermut ve tapas kültürü"]],
+    cafes:[["El Born'da kahve dükkânı","Gotik sokaklarda kısa espresso molası"],["Gràcia meydan kafesi","Yerel atmosferde dinlenme"],["Barceloneta sahil kafesi","Deniz manzaralı mola"]],
+    hotels:{
+      economic:[["Raval Sırt Çantacı Oteli",1300,"Merkeze yakın, canlı mahallede ekonomik konaklama"],["Sants Bütçe Oteli",1500,"Tren garına yakın, pratik ve temiz odalar"]],
+      mid:[["Gràcia Boutique Hotel",3200,"Yerel mahallede şık, orta segment otel"],["Eixample Design Hotel",3500,"Modernist binalara yakın konforlu konaklama"]],
+      premium:[["W Barcelona",12500,"Sahilde ikonik tasarım oteli, deniz manzaralı"],["Hotel Arts Barcelona",13800,"Marina manzaralı lüks kule otel"]]
+    },
     tips:{
       ulasim:"T-casual (10 yolculuk) kartı tekil bilete göre çok ekonomik. Metro gece 24:00'e, cuma-cumartesi daha geç çalışır.",
       guvenlik:"La Rambla ve metroda yankesicilik yaygın; telefon arka cepte durmasın. Sahilde eşyalarınızı yalnız bırakmayın.",
@@ -904,7 +1028,7 @@ const CITY_DB = {
     }
   },
   "kapadokya": {
-    name:"Kapadokya", country:"Türkiye", cover:["#B07B3E","#C96C4A"], cost: 0.9,
+    key:"kapadokya", name:"Kapadokya", country:"Türkiye", cover:["#B07B3E","#C96C4A"], cost: 0.9, climateOffset: -3,
     acts:{
       tarih:[["Göreme Açık Hava Müzesi","Kaya kiliseleri ve freskler"],["Derinkuyu Yeraltı Şehri","8 kata inen tünel sistemi"],["Uçhisar Kalesi","Bölgenin en yüksek noktası"],["Zelve Açık Hava Müzesi","Terk edilmiş kaya köyü"]],
       gastronomi:[["Testi kebabı deneyimi","Masada kırılan klasik"],["Yerel şarap evi tadımı","Volkanik toprak bağları"],["Avanos'ta çömlek + kahve","Kızılırmak kenarında mola"]],
@@ -919,6 +1043,14 @@ const CITY_DB = {
     breakfast:[["Otel terasında köy kahvaltısı","Balon manzarası eşliğinde"],["Göreme meydan kahvaltıcısı","Bal-kaymak klasiği"],["Bağ evi kahvaltısı","Organik yerel ürünler"]],
     gems:[["Çavuşin eski köyü","Terk edilmiş kaya evleri, turist azlığı"],["Mustafapaşa (Sinasos)","Rum mimarisi taş konaklar"],["Keşlik Manastırı","Ziyaretçisi az bir bizans kompleksi"],["Sobesos Antik Kenti","Bölgenin az bilinen Roma kalıntısı"]],
     rainy:[["Yeraltı şehirleri turu","Zaten yer altında — yağmurdan etkilenmez"],["Güray Müze (çömlek)","Yer altına oyulmuş seramik müzesi"],["Hamam ve spa","Mağara hamamı deneyimi"],["Şarap mahzeni tadımı","Kapalı mekanda uzun tadım"]],
+    viewpoints:[["Kızılçukur Vadisi seyir noktası","Gün batımında vadinin kızıla dönüşünü izleyin"],["Uçhisar Kalesi terası","Bölgenin en yüksek panoraması"],["Aktepe seyir tepesi","Balon manzarası için popüler nokta"]],
+    locals:[["Avanos çömlekçi atölyeleri","Yerel ustaların günlük çalıştığı atölyeler"],["Ortahisar köy meydanı","Köylülerin günlük buluşma noktası"],["Mustafapaşa kahvehaneleri","Yerel halkın tercih ettiği sade kahvehaneler"]],
+    cafes:[["Göreme manzaralı kafe","Vadi manzaralı kısa kahve molası"],["Avanos nehir kenarı kafe","Kızılırmak kıyısında dinlenme"],["Uçhisar taş kafe","Kale eteğinde sakin köşe"]],
+    hotels:{
+      economic:[["Göreme Pansiyon",1100,"Vadiye yürüme mesafesinde sade kaya odalar"],["Avanos Bütçe Otel",1250,"Merkezi konum, kahvaltı dahil"]],
+      mid:[["Uçhisar Mağara Otel",2900,"Vadi manzaralı şık mağara odalar"],["Göreme Konfor Cave Hotel",3100,"Terasta jakuzi, kahvaltı dahil"]],
+      premium:[["Argos in Cappadocia",9800,"Tarihi yeraltı tünelleriyle bağlı lüks mağara süitler"],["Museum Hotel Uçhisar",11500,"Ödüllü tasarım, panoramik vadi manzarası"]]
+    },
     tips:{
       ulasim:"Bölge köyler arası dağınık; 1–2 gün araç kiralamak en verimlisi. Balon sabahı transferler 04:30'da başlar.",
       guvenlik:"Vadi yürüyüşlerinde patika dışına çıkmayın ve yanınıza su alın. ATV turlarında kask şart.",
@@ -932,7 +1064,7 @@ const CITY_DB = {
 function genericCity(name){
   const N = cap(name);
   return {
-    name:N, country:"", cover:["#C96C4A","#E8B27D"], cost:1.1,
+    key:"generic", name:N, country:"", cover:["#C96C4A","#E8B27D"], cost:1.1, climateOffset: 0,
     acts:{
       tarih:[[N+" tarihi merkez yürüyüşü","Eski şehir dokusunda rehbersiz keşif"],["Şehir müzesi ziyareti",N+" tarihini özetleyen ana koleksiyon"],["Simge yapı ve meydan turu","Şehrin en bilinen anıt aksı"],["Tarihi mahalle keşfi","Korunmuş sokak dokusu"]],
       gastronomi:[["Yerel pazar lezzet turu","Bölgesel ürünler ve tadım durakları"],["Geleneksel mutfak deneyimi",N+" mutfağının imza yemekleri"],["Tarihî kafe molası","Şehrin klasikleşmiş durağı"],["Sokak lezzetleri rotası","Yerellerin tercih ettiği tezgâhlar"]],
@@ -947,6 +1079,14 @@ function genericCity(name){
     breakfast:[["Merkez kafede kahvaltı","Güne sakin başlangıç"],["Fırın kahvaltısı","Taze ve pratik"],["Otel çevresinde kahvaltı","Erken çıkışlar için ideal"]],
     gems:[["Turistsiz mahalle keşfi","Merkeze 15 dk; yerel kafeler ve atölyeler"],["İkinci el / antika pazarı","Hafta sonları kurulan yerel pazar"],["Az bilinen manzara terası","Kalabalıksız gün batımı noktası"]],
     rainy:[["Ana müze ziyareti","Tam gün geçirilebilecek kapalı rota"],["Kapalı pazar / pasaj keşfi","Üstü kapalı alışveriş ve tadım"],["Kafe + galeri rotası","Yağmurlu öğleden sonra programı"]],
+    viewpoints:[[N+" şehir manzara tepesi","Gün batımında tüm şehri gören popüler nokta"],["Tarihi kule veya çan kulesi terası","Eski şehrin kuş bakışı görünümü"],["Nehir/sahil seyir noktası","Su kenarından geniş açılı manzara"]],
+    locals:[["Mahalle pazarı çevresi","Yerel halkın günlük alışveriş yaptığı sokaklar"],["Semt kahvehaneleri","Yerellerin sohbet için buluştuğu mekanlar"],["Park ve meydan çevresi","Akşamüstü yerel halkın toplandığı alan"]],
+    cafes:[[N+" merkez kahvecisi","Yürüyüş arasında kısa kahve molası"],["Tarihi sokakta butik kafe","Sakin köşede dinlenme"],["Pazar yanı kafe","Canlı atmosferde mola"]],
+    hotels:{
+      economic:[[N+" Bütçe Otel",1200,"Merkeze yakın, sade ve temiz odalar"],[N+" Sırt Çantacı Pansiyonu",1000,"Ekonomik ve pratik konaklama"]],
+      mid:[[N+" Boutique Hotel",2800,"Şehir merkezinde konforlu orta segment otel"],[N+" Konfor Otel & Spa",3100,"Kahvaltı ve spa dahil"]],
+      premium:[[N+" Grand Hotel",8500,"Şehrin simge lüks oteli, üst düzey hizmet"],[N+" Premium Resort & Spa",9800,"Geniş odalar, fine dining ve spa"]]
+    },
     tips:{
       ulasim:"Şehre vardığınızda günlük/haftalık toplu taşıma kartını araştırın; tekil biletten genellikle %30+ ekonomiktir.",
       guvenlik:"Kalabalık turistik alanlarda değerli eşyalarınızı önde taşıyın; lisanslı taksi veya uygulama tercih edin.",
@@ -976,7 +1116,9 @@ const INTERESTS = [
   ["gece","Gece Hayatı","M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10Z"],
   ["luks","Lüks Deneyimler","M6 3h12l3 6-9 12L3 9l3-6ZM3 9h18M9 9l3 12M15 9l-3 12"]
 ];
-const blankForm = () => ({city:"",days:3,budget:25000,people:2,type:"",style:"",interests:[],transport:"",notes:""});
+const blankForm = () => ({city:"",days:3,budget:25000,people:2,type:"",style:"",interests:[],transport:"",notes:"",
+  hasFlight:false, flightArrival:"", flightDeparture:"", airport:"",
+  hasHotel:false, hotelName:"", hotelAddress:""});
 let form = blankForm();
 let step = 1;
 let currentPlan = null;
@@ -986,15 +1128,16 @@ let savedTrips = [
 
 /* ---------- Sihirbaz ---------- */
 function startWizard(){ form = blankForm(); step = 1; go("planner"); renderWizard(); }
-const STEP_LABELS = ["Şehir & Süre","Bütçe & Kişi","Tarz & İlgi","Ek Bilgiler"];
+const STEP_LABELS = ["Şehir & Süre","Bütçe & Kişi","Tarz & İlgi","Uçuş & Konaklama","Ek Bilgiler"];
+const STEP_COUNT = STEP_LABELS.length;
 
 function renderProgress(){
   let h = "";
-  for(let i=1;i<=4;i++){
+  for(let i=1;i<=STEP_COUNT;i++){
     h += `<div class="p-step ${i===step?"active":""} ${i<step?"done":""}">
       <div class="p-dot">${i<step?'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>':i}</div>
       <span>${STEP_LABELS[i-1]}</span></div>`;
-    if(i<4) h += `<div class="p-bar ${i<step?"filled":""}"><i></i></div>`;
+    if(i<STEP_COUNT) h += `<div class="p-bar ${i<step?"filled":""}"><i></i></div>`;
   }
   $("#progress").innerHTML = h;
 }
@@ -1017,16 +1160,16 @@ function renderWizard(){
       <datalist id="cityList"><option value="İstanbul"><option value="Roma"><option value="Paris"><option value="Barselona"><option value="Kapadokya"></datalist>
     </div>
     <div class="field"><label>Kaç gün kalacaksınız? <span class="hint">1–14 gün</span></label>
-      <input class="input" id="f-days" type="number" min="1" max="14" value="${form.days}">
+      <input class="input" id="f-days" type="number" min="1" max="14" value="${form.days}" autocomplete="off">
     </div>`;
   }
   if(step===2){
     h = `<h2>Bütçe ve kişi sayısı</h2><p class="sub">Toplam bütçenizi yazın; AI kalemlere dağıtsın.</p>
     <div class="field-row">
       <div class="field"><label>Toplam bütçeniz (₺)</label>
-        <input class="input" id="f-budget" type="number" min="1000" step="500" value="${form.budget}"></div>
+        <input class="input" id="f-budget" type="number" min="1000" step="500" value="${form.budget}" autocomplete="off"></div>
       <div class="field"><label>Kaç kişi gideceksiniz?</label>
-        <input class="input" id="f-people" type="number" min="1" max="12" value="${form.people}"></div>
+        <input class="input" id="f-people" type="number" min="1" max="12" value="${form.people}" autocomplete="off"></div>
     </div>
     <div class="field"><label>Seyahat tipi</label>
       <div class="choice-grid">
@@ -1061,10 +1204,42 @@ function renderWizard(){
     </div>`;
   }
   if(step===4){
+    h = `<h2>Uçuş ve konaklama bilgileri</h2><p class="sub">Mevcut rezervasyonunuz varsa ekleyin; planınız buna göre optimize edilsin. İsterseniz boş geçebilirsiniz.</p>
+    <div class="field"><label>Uçuş bilginiz var mı?</label>
+      <div class="choice-grid">
+        ${chip("f-hasflight","yes","Evet","İniş/kalkış saatlerimi eklemek istiyorum","M2.5 19.5 21 12 2.5 4.5 7 12l-4.5 7.5ZM7 12h7",form.hasFlight===true)}
+        ${chip("f-hasflight","no","Hayır","Uçuş bilgisi girmek istemiyorum","M18 6 6 18M6 6l12 12",form.hasFlight===false)}
+      </div>
+    </div>
+    ${form.hasFlight ? `
+    <div class="field-row">
+      <div class="field"><label>Uçuş iniş saati <span class="hint">gidiş günü</span></label>
+        <input class="input" id="f-flight-arrival" type="time" value="${form.flightArrival}" autocomplete="off"></div>
+      <div class="field"><label>Uçuş kalkış saati <span class="hint">dönüş günü</span></label>
+        <input class="input" id="f-flight-departure" type="time" value="${form.flightDeparture}" autocomplete="off"></div>
+    </div>
+    <div class="field"><label>Havalimanı bilgisi</label>
+      <input class="input" id="f-airport" placeholder="örn. İstanbul Havalimanı (IST)" value="${form.airport}" autocomplete="off">
+    </div>` : ""}
+    <div class="field"><label>Otel rezervasyonunuz var mı?</label>
+      <div class="choice-grid">
+        ${chip("f-hashotel","yes","Evet","Otel adı ve adresimi eklemek istiyorum","M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 18h18M3 14h18M7 9V6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3",form.hasHotel===true)}
+        ${chip("f-hashotel","no","Hayır","Otel önerisi almak istiyorum","M18 6 6 18M6 6l12 12",form.hasHotel===false)}
+      </div>
+    </div>
+    ${form.hasHotel ? `
+    <div class="field"><label>Otel adı</label>
+      <input class="input" id="f-hotel-name" placeholder="örn. Galata Boutique Otel" value="${form.hotelName}" autocomplete="off">
+    </div>
+    <div class="field"><label>Otel adresi</label>
+      <input class="input" id="f-hotel-address" placeholder="örn. Galata, Beyoğlu" value="${form.hotelAddress}" autocomplete="off">
+    </div>` : ""}`;
+  }
+  if(step===5){
     const intLabels = form.interests.map(i=>INTERESTS.find(x=>x[0]===i)[1]).join(", ");
     h = `<h2>Son dokunuşlar</h2><p class="sub">Varsa özel isteklerinizi ekleyin, özeti kontrol edin.</p>
     <div class="field"><label>Ek notlar <span class="hint">isteğe bağlı</span></label>
-      <textarea class="input" id="f-notes" placeholder="örn. Vejetaryen restoran önceliği, sabahları geç başlayalım, müze yoğunluğu az olsun…">${form.notes}</textarea>
+      <textarea class="input" id="f-notes" placeholder="örn. Vejetaryen restoran önceliği, sabahları geç başlayalım, müze yoğunluğu az olsun…" autocomplete="off">${form.notes}</textarea>
     </div>
     <div class="summary-box">
       <h4>Plan özeti</h4>
@@ -1075,16 +1250,22 @@ function renderWizard(){
         <dt>Tip / Tarz</dt><dd>${typeLabel(form.type)} · ${cap(form.style)}</dd>
         <dt>İlgi alanları</dt><dd>${intLabels||"—"}</dd>
         <dt>Ulaşım</dt><dd>${trLabel(form.transport)}</dd>
+        ${form.hasFlight?`<dt>Uçuş</dt><dd>İniş ${form.flightArrival||"—"} · Kalkış ${form.flightDeparture||"—"}${form.airport?` · ${form.airport}`:""}</dd>`:""}
+        ${form.hasHotel?`<dt>Otel</dt><dd>${form.hotelName||"—"}${form.hotelAddress?` · ${form.hotelAddress}`:""}</dd>`:""}
       </dl>
     </div>`;
   }
   h += `<div class="err" id="wErr"></div>
   <div class="wizard-nav">
     ${step>1?`<button class="btn btn-ghost" onclick="prevStep()">← Geri</button>`:`<button class="btn btn-ghost" onclick="go('home')">İptal</button>`}
-    ${step<4?`<button class="btn btn-primary" onclick="nextStep()">Devam Et →</button>`
+    ${step<STEP_COUNT?`<button class="btn btn-primary" onclick="nextStep()">Devam Et →</button>`
             :`<button class="btn btn-primary" onclick="submitWizard()">Planımı Oluştur ✦</button>`}
   </div>`;
   c.innerHTML = h;
+  c.onchange = (e) => {
+    if(e.target.name==="f-hasflight"){ collectStep(); form.hasFlight = e.target.value==="yes"; renderWizard(); }
+    if(e.target.name==="f-hashotel"){ collectStep(); form.hasHotel = e.target.value==="yes"; renderWizard(); }
+  };
 }
 function typeLabel(t){return {solo:"Tek başına",cift:"Çift",aile:"Aile",arkadas:"Arkadaş grubu"}[t]||"—"}
 function trLabel(t){return {yuruyus:"Yürüyüş",toplu:"Toplu taşıma",taksi:"Taksi",karma:"Karma"}[t]||"—"}
@@ -1100,7 +1281,18 @@ function collectStep(){
     form.interests = [...document.querySelectorAll('input[name="f-int"]:checked')].map(i=>i.value);
     form.transport = document.querySelector('input[name="f-tr"]:checked')?.value || "";
   }
-  if(step===4){ form.notes = $("#f-notes").value.trim(); }
+  if(step===4){
+    if(form.hasFlight){
+      form.flightArrival = $("#f-flight-arrival")?.value || "";
+      form.flightDeparture = $("#f-flight-departure")?.value || "";
+      form.airport = $("#f-airport")?.value.trim() || "";
+    }
+    if(form.hasHotel){
+      form.hotelName = $("#f-hotel-name")?.value.trim() || "";
+      form.hotelAddress = $("#f-hotel-address")?.value.trim() || "";
+    }
+  }
+  if(step===5){ form.notes = $("#f-notes").value.trim(); }
 }
 function validateStep(){
   if(step===1){
@@ -1116,6 +1308,11 @@ function validateStep(){
     if(!form.style) return "Lütfen seyahat tarzınızı seçin.";
     if(form.interests.length===0) return "En az bir ilgi alanı seçin.";
     if(!form.transport) return "Lütfen ulaşım tercihinizi seçin.";
+  }
+  if(step===4){
+    if(form.hasFlight && !form.flightArrival) return "Lütfen uçuş iniş saatini girin.";
+    if(form.hasFlight && !form.flightDeparture) return "Lütfen uçuş kalkış saatini girin.";
+    if(form.hasHotel && !form.hotelName) return "Lütfen otel adını girin.";
   }
   return "";
 }
@@ -1143,6 +1340,69 @@ function seededShuffle(arr, seed){
   }
   return a;
 }
+/* ---------- Zenginleştirme: maliyet, süre, neden, ulaşım ---------- */
+const CAT_COST = {tarih:550, gastronomi:380, doga:180, fotografcilik:100, macera:950, gece:550, luks:2400};
+const CAT_DURATION = {tarih:"2 - 3 saat", gastronomi:"1 - 1.5 saat", doga:"1.5 - 2.5 saat", fotografcilik:"45 dk - 1 saat", macera:"2.5 - 4 saat", gece:"1.5 - 2.5 saat", luks:"2 - 4 saat", serbest:"30 - 45 dk"};
+const CAT_REASON = {
+  tarih:"Tarih ilgi alanınıza uygun; bölgenin en bilinen ve ziyaret değeri yüksek noktalarından biri olduğu için seçildi.",
+  gastronomi:"Gastronomi tercihinize uygun; yöresel mutfağı özgün haliyle deneyimleyebileceğiniz bir adres olduğu için önerildi.",
+  doga:"Doğa ilginize uygun; şehrin yoğunluğundan uzaklaşıp nefes alabileceğiniz bir rota olduğu için planınıza eklendi.",
+  fotografcilik:"Fotoğrafçılık ilginize uygun; ışık ve kompozisyon açısından öne çıkan bir nokta olduğu için seçildi.",
+  macera:"Macera arayışınıza uygun; klasik turist rotalarının dışında adrenalin katan bir deneyim olduğu için önerildi.",
+  gece:"Gece hayatı tercihinize uygun; yerellerin de uğrak noktası olan canlı bir mekan olduğu için seçildi.",
+  luks:"Premium deneyim tercihinize uygun; konforu ve kaliteyi ön planda tutan bir seçenek olduğu için önerildi.",
+  serbest:"Günü sakin bitirmeniz ve ertesi güne dinç başlamanız için planınıza eklendi."
+};
+const MEAL_REASON = {
+  breakfast:"Güne enerjik başlamanız için günün ilk durağı olarak seçildi; rotanın başlangıç noktasına yakın.",
+  lunch:"Sabah programının hemen ardından, kısa sürede doyurucu ve güzergaha yakın bir öğle arası sunuyor.",
+  dinner:"Günün yorgunluğunu çıkaracak, akşam atmosferiyle öne çıkan ve konaklamanıza yakın bir adres.",
+  cafe:"Gün içinde kısa bir dinlenme molası için, rotanıza yakın ve atmosferi keyifli bir durak."
+};
+const MEAL_BASE = {breakfast:170, lunch:310, dinner:540, cafe:120};
+const CUISINE = {istanbul:"Türk Mutfağı", roma:"İtalyan Mutfağı", paris:"Fransız Mutfağı", barselona:"Akdeniz / İspanyol Mutfağı", kapadokya:"Anadolu Mutfağı", generic:"Yerel Mutfak"};
+const CAFE_CUISINE = "Kafe & Tatlı";
+const MEAL_LABEL = {breakfast:"Kahvaltı", lunch:"Öğle Yemeği", dinner:"Akşam Yemeği", cafe:"Kafe Molası"};
+
+function ratingFor(seed){ return (4.2 + (seed%7)*0.1).toFixed(1); }
+function activityCost(cat, costFactor, seed, people){
+  const base = CAT_COST[cat] || 300;
+  const variance = 0.85 + (seed%4)*0.1;
+  return Math.round(base*costFactor*variance*people/10)*10;
+}
+function mealCost(type, costFactor, seed, people){
+  const base = MEAL_BASE[type] || 250;
+  const variance = 0.85 + (seed%4)*0.1;
+  return Math.round(base*costFactor*variance*people/10)*10;
+}
+function mkAct(raw, cat, costFactor, seed, people){
+  return {t:raw.t, d:raw.d, cat, cost: raw.cost!=null ? raw.cost : activityCost(cat, costFactor, seed, people),
+    duration: raw.duration || CAT_DURATION[cat] || "1 - 2 saat", reason: raw.reason || CAT_REASON[cat] || CAT_REASON.serbest};
+}
+function transferCost(costFactor, people){ return Math.round((200*costFactor*people)/10)*10; }
+function timeToMin(t){ const [h,m] = t.split(":").map(Number); return h*60+m; }
+function minToTime(mins){ mins = ((Math.round(mins)%1440)+1440)%1440; const h=Math.floor(mins/60), m=mins%60; return String(h).padStart(2,"0")+":"+String(m).padStart(2,"0"); }
+function mkMeal(raw, mealType, cityKey, costFactor, seed, people){
+  return {t:raw[0], d:raw[1], cat:"yemek", mealType, mealLabel: MEAL_LABEL[mealType],
+    cost: mealCost(mealType, costFactor, seed, people),
+    cuisine: mealType==="cafe" ? CAFE_CUISINE : (CUISINE[cityKey]||CUISINE.generic),
+    rating: ratingFor(seed+3), reason: MEAL_REASON[mealType]};
+}
+/* İki durak arası tahmini ulaşım süreleri (yürüyüş / toplu taşıma / taksi) */
+function transitBetween(seed, transportPref, costFactor, hotelOptimized){
+  const raw = 6 + (seed % 27);
+  const walkMin = hotelOptimized ? Math.max(4, Math.round(raw*0.7)) : raw;
+  const transitMin = Math.max(7, Math.round(walkMin*0.55) + 4);
+  const taxiMin = Math.max(4, Math.round(walkMin*0.32));
+  const taxiCost = Math.round((60 + taxiMin*14*costFactor)/10)*10;
+  let rec;
+  if(transportPref==="yuruyus") rec = walkMin<=35 ? "yuruyus" : "toplu";
+  else if(transportPref==="taksi") rec = walkMin>6 ? "taksi" : "yuruyus";
+  else if(transportPref==="toplu") rec = walkMin>8 ? "toplu" : "yuruyus";
+  else rec = walkMin<=12 ? "yuruyus" : (walkMin<=25 ? "toplu" : "taksi");
+  return {walkMin, walkKm:+(walkMin*0.075).toFixed(1), transitMin, taxiMin, taxiCost, rec};
+}
+
 function pickPool(city, interests, seed){
   /* Seçili ilgi alanlarından havuz oluştur; boşsa tarih+gastronomi varsay */
   const keys = interests.length ? interests : ["tarih","gastronomi"];
@@ -1155,6 +1415,63 @@ function pickPool(city, interests, seed){
     });
   }
   return seededShuffle(pool, seed);
+}
+
+/* ---------- Seyahat hazırlık rehberi ---------- */
+const SEASONS = {
+  ilkbahar:{label:"İlkbahar", base:[10,20], desc:"ılık ve değişken; ani yağmur ihtimaline karşı hazırlıklı olun"},
+  yaz:{label:"Yaz", base:[21,32], desc:"sıcak ve güneşli; akşamları hafif serinleyebilir"},
+  sonbahar:{label:"Sonbahar", base:[9,19], desc:"serin ve nemli; katmanlı giyim önerilir"},
+  kis:{label:"Kış", base:[0,9], desc:"soğuk ve zaman zaman yağmurlu/karlı"}
+};
+const SEASON_CLOTHES = {
+  ilkbahar:["İnce mont veya yağmurluk","Hafif kazak / sweatshirt","Uzun kollu gömlek","Rahat yürüyüş ayakkabısı"],
+  yaz:["Hafif, nefes alan kıyafetler","Şapka veya kep","Güneş gözlüğü","Rahat yürüyüş ayakkabısı/sandalet","İnce bir hırka (klimalı mekanlar için)"],
+  sonbahar:["Su geçirmez mont","Katmanlı giyim (kazak + ceket)","Atkı / bere","Su geçirmez yürüyüş ayakkabısı"],
+  kis:["Kalın mont / parka","Bere, atkı, eldiven","Termal iç giyim","Su geçirmez kışlık bot"]
+};
+const SEASON_ACCESSORIES = {
+  ilkbahar:["Katlanabilir şemsiye","Hafif sırt çantası","Güneş kremi (SPF30+)"],
+  yaz:["Güneş kremi (SPF50)","Şapka","Su matarası","Mini yelpaze / el fanı"],
+  sonbahar:["Katlanabilir şemsiye","Su geçirmez çanta kılıfı","Dudak nemlendirici / el kremi"],
+  kis:["Sıcak tutucu (hot pack)","El kremi","Termos / sıcak içecek matarası"]
+};
+function getSeason(){
+  const m = new Date().getMonth();
+  if(m>=2 && m<=4) return "ilkbahar";
+  if(m>=5 && m<=7) return "yaz";
+  if(m>=8 && m<=10) return "sonbahar";
+  return "kis";
+}
+function buildPrepCard(city, f, days){
+  const seasonKey = getSeason();
+  const season = SEASONS[seasonKey];
+  const monthName = new Date().toLocaleDateString("tr-TR",{month:"long"});
+  const lo = season.base[0] + city.climateOffset, hi = season.base[1] + city.climateOffset;
+  const weather = `${monthName} ayında ${city.name} şehrinde hava genellikle ${lo}°C - ${hi}°C arası, ${season.desc}.`;
+
+  const clothing = [...SEASON_CLOTHES[seasonKey]];
+  if(f.interests.includes("doga") || f.interests.includes("macera")) clothing.push("Su geçirmez/spor ayakkabı ve hızlı kuruyan kıyafet");
+  if(f.interests.includes("luks")) clothing.push("Şık akşam yemekleri için bir kombin");
+
+  const accessories = [...SEASON_ACCESSORIES[seasonKey]];
+  if(!accessories.includes("Su matarası")) accessories.push("Su matarası");
+  if(f.interests.includes("fotografcilik")) accessories.push("Ekstra hafıza kartı ve lens bezi");
+
+  const tech = ["Powerbank (en az 10.000 mAh)","Telefon şarj kablosu"];
+  if(city.country && city.country!=="Türkiye") tech.push("Seyahat tipi priz adaptörü");
+  if(f.interests.includes("doga") || f.interests.includes("macera")) tech.push("Telefon için su geçirmez kılıf");
+  tech.push("Çevrimdışı harita ve seyahat uygulamaları");
+
+  const health = ["Kişisel ilaçlarınızı ve reçetelerinizi yanınızda taşıyın","Seyahat sağlık sigortası yaptırın", city.tips.guvenlik];
+  if(seasonKey==="yaz") health.push("Sıcak saatlerde bol su içip güneşten korunun");
+  if(seasonKey==="kis") health.push("Soğuk havalarda katmanlı giyinip sıcak içecek tüketin");
+
+  const totalWalk = days.reduce((sum,d)=>sum+d.walkKm, 0);
+  const avgWalk = days.length ? totalWalk/days.length : 0;
+  const tip = `Bu seyahatte günlük ortalama ${avgWalk.toFixed(1)} km yürüyüş planlandığı için rahat bir ayakkabı tercih edilmesi önerilir.`;
+
+  return {season: season.label, weather, clothing, accessories, tech, health, tip};
 }
 
 function buildPlan(f, variant){
@@ -1187,32 +1504,125 @@ function buildPlan(f, variant){
   const nightlife = f.interests.includes("gece");
   let pi = 0;
   const nextAct = () => pool[(pi++) % pool.length];
-  const dayCost = Math.round((budget["Yemek"]+budget["Aktiviteler"]) / f.days);
+  const nextLightAct = () => {
+    const start = pi;
+    for(let n=0;n<pool.length;n++){
+      const cand = pool[(pi+n) % pool.length];
+      if(cand.cat!=="macera" && cand.cat!=="gece"){ pi += n+1; return cand; }
+    }
+    return nextAct();
+  };
+  const cafes = seededShuffle(city.cafes, seed+6);
+  const TRANSIT_FARE = Math.round(30 * city.cost / 10) * 10;
+
+  /* --- Uçuş bilgisine göre ilk/son gün uyarlaması --- */
+  const flightFirstDay = f.hasFlight && !!f.flightArrival;
+  const flightLastDay = f.hasFlight && !!f.flightDeparture && f.days>1;
+  const hotelNote = f.hasHotel && f.hotelName
+    ? `${f.hotelName}${f.hotelAddress?` (${f.hotelAddress})`:""} adresine yakın`
+    : "konaklamanıza yakın";
 
   const dayThemes = [];
   const days = [];
   for(let d=0; d<f.days; d++){
     const items = [];
-    const a1 = nextAct(), a2 = nextAct(), a3 = nextAct();
-    items.push({time: slow?"09:00":"08:30", t:bf[d%bf.length][0], d:bf[d%bf.length][1], cat:"yemek"});
-    items.push({time:"10:00", ...a1});
-    if(!slow) items.push({time:"12:00", ...a2});
-    items.push({time: slow?"12:30":"13:30", t:lu[d%lu.length][0], d:lu[d%lu.length][1], cat:"yemek"});
-    items.push({time:"15:00", ...(slow?a2:a3)});
-    if(!slow && f.days<=4) items.push({time:"17:00", ...nextAct()});
-    items.push({time:"19:30", t:di[d%di.length][0], d:di[d%di.length][1], cat:"yemek"});
-    if(nightlife){
-      const g = city.acts.gece[(d+variant)%city.acts.gece.length];
-      items.push({time:"21:30", t:g[0], d:g[1], cat:"gece"});
+    const s = seed + d*53;
+
+    if(flightFirstDay && d===0){
+      /* --- Varış günü: iniş saatine göre hafif bir program --- */
+      const arr = timeToMin(f.flightArrival);
+      items.push({time: minToTime(arr), ...mkAct({
+        t:`${city.name}'e iniş`, d: f.airport?`${f.airport} üzerinden varış`:"Planlanan iniş saati",
+        cost:0, duration:"—", reason:"Uçuşunuzun planlanan iniş saatine göre günün başlangıç noktası olarak belirlendi."
+      }, "serbest", city.cost, s+1, f.people)});
+      items.push({time: minToTime(arr+60), ...mkAct({
+        t:"Otele ulaşım", d: f.hotelName?`${f.hotelName} adresine transfer`:"Konaklama noktanıza transfer",
+        cost: transferCost(city.cost, f.people), duration:"30 - 60 dk",
+        reason:"Uzun yolculuk sonrası, dinlenebilmeniz için önce konaklama noktanıza ulaşım planlandı."
+      }, "serbest", city.cost, s+2, f.people)});
+      if(f.hasHotel){
+        items.push({time: minToTime(arr+120), ...mkAct({
+          t:"Check-in ve dinlenme", d:"Odanıza yerleşme ve kısa bir dinlenme arası",
+          cost:0, duration:"30 - 45 dk",
+          reason:"Otel check-in saatine uygun olacak şekilde, yolculuk sonrası dinlenmeniz için planlandı."
+        }, "serbest", city.cost, s+3, f.people)});
+      }
+      const aNear = nextLightAct();
+      items.push({time: minToTime(arr + (f.hasHotel?240:180)), ...mkAct({
+        ...aNear, reason:`${aNear.reason||CAT_REASON[aNear.cat]||CAT_REASON.serbest} Ayrıca ${hotelNote} olduğu için ilk gün yorucu olmayacak şekilde seçildi.`
+      }, aNear.cat, city.cost, s+4, f.people)});
+      items.push({time: minToTime(arr + (f.hasHotel?360:300)), ...mkMeal(di[d%di.length], "dinner", city.key, city.cost, s+8, f.people)});
+      dayThemes.push("Varış Günü");
+    } else if(flightLastDay && d===f.days-1){
+      /* --- Dönüş günü: kalkış saatine göre hafif ve havalimanına zamanında ulaşan program --- */
+      const dep = timeToMin(f.flightDeparture);
+      const bufferMin = {taksi:120, toplu:150, yuruyus:150, karma:135}[f.transport] || 150;
+      const bfTime = slow ? 9*60 : 8.5*60;
+      const toAirport = Math.max(dep - bufferMin, 0);
+      if(toAirport <= bfTime + 15){
+        /* --- Çok erken uçuş: normal kahvaltı/aktiviteye yer yok, doğrudan erken çıkış --- */
+        items.push({time: minToTime(Math.max(toAirport-30, 0)), ...mkAct({
+          t:"Erken çıkış ve hızlı hazırlık", d:"Bagajlarınızı alıp otelden erken çıkış",
+          cost:0, duration:"20 - 30 dk",
+          reason:"Çok erken kalkış saatiniz nedeniyle güne hafif ve hızlı bir hazırlıkla başlamanız planlandı."
+        }, "serbest", city.cost, s+1, f.people)});
+        items.push({time: minToTime(toAirport), ...mkAct({
+          t:"Havalimanına ulaşım", d: f.airport?`${f.airport}'e transfer`:"Havalimanına transfer",
+          cost: transferCost(city.cost, f.people), duration: bufferMin+" dk",
+          reason:"Dönüş uçuşunuza zamanında ulaşmanız için transfer, check-in ve güvenlik kontrolü süresi hesaba katıldı."
+        }, "serbest", city.cost, s+9, f.people)});
+      } else {
+        items.push({time: minToTime(bfTime), ...mkMeal(bf[d%bf.length], "breakfast", city.key, city.cost, s+1, f.people)});
+        const lightTime = bfTime + 60;
+        if(toAirport - lightTime >= 90){
+          const aLight = nextLightAct();
+          items.push({time: minToTime(lightTime), ...mkAct({
+            ...aLight, reason:`${aLight.reason||CAT_REASON[aLight.cat]||CAT_REASON.serbest} Dönüş günü olduğu için riskli/uzak aktiviteler yerine hafif bir program seçildi.`
+          }, aLight.cat, city.cost, s+2, f.people)});
+        }
+        items.push({time: minToTime(toAirport), ...mkAct({
+          t:"Havalimanına ulaşım", d: f.airport?`${f.airport}'e transfer`:"Havalimanına transfer",
+          cost: transferCost(city.cost, f.people), duration: bufferMin+" dk",
+          reason:"Dönüş uçuşunuza zamanında ulaşmanız için transfer, check-in ve güvenlik kontrolü süresi hesaba katıldı."
+        }, "serbest", city.cost, s+9, f.people)});
+      }
+      dayThemes.push("Dönüş Günü");
     } else {
-      items.push({time:"21:00", t:"Akşam yürüyüşü ve dinlenme", d:"Konaklama çevresinde kısa tur, erken dinlenme", cat:"serbest"});
+      const a1 = nextAct(), a2 = nextAct(), a3 = nextAct(), a4 = nextAct();
+      items.push({time: slow?"09:00":"08:30", ...mkMeal(bf[d%bf.length], "breakfast", city.key, city.cost, s+1, f.people)});
+      items.push({time:"10:00", ...mkAct(a1, a1.cat, city.cost, s+2, f.people)});
+      if(!slow) items.push({time:"12:00", ...mkAct(a2, a2.cat, city.cost, s+3, f.people)});
+      items.push({time: slow?"12:30":"13:30", ...mkMeal(lu[d%lu.length], "lunch", city.key, city.cost, s+4, f.people)});
+      items.push({time:"15:00", ...mkAct((slow?a2:a3), (slow?a2:a3).cat, city.cost, s+5, f.people)});
+      items.push({time:"16:30", ...mkMeal(cafes[d%cafes.length], "cafe", city.key, city.cost, s+6, f.people)});
+      if(!slow && f.days<=4) items.push({time:"17:30", ...mkAct(a4, a4.cat, city.cost, s+7, f.people)});
+      items.push({time:"19:30", ...mkMeal(di[d%di.length], "dinner", city.key, city.cost, s+8, f.people)});
+      if(nightlife){
+        const g = city.acts.gece[(d+variant)%city.acts.gece.length];
+        items.push({time:"21:30", ...mkAct({t:g[0],d:g[1]}, "gece", city.cost, s+9, f.people)});
+      } else {
+        items.push({time:"21:00", ...mkAct({t:"Akşam yürüyüşü ve dinlenme", d:"Konaklama çevresinde kısa tur, erken dinlenme"}, "serbest", city.cost, s+9, f.people)});
+      }
+      const catCounts = {};
+      items.forEach(i=>{ if(i.cat && i.cat!=="yemek" && i.cat!=="serbest") catCounts[i.cat]=(catCounts[i.cat]||0)+1; });
+      const top = Object.entries(catCounts).sort((a,b)=>b[1]-a[1])[0];
+      const themeMap = {tarih:"Tarih Rotası",gastronomi:"Lezzet Günü",doga:"Doğa & Nefes",fotografcilik:"Kadraj Günü",macera:"Macera Günü",gece:"Şehir & Gece",luks:"Premium Gün"};
+      dayThemes.push(top?themeMap[top[0]]:"Keşif Günü");
     }
-    const catCounts = {};
-    items.forEach(i=>{ if(i.cat && i.cat!=="yemek" && i.cat!=="serbest") catCounts[i.cat]=(catCounts[i.cat]||0)+1; });
-    const top = Object.entries(catCounts).sort((a,b)=>b[1]-a[1])[0];
-    const themeMap = {tarih:"Tarih Rotası",gastronomi:"Lezzet Günü",doga:"Doğa & Nefes",fotografcilik:"Kadraj Günü",macera:"Macera Günü",gece:"Şehir & Gece",luks:"Premium Gün"};
-    dayThemes.push(top?themeMap[top[0]]:"Keşif Günü");
-    days.push({items, theme:dayThemes[d], cost:dayCost});
+
+    /* --- Duraklar arası ulaşım (coğrafi yakınlığa göre optimize edilmiş rota üzerinde) --- */
+    const segments = [];
+    for(let i=1;i<items.length;i++) segments.push(transitBetween(s + i*11 + 17, f.transport, city.cost, f.hasHotel));
+
+    let dayCostTotal = items.reduce((sum,it)=>sum+it.cost, 0);
+    let walkKm = 0, transportMin = 0;
+    segments.forEach(seg=>{
+      if(seg.rec==="yuruyus"){ walkKm += seg.walkKm; transportMin += seg.walkMin; }
+      else if(seg.rec==="toplu"){ walkKm += seg.walkKm*0.2; transportMin += seg.transitMin; dayCostTotal += TRANSIT_FARE*f.people; }
+      else { walkKm += seg.walkKm*0.1; transportMin += seg.taxiMin; dayCostTotal += seg.taxiCost; }
+    });
+
+    days.push({items, segments, theme:dayThemes[d], cost:Math.round(dayCostTotal), walkKm:+walkKm.toFixed(1), transportMin});
   }
 
   /* --- Özet metni --- */
@@ -1220,16 +1630,38 @@ function buildPlan(f, variant){
   const intText = intNames.length>1 ? intNames.slice(0,-1).join(", ")+" ve "+intNames.at(-1) : intNames[0];
   const styleText = {ekonomik:"bütçenizi koruyarak", dengeli:"konfor ve bütçeyi dengeleyerek", luks:"premium deneyimlere öncelik vererek"}[f.style];
   const typeText = {solo:"tek başına seyahatinize uygun esnek bir tempoyla", cift:"ikiniz için romantik duraklar gözetilerek", aile:"aile dostu bir tempoyla ve düzenli molalarla", arkadas:"grubunuz için sosyal ve hareketli bir kurguyla"}[f.type];
-  const summary = `Bu ${f.days} günlük ${city.name} planı, ${intText} ağırlıklı deneyimler sunarken ${styleText} şehri verimli şekilde keşfetmenizi sağlar. Rota ${typeText} hazırlandı; günler coğrafi olarak mantıklı sıraya kondu ve toplam ${fmt(f.budget)} bütçeniz beş kaleme dağıtıldı.${f.notes?` Notunuz dikkate alındı: "${f.notes}"`:""}`;
+  let summary = `Bu ${f.days} günlük ${city.name} planı, ${intText} ağırlıklı deneyimler sunarken ${styleText} şehri verimli şekilde keşfetmenizi sağlar. Rota ${typeText} hazırlandı; günler coğrafi olarak mantıklı sıraya kondu ve toplam ${fmt(f.budget)} bütçeniz beş kaleme dağıtıldı.${f.notes?` Notunuz dikkate alındı: "${f.notes}"`:""}`;
+  if(f.hasHotel && f.hotelName) summary += ` Rota, ${f.hotelName}${f.hotelAddress?` (${f.hotelAddress})`:""} merkez alınarak; gün içi gereksiz şehir içi taşınmaları azaltacak şekilde optimize edildi.`;
+  if(flightFirstDay) summary += ` İlk gün, ${f.flightArrival} iniş saatinize göre düzenlendi ve check-in sonrası hafif bir programla başlıyor.`;
+  if(flightLastDay) summary += ` Son gün, ${f.flightDeparture} dönüş uçuşunuza zamanında ulaşmanız için hafif aktivitelerle planlandı.`;
 
   const gems = seededShuffle(city.gems, seed+4).slice(0,3);
   const rainy = seededShuffle(city.rainy, seed+5).slice(0,3);
+  const viewpoints = seededShuffle(city.viewpoints, seed+10).slice(0,3);
+  const locals = seededShuffle(city.locals, seed+11).slice(0,3);
+
+  /* --- Bütçenize uygun otel önerileri (ekonomik / orta segment / premium) --- */
+  const nights = Math.max(1, f.days-1);
+  const pickHotel = (tier, offset) => {
+    const h = city.hotels[tier][(seed+offset) % city.hotels[tier].length];
+    return {name:h[0], price:h[1], desc:h[2], rating: ratingFor(seed+offset+5), total: h[1]*nights};
+  };
+  const hotels = {
+    economic: pickHotel("economic", 1),
+    mid: pickHotel("mid", 2),
+    premium: pickHotel("premium", 3)
+  };
 
   return {
     id: Date.now() + Math.random(),
     createdAt: new Date().toLocaleDateString("tr-TR",{day:"numeric",month:"long",year:"numeric"}),
     form: {...f}, cityName: city.name, country: city.country, cover: city.cover,
-    variant, summary, budget, days, gems, rainy, tips: city.tips
+    variant, summary, budget, days, gems, rainy, viewpoints, locals, hotels, nights, tips: city.tips,
+    prep: buildPrepCard(city, f, days),
+    booking: {
+      hasFlight: f.hasFlight, flightArrival: f.flightArrival, flightDeparture: f.flightDeparture, airport: f.airport,
+      hasHotel: f.hasHotel, hotelName: f.hotelName, hotelAddress: f.hotelAddress
+    }
   };
 }
 
@@ -1256,6 +1688,16 @@ const ICONS = {
   yemek:'M7 3v8a2 2 0 0 0 4 0V3M9 3v18M17 3c-2 1-3 3-3 6v4h3v8',
   serbest:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-14v5l3 2'
 };
+const ICON_COIN = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5c0-1.2 1.3-2 3-2s3 .8 3 2-1.3 1.7-3 2-3 .8-3 2 1.3 2 3 2 3-.8 3-2"/></svg>';
+const ICON_CLOCK = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+const ICON_STAR = '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l2.9 6.3 6.9.9-5 4.8 1.3 6.8L12 17.8 5.9 20.8l1.3-6.8-5-4.8 6.9-.9Z"/></svg>';
+const ICON_FORK = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2 2 0 0 0 4 0V3M9 3v18M17 3c-2 1-3 3-3 6v4h3v8"/></svg>';
+const ICON_BULB = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.6.5-.6 1.2-.6 2.2H9c0-1-.1-1.7-.6-2.2A6 6 0 0 1 12 3Z"/></svg>';
+const TRANSIT_ICONS = {
+  yuruyus:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM9 23l2-7-3-2 1-7 5-1 3 4 3 1m-9-5-3 3-3 9"/></svg>',
+  toplu:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="13" rx="2"/><path d="M4 11h16M8 19l-2 2m12-2 2 2M9 16h.01M15 16h.01"/></svg>',
+  taksi:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11l1.5-5h11L19 11m-14 0h14a2 2 0 0 1 2 2v4h-2a2 2 0 1 1-4 0H9a2 2 0 1 1-4 0H3v-4a2 2 0 0 1 2-2Z"/></svg>'
+};
 
 function renderResult(){
   const p = currentPlan;
@@ -1264,15 +1706,51 @@ function renderResult(){
 
   const dayHTML = (di) => {
     const day = p.days[di];
+    const itemsHTML = day.items.map((it,idx)=>{
+      const catLabel = it.cat==='yemek' ? it.mealLabel : (INTERESTS.find(x=>x[0]===it.cat)?.[1] || "Serbest Zaman");
+      let card = `
+        <div class="tl-item2">
+          <div class="tl-top">
+            <div class="tl-headline">
+              <span class="tl-time">${it.time}</span>
+              <span class="tl-name">${it.t}</span>
+            </div>
+            <span class="tl-cat">${catLabel}</span>
+          </div>
+          <div class="tl-desc">${it.d}</div>
+          <div class="tl-reason">${ICON_BULB}<span><b>Neden önerildi:</b> ${it.reason}</span></div>
+          <div class="tl-meta-row">
+            <span class="meta-chip">${ICON_COIN} ${fmt(it.cost)}</span>
+            ${it.cat==='yemek'
+              ? `<span class="meta-chip">${ICON_FORK} ${it.cuisine}</span><span class="meta-chip rating">${ICON_STAR} ${it.rating}</span>`
+              : `<span class="meta-chip">${ICON_CLOCK} ${it.duration}</span>`}
+          </div>
+        </div>`;
+      if(idx < day.segments.length){
+        const seg = day.segments[idx];
+        const opt = (mode, val, label) => `<span class="transit-opt ${seg.rec===mode?'rec':''}">${TRANSIT_ICONS[mode]} ${val} dk${label?" · "+label:""}</span>`;
+        card += `
+          <div class="transit-row">
+            <b>Sonraki durağa</b>
+            <div class="transit-opts">
+              ${opt('yuruyus', seg.walkMin, seg.walkKm+" km")}
+              ${opt('toplu', seg.transitMin, "")}
+              ${opt('taksi', seg.taxiMin, fmt(seg.taxiCost))}
+            </div>
+          </div>`;
+      }
+      return card;
+    }).join("");
+
     return `
       <div class="day-title">${di+1}. Gün — ${day.theme}</div>
-      <div class="day-sub">${trLabel(f.transport)} ağırlıklı · tahmini günlük harcama ${fmt(day.cost)}</div>
-      ${day.items.map(it=>`
-        <div class="tl-item">
-          <div class="tl-rail"><div class="tl-dot" style="${it.cat==='yemek'?'background:#E8B27D;border-color:#FBEEDD':''}"></div><div class="tl-line"></div></div>
-          <span class="tl-time">${it.time}</span>
-          <div class="tl-body"><b>${it.t}</b><span>${it.d}</span></div>
-        </div>`).join("")}`;
+      <div class="day-sub">${trLabel(f.transport)} ağırlıklı · coğrafi yakınlığa göre optimize edilmiş rota</div>
+      ${itemsHTML}
+      <div class="day-footer">
+        <div class="day-stat"><b>${fmt(day.cost)}</b><span>Günlük toplam maliyet</span></div>
+        <div class="day-stat"><b>${day.walkKm} km</b><span>Günlük yürüyüş mesafesi</span></div>
+        <div class="day-stat"><b>${day.transportMin} dk</b><span>Günlük ulaşım süresi</span></div>
+      </div>`;
   };
 
   const totalB = Object.values(p.budget).reduce((a,b)=>a+b,0);
@@ -1290,18 +1768,57 @@ function renderResult(){
     </div>
     <div class="alt-note ${p.variant>0?'show':''}">Alternatif kurgu görüntülüyorsunuz (Plan ${String.fromCharCode(65+p.variant)}). Orijinaline dönmek için tekrar "Alternatif Plan"a basın.</div>
 
+    <!-- AI Özet -->
+    <div class="r-card ai-summary">
+      <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 0-3 3 3 3 0 0 0-2.2 5A3 3 0 0 0 9 16a3 3 0 0 0 6 0 3 3 0 0 0 2.2-5A3 3 0 0 0 15 6a3 3 0 0 0-3-3Z"/><path d="M12 7v9"/></svg></span>Seyahat Özeti</h3>
+      <p>${p.summary}</p>
+      <div class="ai-tagrow">
+        ${(f.interests.length?f.interests:["tarih","gastronomi"]).map(i=>`<span class="ai-tag">${INTERESTS.find(x=>x[0]===i)[1]}</span>`).join("")}
+        <span class="ai-tag">${trLabel(f.transport)}</span>
+      </div>
+    </div>
+
+    ${(p.booking.hasFlight || p.booking.hasHotel) ? `
+    <!-- Rezervasyon Bilgileriniz -->
+    <div class="r-card booking-card">
+      <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 19.5 21 12 2.5 4.5 7 12l-4.5 7.5ZM7 12h7"/></svg></span>Rezervasyon Bilgileriniz</h3>
+      <div class="booking-grid">
+        ${p.booking.hasFlight ? `
+        <div class="booking-item">
+          <b>Uçuş</b>
+          <span>İniş ${p.booking.flightArrival||"—"} · Kalkış ${p.booking.flightDeparture||"—"}${p.booking.airport?` · ${p.booking.airport}`:""}</span>
+        </div>` : ""}
+        ${p.booking.hasHotel ? `
+        <div class="booking-item">
+          <b>Otel</b>
+          <span>${p.booking.hotelName||"—"}${p.booking.hotelAddress?` · ${p.booking.hotelAddress}`:""}</span>
+        </div>` : ""}
+      </div>
+      ${p.booking.hasHotel ? `<p class="booking-note">${ICON_BULB} Rota, otelinizin bulunduğu bölge merkez alınarak; gün içi gereksiz şehir içi taşınmalar azaltılacak şekilde optimize edildi.</p>` : ""}
+    </div>` : ""}
+
+    <!-- Otel önerileri -->
+    <div class="r-card hotel-section">
+      <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 18h18M3 14h18M7 9V6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3"/></svg></span>${p.booking.hasHotel ? "Bölgenizdeki Diğer Otel Seçenekleri" : "Bütçenize Uygun Otel Önerileri"}</h3>
+      <div class="hotel-grid">
+        ${["economic","mid","premium"].map(tier=>{
+          const h = p.hotels[tier];
+          const tierLabel = {economic:"Ekonomik", mid:"Orta Segment", premium:"Premium"}[tier];
+          const match = (f.style==="ekonomik"&&tier==="economic") || (f.style==="dengeli"&&tier==="mid") || (f.style==="luks"&&tier==="premium");
+          return `<div class="hotel-card ${match?'match':''}">
+            <span class="hotel-tier">${tierLabel}${match?' · Tarzınıza uygun':''}</span>
+            <h4>${h.name}</h4>
+            <div class="h-price">${fmt(h.price)}<small> / gece</small></div>
+            <div class="h-rating">${ICON_STAR} ${h.rating} <span>puan</span></div>
+            <p>${h.desc}</p>
+            <div class="h-total">${p.nights} gece için toplam ≈ ${fmt(h.total)}</div>
+          </div>`;
+        }).join("")}
+      </div>
+    </div>
+
     <div class="r-grid">
       <div>
-        <!-- AI Özet -->
-        <div class="r-card ai-summary">
-          <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 0-3 3 3 3 0 0 0-2.2 5A3 3 0 0 0 9 16a3 3 0 0 0 6 0 3 3 0 0 0 2.2-5A3 3 0 0 0 15 6a3 3 0 0 0-3-3Z"/><path d="M12 7v9"/></svg></span>Seyahat Özeti</h3>
-          <p>${p.summary}</p>
-          <div class="ai-tagrow">
-            ${(f.interests.length?f.interests:["tarih","gastronomi"]).map(i=>`<span class="ai-tag">${INTERESTS.find(x=>x[0]===i)[1]}</span>`).join("")}
-            <span class="ai-tag">${trLabel(f.transport)}</span>
-          </div>
-        </div>
-
         <!-- Günlük Plan -->
         <div class="r-card">
           <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 10h18"/></svg></span>Günlük Rota</h3>
@@ -1348,7 +1865,47 @@ function renderResult(){
           <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 1 6 6c0 4-6 12-6 12S6 13 6 9a6 6 0 0 1 6-6Z"/><circle cx="12" cy="9" r="2"/></svg></span>Gizli Kalmış Mekanlar</h3>
           ${p.gems.map(g=>`<div class="gem"><span class="g-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l3 6-9 12L3 9l3-6Z"/></svg></span><div><b>${g[0]}</b><span>${g[1]}</span></div></div>`).join("")}
         </div>
+
+        <!-- Manzara noktaları -->
+        <div class="r-card">
+          <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21 9 9l4 6 3-4 5 10H3Z"/></svg></span>Manzara Noktaları</h3>
+          ${p.viewpoints.map(v=>`<div class="local-card"><span class="l-ic" style="background:var(--info-soft);color:var(--info)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21 9 9l4 6 3-4 5 10H3Z"/></svg></span><div><b>${v[0]}</b><span>${v[1]}</span></div></div>`).join("")}
+        </div>
+
+        <!-- Yerel halkın tercihleri -->
+        <div class="r-card">
+          <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M2 21v-1c0-2.8 2.2-5 5-5h4c2.8 0 5 2.2 5 5v1"/><circle cx="18" cy="8" r="2.3"/><path d="M16 21v-1c0-1.8 1.2-3.3 2.8-3.8"/></svg></span>Yerel Halkın Tercih Ettiği Noktalar</h3>
+          ${p.locals.map(v=>`<div class="local-card"><span class="l-ic" style="background:var(--success-soft);color:var(--success)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M2 21v-1c0-2.8 2.2-5 5-5h4c2.8 0 5 2.2 5 5v1"/><circle cx="18" cy="8" r="2.3"/><path d="M16 21v-1c0-1.8 1.2-3.3 2.8-3.8"/></svg></span><div><b>${v[0]}</b><span>${v[1]}</span></div></div>`).join("")}
+        </div>
       </div>
+    </div>
+
+    <!-- Seyahat Hazırlık Kartı -->
+    <div class="r-card prep-card">
+      <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></span>Seyahat Hazırlık Kartı</h3>
+      <div class="prep-head">
+        <div class="prep-title">📦 ${p.cityName} – ${p.prep.season} Seyahat Hazırlık Rehberi</div>
+        <div class="prep-weather"><b>Hava Durumu:</b> ${p.prep.weather}</div>
+      </div>
+      <div class="prep-grid">
+        <div class="prep-section">
+          <h4>Yanına Al: Kıyafet</h4>
+          <ul>${p.prep.clothing.map(c=>`<li>${c}</li>`).join("")}</ul>
+        </div>
+        <div class="prep-section">
+          <h4>Aksesuarlar</h4>
+          <ul>${p.prep.accessories.map(c=>`<li>${c}</li>`).join("")}</ul>
+        </div>
+        <div class="prep-section">
+          <h4>Teknolojik Ekipman</h4>
+          <ul>${p.prep.tech.map(c=>`<li>${c}</li>`).join("")}</ul>
+        </div>
+        <div class="prep-section">
+          <h4>Sağlık & Güvenlik</h4>
+          <ul>${p.prep.health.map(c=>`<li>${c}</li>`).join("")}</ul>
+        </div>
+      </div>
+      <div class="prep-tip"><b>Özel Tavsiye:</b> ${p.prep.tip}</div>
     </div>`;
 
   $("#dayTabs").addEventListener("click", e=>{
