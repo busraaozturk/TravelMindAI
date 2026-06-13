@@ -874,17 +874,50 @@ document.querySelectorAll("#r-stars .star").forEach(btn=>{
     document.querySelectorAll("#r-stars .star").forEach(s=> s.classList.toggle("on", +s.dataset.v <= v));
   });
 });
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xpqeyzwo";
 function submitQuestion(e){
   e.preventDefault();
-  e.target.reset();
-  toast("Sorunuz alındı, en kısa sürede yanıtlanacaktır.");
+  const form = e.target;
+  const btn = form.querySelector("button[type=submit]");
+  const data = new FormData();
+  data.append("_subject", "TravelMind AI - Yeni Soru");
+  data.append("form_type", "Soru");
+  data.append("name", $("#q-name").value);
+  data.append("email", $("#q-email").value);
+  data.append("message", $("#q-text").value);
+  btn.disabled = true;
+  fetch(FORMSPREE_ENDPOINT, { method:"POST", body:data, headers:{"Accept":"application/json"} })
+    .then(res=>{
+      if(res.ok){ form.reset(); toast("Sorunuz alındı, en kısa sürede yanıtlanacaktır."); }
+      else toast("Bir hata oluştu, lütfen tekrar deneyin.");
+    })
+    .catch(()=> toast("Bir hata oluştu, lütfen tekrar deneyin."))
+    .finally(()=> btn.disabled = false);
 }
 function submitReview(e){
   e.preventDefault();
-  e.target.reset();
-  document.querySelectorAll("#r-stars .star").forEach(s=> s.classList.remove("on"));
-  $("#r-rating").value = 0;
-  toast("Yorumunuz için teşekkürler!");
+  const form = e.target;
+  const btn = form.querySelector("button[type=submit]");
+  const data = new FormData();
+  data.append("_subject", "TravelMind AI - Yeni Yorum");
+  data.append("form_type", "Yorum");
+  data.append("name", $("#r-name").value);
+  data.append("email", $("#r-email").value);
+  data.append("city", $("#r-city").value);
+  data.append("rating", $("#r-rating").value);
+  data.append("message", $("#r-text").value);
+  btn.disabled = true;
+  fetch(FORMSPREE_ENDPOINT, { method:"POST", body:data, headers:{"Accept":"application/json"} })
+    .then(res=>{
+      if(res.ok){
+        form.reset();
+        document.querySelectorAll("#r-stars .star").forEach(s=> s.classList.remove("on"));
+        $("#r-rating").value = 0;
+        toast("Yorumunuz için teşekkürler!");
+      } else toast("Bir hata oluştu, lütfen tekrar deneyin.");
+    })
+    .catch(()=> toast("Bir hata oluştu, lütfen tekrar deneyin."))
+    .finally(()=> btn.disabled = false);
 }
 
 /* ---------- Görünüm yönlendirme ---------- */
