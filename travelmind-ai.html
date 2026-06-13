@@ -280,8 +280,8 @@ textarea.input{resize:vertical;min-height:96px}
 .result-top h1{font-size:clamp(1.6rem,3vw,2.2rem)}
 .result-top .meta{color:var(--text-light);margin-top:6px;font-size:.95rem}
 .result-actions{display:flex;gap:10px;flex-wrap:wrap}
-.r-grid{column-count:2;column-gap:26px}
-.r-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:28px;margin-bottom:26px;break-inside:avoid}
+.r-grid{display:grid;grid-template-columns:1.65fr 1fr;gap:26px;align-items:start}
+.r-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:28px;margin-bottom:26px}
 .r-card h3{font-size:1.12rem;display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .r-card h3 .h-ic{width:34px;height:34px;border-radius:10px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;flex-shrink:0}
 .ai-summary{background:linear-gradient(135deg,#FFF4EC,#FDF8F1);border:1px solid var(--border)}
@@ -416,7 +416,7 @@ textarea.input{resize:vertical;min-height:96px}
   .hero{padding:56px 0 48px}
   .steps-grid,.features-grid,.quotes-grid,.trips-grid{grid-template-columns:repeat(2,1fr)}
   .sample-wrap{grid-template-columns:1fr}
-  .r-grid{column-count:1}
+  .r-grid{grid-template-columns:1fr}
   .hotel-grid{grid-template-columns:1fr}
   .booking-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr}
@@ -1899,6 +1899,7 @@ function renderResult(){
     </div>
 
     <div class="r-grid">
+      <div>
         <!-- Günlük Plan -->
         <div class="r-card">
           <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 10h18"/></svg></span>Günlük Rota</h3>
@@ -1908,6 +1909,15 @@ function renderResult(){
           <div id="dayBody">${dayHTML(0)}</div>
         </div>
 
+        <!-- Yağmurlu hava -->
+        <div class="r-card rain-card">
+          <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.6A5 5 0 0 0 18 7h-1.3A7 7 0 1 0 5 15.9"/><path d="M8 19v2M12 18v3M16 19v2"/></svg></span>Yağmurlu Hava Alternatifi</h3>
+          <p style="font-size:.9rem;color:var(--text-light);margin-bottom:8px">Hava bozarsa o günün açık hava duraklarını şu kapalı mekanlarla değiştirin:</p>
+          ${p.rainy.map(g=>`<div class="rain-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>${g[0]}</b> — <span style="color:var(--text-light)">${g[1]}</span></div></div>`).join("")}
+        </div>
+      </div>
+
+      <div>
         <!-- Bütçe -->
         <div class="r-card">
           <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7" rx="1"/><rect x="12" y="7" width="3" height="11" rx="1"/><rect x="17" y="13" width="3" height="5" rx="1"/></svg></span>Bütçe Dağılımı</h3>
@@ -1918,13 +1928,6 @@ function renderResult(){
               <div class="b-label"><b>${k}</b><span>${fmt(v)} · %${Math.round(v/totalB*100)}</span></div>
               <div class="b-track"><div class="b-fill" style="width:${(v/totalB*100)}%;background:${BUDGET_COLORS[k]}"></div></div>
             </div>`).join("")}
-        </div>
-
-        <!-- Yağmurlu hava -->
-        <div class="r-card rain-card">
-          <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.6A5 5 0 0 0 18 7h-1.3A7 7 0 1 0 5 15.9"/><path d="M8 19v2M12 18v3M16 19v2"/></svg></span>Yağmurlu Hava Alternatifi</h3>
-          <p style="font-size:.9rem;color:var(--text-light);margin-bottom:8px">Hava bozarsa o günün açık hava duraklarını şu kapalı mekanlarla değiştirin:</p>
-          ${p.rainy.map(g=>`<div class="rain-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>${g[0]}</b> — <span style="color:var(--text-light)">${g[1]}</span></div></div>`).join("")}
         </div>
 
         <!-- Yerel tavsiyeler -->
@@ -1955,6 +1958,7 @@ function renderResult(){
           <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M2 21v-1c0-2.8 2.2-5 5-5h4c2.8 0 5 2.2 5 5v1"/><circle cx="18" cy="8" r="2.3"/><path d="M16 21v-1c0-1.8 1.2-3.3 2.8-3.8"/></svg></span>Yerel Halkın Tercih Ettiği Noktalar</h3>
           ${p.locals.map(v=>`<div class="local-card"><span class="l-ic" style="background:var(--success-soft);color:var(--success)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M2 21v-1c0-2.8 2.2-5 5-5h4c2.8 0 5 2.2 5 5v1"/><circle cx="18" cy="8" r="2.3"/><path d="M16 21v-1c0-1.8 1.2-3.3 2.8-3.8"/></svg></span><div><b>${v[0]}</b><span>${v[1]}</span></div></div>`).join("")}
         </div>
+      </div>
     </div>
 
     <!-- Seyahat Hazırlık Kartı -->
