@@ -217,6 +217,11 @@ footer{background:#FBF1E8;border-top:1px solid var(--border);padding:56px 0 30px
 .wizard-card h2{font-size:1.3rem;margin-bottom:6px}
 .wizard-card .sub{color:var(--text-light);font-size:.94rem;margin-bottom:28px}
 .field{margin-bottom:22px}
+.city-field{position:relative}
+.city-suggest{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-md);max-height:220px;overflow-y:auto;z-index:50}
+.city-suggest.hidden{display:none}
+.city-suggest-item{padding:10px 16px;font-size:.95rem;cursor:pointer;transition:background .1s}
+.city-suggest-item:hover,.city-suggest-item.active{background:var(--primary-soft)}
 .field label{display:block;font-family:var(--font-display);font-weight:600;font-size:.93rem;margin-bottom:8px}
 .field .hint{font-weight:400;color:var(--text-light);font-size:.82rem;margin-left:6px}
 .input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg);transition:border .15s,box-shadow .15s}
@@ -1200,9 +1205,10 @@ function renderWizard(){
   let h = "";
   if(step===1){
     h = `<h2>Nereye gidiyorsunuz?</h2><p class="sub">Şehri ve kaç gün kalacağınızı belirtin.</p>
-    <div class="field"><label>Hangi şehre gideceksiniz?</label>
-      <input class="input" id="f-city" list="cityList" placeholder="örn. İstanbul, Roma, Paris…" value="${form.city}">
-      <datalist id="cityList"><option value="İstanbul"><option value="Roma"><option value="Paris"><option value="Barselona"><option value="Kapadokya"></datalist>
+    <div class="field city-field">
+      <label>Hangi şehre gideceksiniz?</label>
+      <input class="input" id="f-city" placeholder="örn. İstanbul, Roma, Paris…" value="${form.city}" autocomplete="off">
+      <div class="city-suggest hidden" id="cityDropdown"></div>
     </div>
     <div class="field"><label>Kaç gün kalacaksınız? <span class="hint">1–14 gün</span></label>
       <input class="input" id="f-days" type="number" min="1" max="14" value="${form.days}" autocomplete="off">
@@ -1311,6 +1317,36 @@ function renderWizard(){
     if(e.target.name==="f-hasflight"){ collectStep(); form.hasFlight = e.target.value==="yes"; renderWizard(); }
     if(e.target.name==="f-hashotel"){ collectStep(); form.hasHotel = e.target.value==="yes"; renderWizard(); }
   };
+  if(step===1) initCitySuggest();
+}
+
+/* ---------- Şehir öneri listesi ---------- */
+function initCitySuggest(){
+  const input = $("#f-city"), box = $("#cityDropdown");
+  const cities = Object.values(CITY_DB).map(c=>c.name);
+  function render(list){
+    if(!list.length){ box.classList.add("hidden"); box.innerHTML=""; return; }
+    box.innerHTML = list.map(name=>`<div class="city-suggest-item">${name}</div>`).join("");
+    box.classList.remove("hidden");
+  }
+  input.addEventListener("input", ()=>{
+    const q = input.value.trim().toLocaleLowerCase("tr-TR");
+    render(q ? cities.filter(c=>c.toLocaleLowerCase("tr-TR").includes(q)) : cities);
+  });
+  input.addEventListener("focus", ()=>{
+    const q = input.value.trim().toLocaleLowerCase("tr-TR");
+    render(q ? cities.filter(c=>c.toLocaleLowerCase("tr-TR").includes(q)) : cities);
+  });
+  box.addEventListener("mousedown", e=>{
+    const item = e.target.closest(".city-suggest-item");
+    if(!item) return;
+    e.preventDefault();
+    input.value = item.textContent;
+    box.classList.add("hidden");
+  });
+  document.addEventListener("click", e=>{
+    if(!input.contains(e.target) && !box.contains(e.target)) box.classList.add("hidden");
+  });
 }
 function typeLabel(t){return {solo:"Tek başına",cift:"Çift",aile:"Aile",arkadas:"Arkadaş grubu"}[t]||"—"}
 function trLabel(t){return {yuruyus:"Yürüyüş",toplu:"Toplu taşıma",taksi:"Taksi",karma:"Karma"}[t]||"—"}
