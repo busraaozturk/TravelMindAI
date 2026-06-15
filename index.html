@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 :root{
   --primary:#C96C4A;
@@ -109,10 +111,25 @@ a{color:inherit;text-decoration:none}
 @keyframes grow{from{width:0 !important}}
 .mock-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:.76rem;color:var(--text-light)}
 .mock-legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
-.float-chip{position:absolute;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-md);padding:10px 16px;font-size:.85rem;font-weight:600;display:flex;align-items:center;gap:8px;animation:floaty 5s ease-in-out infinite}
-.float-chip.c1{top:-18px;left:-26px}
-.float-chip.c2{bottom:36px;right:-22px;animation-delay:2.2s}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.float-chip{position:absolute;width:54px;height:54px;background:var(--card);border:1px solid var(--border);border-radius:50%;box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center}
+.float-chip.c1{top:-18px;left:-26px;animation:drift1 7s ease-in-out infinite}
+.float-chip.c2{bottom:36px;right:-22px;animation:drift2 8s ease-in-out infinite;animation-delay:1.4s}
+.float-chip .sparkle{position:absolute;width:7px;height:7px;border-radius:50%;background:#F5A623;box-shadow:0 0 6px #F5A623;animation:twinkle 2.6s ease-in-out infinite}
+.float-chip .sparkle.s1{top:-3px;right:2px;animation-delay:.4s}
+.float-chip .sparkle.s2{bottom:4px;left:-5px;width:5px;height:5px;animation-delay:1.3s}
+@keyframes twinkle{0%,40%,100%{opacity:0;transform:scale(.3)}20%{opacity:1;transform:scale(1)}}
+@keyframes drift1{
+  0%,100%{transform:translate(0,0) rotate(0deg)}
+  25%{transform:translate(5px,-11px) rotate(-3deg)}
+  50%{transform:translate(-3px,-18px) rotate(2deg)}
+  75%{transform:translate(-6px,-7px) rotate(-1deg)}
+}
+@keyframes drift2{
+  0%,100%{transform:translate(0,0) rotate(0deg)}
+  25%{transform:translate(-6px,-9px) rotate(3deg)}
+  50%{transform:translate(4px,-16px) rotate(-2deg)}
+  75%{transform:translate(6px,-5px) rotate(1deg)}
+}
 
 /* ---------- Sections ---------- */
 section.block{padding:84px 0}
@@ -280,6 +297,14 @@ textarea.input{resize:vertical;min-height:96px}
 .result-top h1{font-size:clamp(1.6rem,3vw,2.2rem)}
 .result-top .meta{color:var(--text-light);margin-top:6px;font-size:.95rem}
 .result-actions{display:flex;gap:10px;flex-wrap:wrap}
+.exporting-pdf .result-actions, .exporting-pdf .day-tabs, .exporting-pdf .alt-note, .exporting-pdf .prep-actions{display:none!important}
+.exporting-pdf .r-card{box-shadow:none;border:1px solid #ddd}
+@media print{
+  .navbar, footer, .back-to-top, .mobile-menu, .result-actions, .day-tabs, .alt-note, .prep-actions{display:none!important}
+  body{background:#fff}
+  .r-card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
+  .result-wrap{padding:0}
+}
 .r-grid{display:grid;grid-template-columns:1.65fr 1fr;gap:26px;align-items:start}
 .r-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:28px;margin-bottom:26px}
 .r-card h3{font-size:1.12rem;display:flex;align-items:center;gap:10px;margin-bottom:16px}
@@ -296,7 +321,9 @@ textarea.input{resize:vertical;min-height:96px}
 .budget-total{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
 .budget-total b{font-family:var(--font-display);font-size:1.9rem;font-weight:800}
 .budget-total span{color:var(--text-light);font-size:.88rem}
-.budget-pp{color:var(--text-light);font-size:.85rem;margin-bottom:18px}
+.budget-pp{color:var(--text-light);font-size:.85rem;margin-bottom:8px}
+.budget-fx{color:var(--text-light);font-size:.85rem;margin-bottom:18px;padding-top:8px;border-top:1px dashed var(--border)}
+.budget-fx span{display:block;font-size:.76rem;margin-top:2px;opacity:.8}
 .b-row{margin-bottom:15px}
 .b-row .b-label{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:6px}
 .b-row .b-label b{font-weight:600}
@@ -371,9 +398,14 @@ textarea.input{resize:vertical;min-height:96px}
 .prep-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:16px}
 .prep-section h4{font-size:.86rem;font-weight:700;color:var(--primary);margin-bottom:8px}
 .prep-section ul{list-style:none;display:flex;flex-direction:column;gap:6px}
-.prep-section li{font-size:.88rem;padding-left:18px;position:relative}
-.prep-section li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:2px;background:var(--primary-soft);border:1.5px solid var(--primary)}
-.prep-tip{font-size:.9rem;color:var(--primary-dark);background:var(--primary-soft);border-radius:10px;padding:10px 14px}
+.prep-section li{font-size:.88rem}
+.prep-check{display:flex;align-items:flex-start;gap:9px;cursor:pointer;line-height:1.35}
+.prep-check input{margin-top:3px;width:16px;height:16px;accent-color:var(--primary);cursor:pointer;flex-shrink:0}
+.prep-check.checked span{color:var(--text-light);text-decoration:line-through}
+.prep-tip{font-size:.9rem;color:var(--primary-dark);background:var(--primary-soft);border-radius:10px;padding:10px 14px;margin-bottom:16px}
+.prep-progress{display:flex;align-items:center;gap:12px;margin:2px 0 14px;font-size:.85rem;color:var(--text-light)}
+.prep-progress .b-track{flex:1}
+.prep-actions{display:flex;gap:10px;margin-bottom:18px}
 
 .alt-note{background:var(--secondary-soft);border:1px solid #F0DCC0;border-radius:12px;padding:13px 16px;font-size:.88rem;color:#8A6232;margin-bottom:18px;display:none}
 .alt-note.show{display:block}
@@ -386,11 +418,31 @@ textarea.input{resize:vertical;min-height:96px}
 .toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,80px);background:var(--text);color:#fff;padding:13px 22px;border-radius:999px;font-size:.92rem;font-weight:500;display:flex;align-items:center;gap:9px;box-shadow:0 10px 30px rgba(0,0,0,.22);opacity:0;transition:all .35s;z-index:200;pointer-events:none}
 .toast.show{transform:translate(-50%,0);opacity:1}
 .back-to-top{position:fixed;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(0,0,0,.18);opacity:0;visibility:hidden;transform:translateY(12px);transition:all .25s;z-index:190}
+.share-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:300;padding:20px}
+.share-overlay.hidden{display:none}
+.share-modal{background:var(--card);border-radius:16px;padding:26px;max-width:480px;width:100%;box-shadow:var(--shadow-md)}
+.share-modal h3{font-family:var(--font-display);font-size:1.2rem;margin-bottom:10px}
+.share-modal p{color:var(--text-light);font-size:.9rem;margin-bottom:14px}
+.share-modal textarea{resize:vertical;font-family:inherit;font-size:.88rem;margin-bottom:16px}
+.share-actions{display:flex;justify-content:flex-end;gap:10px}
 .back-to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
 .back-to-top:hover{background:var(--primary-dark,var(--primary));transform:translateY(-2px)}
 
 /* ---------- Saved ---------- */
 .saved-wrap{padding:56px 0 90px;min-height:60vh}
+.fx-row-input{display:flex;gap:14px;align-items:flex-start}
+.fx-row-input select{flex:0 0 120px}
+.fx-swap{display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin:14px auto;border-radius:50%;border:1.5px solid var(--border);background:var(--bg);color:var(--primary);cursor:pointer;transition:background .15s,transform .2s}
+.fx-swap:hover{background:var(--primary-soft);transform:rotate(180deg)}
+.fx-result{display:flex;flex-direction:column;gap:10px;margin:18px 0}
+.fx-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 18px;border-radius:12px;background:var(--bg);border:1px solid var(--border)}
+.fx-row span{color:var(--text-light);font-size:.92rem}
+.fx-row b{font-family:var(--font-display);font-size:1.5rem;font-weight:800}
+.fx-note{color:var(--text-light);font-size:.85rem}
+@media(max-width:520px){
+  .fx-row-input{flex-direction:column}
+  .fx-row-input select{flex:1;width:100%}
+}
 .saved-head{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:34px}
 .saved-head h1{font-size:clamp(1.6rem,3vw,2.1rem)}
 .trips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -461,6 +513,7 @@ textarea.input{resize:vertical;min-height:96px}
       <a href="#ornek" onclick="goSection('ornek');return false;">Örnek Plan</a>
       <a href="#sss" onclick="goSection('sss');return false;">SSS</a>
       <a href="#" onclick="go('saved');return false;">Kayıtlı Seyahatler</a>
+      <a href="#" onclick="go('fx');return false;">Döviz Çevirici</a>
     </div>
     <div class="nav-cta">
       <button class="btn btn-ghost btn-sm" onclick="go('saved')">Seyahatlerim</button>
@@ -476,6 +529,7 @@ textarea.input{resize:vertical;min-height:96px}
     <a href="#" onclick="goSection('ornek');return false;">Örnek Plan</a>
     <a href="#" onclick="goSection('sss');return false;">SSS</a>
     <a href="#" onclick="go('saved');return false;">Kayıtlı Seyahatler</a>
+    <a href="#" onclick="go('fx');return false;">Döviz Çevirici</a>
   </div>
 </nav>
 
@@ -500,8 +554,16 @@ textarea.input{resize:vertical;min-height:96px}
         </div>
       </div>
       <div style="position:relative">
-        <div class="float-chip c1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E9C76" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Bütçe dengede</div>
-        <div class="float-chip c2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C96C4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8Z"/></svg> Gizli mekan eklendi</div>
+        <div class="float-chip c1">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C96C4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 19.5 21 12 2.5 4.5 7 12l-4.5 7.5ZM7 12h7"/></svg>
+          <span class="sparkle s1"></span>
+          <span class="sparkle s2"></span>
+        </div>
+        <div class="float-chip c2">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5E9C76" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 4.8a2 2 0 0 1-1.3 1.3L4 11l4.8 1.9a2 2 0 0 1 1.3 1.3L12 19l1.9-4.8a2 2 0 0 1 1.3-1.3L20 11l-4.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+          <span class="sparkle s1"></span>
+          <span class="sparkle s2"></span>
+        </div>
         <div class="mock-card" aria-hidden="true">
           <div class="mock-head">
             <div><h3>Roma · 2. Gün</h3><small>Tarih + Gastronomi ağırlıklı</small></div>
@@ -806,6 +868,48 @@ textarea.input{resize:vertical;min-height:96px}
   </div>
 </main>
 
+<!-- ============ DÖVİZ ÇEVİRİCİ ============ -->
+<main id="view-fx" class="hidden">
+  <div class="container saved-wrap" style="max-width:560px">
+    <div class="saved-head">
+      <div>
+        <h1>Döviz Kuru Hesaplayıcı</h1>
+        <p style="color:var(--text-light);margin-top:6px">Seyahat bütçenizi farklı para birimlerine yaklaşık olarak çevirin.</p>
+      </div>
+    </div>
+    <div class="r-card">
+      <div class="fx-row-input">
+        <div class="field" style="flex:1;margin-bottom:0"><label>Tutar</label>
+          <input class="input" type="number" id="fxAmount" min="0" step="100" placeholder="örn. 1000" autocomplete="off" oninput="updateFxResult()">
+        </div>
+        <div class="field" style="margin-bottom:0"><label>Birim</label>
+          <select class="input" id="fxFrom" onchange="updateFxResult()">
+            <option value="TRY" selected>₺ TRY</option>
+            <option value="EUR">€ EUR</option>
+            <option value="USD">$ USD</option>
+            <option value="GBP">£ GBP</option>
+          </select>
+        </div>
+      </div>
+      <button class="fx-swap" type="button" onclick="swapFx()" aria-label="Para birimlerini değiştir">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+      </button>
+      <div class="field" style="margin-bottom:0"><label>Hedef Birim</label>
+        <select class="input" id="fxTo" onchange="updateFxResult()">
+          <option value="TRY">₺ TRY</option>
+          <option value="EUR">€ EUR</option>
+          <option value="USD" selected>$ USD</option>
+          <option value="GBP">£ GBP</option>
+        </select>
+      </div>
+      <div class="fx-result" id="fxResult">
+        <div class="fx-row"><span>Sonuç</span><b id="fxOut">$0</b></div>
+      </div>
+      <p class="fx-note" id="fxNote"></p>
+    </div>
+  </div>
+</main>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="container">
@@ -857,6 +961,19 @@ textarea.input{resize:vertical;min-height:96px}
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
+<!-- ============ PAYLAŞ MODALI ============ -->
+<div class="share-overlay hidden" id="shareOverlay" onclick="if(event.target===this) closeShareModal()">
+  <div class="share-modal">
+    <h3>Planı Paylaş</h3>
+    <p>Bu uygulama tek dosya olarak çalıştığı için planınızı doğrudan bir bağlantıyla paylaşamıyoruz. Aşağıdaki özeti kopyalayıp istediğiniz kişiyle paylaşabilirsiniz.</p>
+    <textarea id="shareText" class="input" rows="6" readonly></textarea>
+    <div class="share-actions">
+      <button class="btn btn-soft" onclick="copyShareText()">Kopyala</button>
+      <button class="btn btn-primary" onclick="closeShareModal()">Tamam</button>
+    </div>
+  </div>
+</div>
+
 <script>
 /* =================================================================
    TravelMind AI — istemci tarafı uygulama
@@ -865,6 +982,11 @@ textarea.input{resize:vertical;min-height:96px}
 /* ---------- Yardımcılar ---------- */
 const $ = s => document.querySelector(s);
 const fmt = n => "₺" + Math.round(n).toLocaleString("tr-TR");
+/* Yaklaşık kurlar (1 birim = X TL) — sadece tahmini bütçe/çevirme gösterimi için */
+const FX_RATES = { TRY: 1, EUR: 39, USD: 36, GBP: 45 };
+const FX_SYMBOLS = { TRY: "₺", EUR: "€", USD: "$", GBP: "£" };
+const fmtFx = (tl, code) => `${FX_SYMBOLS[code]}${(tl/FX_RATES[code]).toLocaleString("tr-TR",{maximumFractionDigits:0})}`;
+const convertFx = (amount, from, to) => amount * FX_RATES[from] / FX_RATES[to];
 const cap = s => s ? s.charAt(0).toLocaleUpperCase("tr-TR") + s.slice(1) : s;
 let toastT;
 function toast(msg){
@@ -938,12 +1060,25 @@ function submitReview(e){
 }
 
 /* ---------- Görünüm yönlendirme ---------- */
-const views = ["home","planner","loading","result","saved"];
+const views = ["home","planner","loading","result","saved","fx"];
 function go(v){
   views.forEach(x => $("#view-"+x).classList.toggle("hidden", x!==v));
   $("#mmenu").classList.remove("open");
   window.scrollTo({top:0, behavior:"instant"});
   if(v==="saved") renderSaved();
+  if(v==="fx") updateFxResult();
+}
+function updateFxResult(){
+  const amount = +($("#fxAmount").value) || 0;
+  const from = $("#fxFrom").value, to = $("#fxTo").value;
+  const result = convertFx(amount, from, to);
+  $("#fxOut").textContent = `${FX_SYMBOLS[to]}${result.toLocaleString("tr-TR",{maximumFractionDigits:2})}`;
+  $("#fxNote").textContent = `1 ${from} ≈ ${(FX_RATES[from]/FX_RATES[to]).toLocaleString("tr-TR",{maximumFractionDigits:4})} ${to} (yaklaşık kur, anlık piyasa koşullarına göre değişebilir).`;
+}
+function swapFx(){
+  const from = $("#fxFrom"), to = $("#fxTo");
+  const tmp = from.value; from.value = to.value; to.value = tmp;
+  updateFxResult();
 }
 function goSection(id){
   go("home");
@@ -1733,12 +1868,20 @@ function buildPlan(f, variant){
     premium: pickHotel("premium", 3)
   };
 
+  const prep = buildPrepCard(city, f, days);
+
   return {
     id: Date.now() + Math.random(),
     createdAt: new Date().toLocaleDateString("tr-TR",{day:"numeric",month:"long",year:"numeric"}),
     form: {...f}, cityName: city.name, country: city.country, cover: city.cover,
     variant, summary, budget, days, gems, rainy, viewpoints, locals, hotels, nights, tips: city.tips,
-    prep: buildPrepCard(city, f, days),
+    prep,
+    packed: {
+      clothing: prep.clothing.map(()=>false),
+      accessories: prep.accessories.map(()=>false),
+      tech: prep.tech.map(()=>false),
+      health: prep.health.map(()=>false)
+    },
     booking: {
       hasFlight: f.hasFlight, flightArrival: f.flightArrival, flightDeparture: f.flightDeparture, airport: f.airport,
       hasHotel: f.hasHotel, hotelName: f.hotelName, hotelAddress: f.hotelAddress
@@ -1780,12 +1923,8 @@ const TRANSIT_ICONS = {
   taksi:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11l1.5-5h11L19 11m-14 0h14a2 2 0 0 1 2 2v4h-2a2 2 0 1 1-4 0H9a2 2 0 1 1-4 0H3v-4a2 2 0 0 1 2-2Z"/></svg>'
 };
 
-function renderResult(){
-  const p = currentPlan;
-  const f = p.form;
-  let activeDay = 0;
-
-  const dayHTML = (di) => {
+function renderDayHTML(p, di){
+    const f = p.form;
     const day = p.days[di];
     const itemsHTML = day.items.map((it,idx)=>{
       const catLabel = it.cat==='yemek' ? it.mealLabel : (INTERESTS.find(x=>x[0]===it.cat)?.[1] || "Serbest Zaman");
@@ -1832,7 +1971,13 @@ function renderResult(){
         <div class="day-stat"><b>${day.walkKm} km</b><span>Günlük yürüyüş mesafesi</span></div>
         <div class="day-stat"><b>${day.transportMin} dk</b><span>Günlük ulaşım süresi</span></div>
       </div>`;
-  };
+}
+
+function renderResult(){
+  const p = currentPlan;
+  const f = p.form;
+  let activeDay = 0;
+  const dayHTML = (di) => renderDayHTML(p, di);
 
   const totalB = Object.values(p.budget).reduce((a,b)=>a+b,0);
   $("#resultRoot").innerHTML = `
@@ -1844,6 +1989,8 @@ function renderResult(){
       <div class="result-actions">
         <button class="btn btn-soft" onclick="altPlan()">⇄ Alternatif Plan</button>
         <button class="btn btn-ghost" onclick="runAI(${p.variant})" title="Aynı tercihlerle farklı kurgu">↻ Yeniden Oluştur</button>
+        <button class="btn btn-ghost" onclick="exportPdf()" title="Planı PDF olarak indir">⬇ PDF Olarak İndir</button>
+        <button class="btn btn-ghost" onclick="sharePlan()" title="Planı paylaş">↗ Paylaş</button>
         <button class="btn btn-primary" onclick="saveTrip()">Planı Kaydet</button>
       </div>
     </div>
@@ -1923,6 +2070,7 @@ function renderResult(){
           <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7" rx="1"/><rect x="12" y="7" width="3" height="11" rx="1"/><rect x="17" y="13" width="3" height="5" rx="1"/></svg></span>Bütçe Dağılımı</h3>
           <div class="budget-total"><b>${fmt(totalB)}</b><span>toplam</span></div>
           <div class="budget-pp">≈ ${fmt(totalB/f.people/f.days)} / kişi / gün</div>
+          ${p.country && p.country!=="Türkiye" ? `<div class="budget-fx">≈ ${fmtFx(totalB,"EUR")} / ${fmtFx(totalB,"USD")} <span>(yaklaşık kur, anlık döviz kuruna göre değişir)</span></div>` : ""}
           ${Object.entries(p.budget).map(([k,v])=>`
             <div class="b-row">
               <div class="b-label"><b>${k}</b><span>${fmt(v)} · %${Math.round(v/totalB*100)}</span></div>
@@ -1968,24 +2116,7 @@ function renderResult(){
         <div class="prep-title">📦 ${p.cityName} – ${p.prep.season} Seyahat Hazırlık Rehberi</div>
         <div class="prep-weather"><b>Hava Durumu:</b> ${p.prep.weather}</div>
       </div>
-      <div class="prep-grid">
-        <div class="prep-section">
-          <h4>Yanına Al: Kıyafet</h4>
-          <ul>${p.prep.clothing.map(c=>`<li>${c}</li>`).join("")}</ul>
-        </div>
-        <div class="prep-section">
-          <h4>Aksesuarlar</h4>
-          <ul>${p.prep.accessories.map(c=>`<li>${c}</li>`).join("")}</ul>
-        </div>
-        <div class="prep-section">
-          <h4>Teknolojik Ekipman</h4>
-          <ul>${p.prep.tech.map(c=>`<li>${c}</li>`).join("")}</ul>
-        </div>
-        <div class="prep-section">
-          <h4>Sağlık & Güvenlik</h4>
-          <ul>${p.prep.health.map(c=>`<li>${c}</li>`).join("")}</ul>
-        </div>
-      </div>
+      <div id="prepChecklist">${renderPrepChecklist(p)}</div>
       <div class="prep-tip"><b>Özel Tavsiye:</b> ${p.prep.tip}</div>
     </div>`;
 
@@ -1997,6 +2128,58 @@ function renderResult(){
   });
 }
 
+const PREP_CATS = [
+  ["clothing","Yanına Al: Kıyafet"],
+  ["accessories","Aksesuarlar"],
+  ["tech","Teknolojik Ekipman"],
+  ["health","Sağlık & Güvenlik"]
+];
+
+function renderPrepChecklist(p){
+  let total=0, done=0;
+  PREP_CATS.forEach(([cat])=>{
+    p.prep[cat].forEach((_,i)=>{ total++; if(p.packed[cat][i]) done++; });
+  });
+  const pct = total ? Math.round(done/total*100) : 0;
+
+  const grid = `<div class="prep-grid">
+    ${PREP_CATS.map(([cat,label])=>`
+      <div class="prep-section">
+        <h4>${label}</h4>
+        <ul>${p.prep[cat].map((c,i)=>`
+          <li><label class="prep-check ${p.packed[cat][i]?"checked":""}">
+            <input type="checkbox" ${p.packed[cat][i]?"checked":""} onchange="togglePrepItem('${cat}',${i})">
+            <span>${c}</span>
+          </label></li>`).join("")}
+        </ul>
+      </div>`).join("")}
+  </div>`;
+
+  return `
+    <div class="prep-progress">
+      <span>${done} / ${total} eşya hazır</span>
+      <div class="b-track"><div class="b-fill" style="width:${pct}%;background:var(--primary)"></div></div>
+      <span>%${pct}</span>
+    </div>
+    ${grid}
+    <div class="prep-actions">
+      <button class="btn btn-soft btn-sm" onclick="setAllPrep(true)">Tümünü işaretle</button>
+      <button class="btn btn-ghost btn-sm" onclick="setAllPrep(false)">Listeyi sıfırla</button>
+    </div>`;
+}
+
+function togglePrepItem(cat, idx){
+  currentPlan.packed[cat][idx] = !currentPlan.packed[cat][idx];
+  $("#prepChecklist").innerHTML = renderPrepChecklist(currentPlan);
+}
+
+function setAllPrep(value){
+  PREP_CATS.forEach(([cat])=>{
+    currentPlan.packed[cat] = currentPlan.packed[cat].map(()=>value);
+  });
+  $("#prepChecklist").innerHTML = renderPrepChecklist(currentPlan);
+}
+
 function altPlan(){
   const v = currentPlan.variant>0 ? 0 : 1;
   form = {...currentPlan.form};
@@ -2006,6 +2189,69 @@ function saveTrip(){
   if(savedTrips.some(t=>t.id===currentPlan.id)){ toast("Bu plan zaten kayıtlı ✓"); return; }
   savedTrips.unshift(currentPlan);
   toast(`"${currentPlan.cityName}" planı kaydedildi ✓`);
+}
+
+async function exportPdf(){
+  if(!window.html2canvas || !window.jspdf){ toast("PDF aracı yüklenemedi, internet bağlantınızı kontrol edin."); return; }
+
+  const dayBody = $("#dayBody");
+  const original = dayBody.innerHTML;
+  dayBody.innerHTML = currentPlan.days.map((_,i)=>renderDayHTML(currentPlan, i)).join("");
+
+  const target = $("#resultRoot");
+  target.classList.add("exporting-pdf");
+  toast("PDF oluşturuluyor, lütfen bekleyin...");
+
+  try{
+    const canvas = await html2canvas(target, {scale:2, useCORS:true, backgroundColor:"#ffffff"});
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF("p","mm","a4");
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const imgWidth = pageWidth;
+    const imgHeight = canvas.height * imgWidth / canvas.width;
+
+    const imgData = canvas.toDataURL("image/png");
+    let heightLeft = imgHeight;
+    let position = 0;
+    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+    heightLeft -= pageHeight;
+    while(heightLeft > 0){
+      position -= pageHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+    }
+    pdf.save(`${currentPlan.cityName}-seyahat-plani.pdf`);
+    toast("PDF indirildi ✓");
+  } catch(err){
+    toast("PDF oluşturulamadı, lütfen tekrar deneyin.");
+  } finally {
+    target.classList.remove("exporting-pdf");
+    dayBody.innerHTML = original;
+  }
+}
+
+function sharePlan(){
+  const p = currentPlan;
+  const text = `TravelMind AI - ${p.cityName} Seyahat Planı\n${p.form.days} gün · ${p.form.people} kişi · ${p.createdAt}\n${p.summary}`;
+  $("#shareText").value = text;
+  $("#shareOverlay").classList.remove("hidden");
+}
+
+function closeShareModal(){
+  $("#shareOverlay").classList.add("hidden");
+}
+
+function copyShareText(){
+  const ta = $("#shareText");
+  ta.select();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(ta.value).then(()=> toast("Plan özeti panoya kopyalandı ✓"));
+  } else {
+    document.execCommand("copy");
+    toast("Plan özeti panoya kopyalandı ✓");
+  }
 }
 
 /* ---------- Kayıtlı seyahatler ---------- */
