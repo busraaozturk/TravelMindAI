@@ -343,7 +343,25 @@ textarea.input{resize:vertical;min-height:96px}
 .gem span{font-size:.85rem;color:var(--text-light)}
 .rain-card{background:var(--info-soft);border:1px solid #D8E4EF}
 .rain-card h3 .h-ic{background:#fff;color:var(--info)}
-.rain-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;font-size:.92rem}
+.rain-card-body{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-top:20px}
+.rain-divider{width:1px;background:#D8E4EF;margin:0 28px}
+/* Hava istatistik kartları */
+.wx-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.wx-stat{background:#fff;border:1px solid #D8E4EF;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.wx-stat-icon{font-size:1.7rem;line-height:1}
+.wx-stat-val{font-size:1.15rem;font-weight:700;color:var(--text)}
+.wx-stat-lbl{font-size:.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:.04em}
+.wx-summary{font-size:.85rem;color:var(--text-light);line-height:1.6;padding:12px 14px;background:#fff;border:1px solid #D8E4EF;border-radius:10px}
+/* Günlük tahmin şeridi */
+.wx-days{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px;margin-top:14px}
+.wx-day{background:#fff;border:1px solid #D8E4EF;border-radius:10px;padding:10px 8px;text-align:center;font-size:.8rem}
+.wx-day-label{font-weight:600;color:var(--text-light);margin-bottom:4px;font-size:.75rem}
+.wx-day-icon{font-size:1.3rem;margin:2px 0}
+.wx-day-temp{color:var(--text);font-weight:600}
+.wx-day-rain{color:var(--info);font-size:.72rem;margin-top:2px}
+/* Yağmurlu plan */
+.rain-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #D8E4EF;font-size:.92rem}
+.rain-item:last-child{border-bottom:none}
 .rain-item svg{flex-shrink:0;margin-top:3px;color:var(--info)}
 
 /* ---------- Result v2: hotels, item cards, transit, totals ---------- */
@@ -844,10 +862,10 @@ textarea.input{resize:vertical;min-height:96px}
     <p id="loadingCity">Tercihleriniz analiz ediliyor…</p>
     <div class="load-steps" id="loadSteps">
       <div class="load-step"><span class="ic"></span> Tercihler analiz ediliyor</div>
+      <div class="load-step"><span class="ic"></span> Hava durumu tahminleri alınıyor</div>
       <div class="load-step"><span class="ic"></span> Bütçe kalemlere dağıtılıyor</div>
       <div class="load-step"><span class="ic"></span> Günlük rota sıralanıyor</div>
       <div class="load-step"><span class="ic"></span> Gizli mekanlar ve yerel tavsiyeler ekleniyor</div>
-      <div class="load-step"><span class="ic"></span> Yağmurlu hava alternatifi hazırlanıyor</div>
     </div>
   </div>
 </main>
@@ -887,10 +905,35 @@ textarea.input{resize:vertical;min-height:96px}
         </div>
         <div class="field" style="margin-bottom:0"><label>Birim</label>
           <select class="input" id="fxFrom" onchange="updateFxResult()">
-            <option value="TRY" selected>₺ TRY</option>
-            <option value="EUR">€ EUR</option>
-            <option value="USD">$ USD</option>
-            <option value="GBP">£ GBP</option>
+            <option value="TRY" selected>₺ TRY – Türk Lirası</option>
+            <option value="EUR">€ EUR – Euro</option>
+            <option value="USD">$ USD – Amerikan Doları</option>
+            <option value="GBP">£ GBP – İngiliz Sterlini</option>
+            <option value="CHF">₣ CHF – İsviçre Frangı</option>
+            <option value="JPY">¥ JPY – Japon Yeni</option>
+            <option value="CAD">C$ CAD – Kanada Doları</option>
+            <option value="AUD">A$ AUD – Avustralya Doları</option>
+            <option value="AED">د.إ AED – BAE Dirhemi</option>
+            <option value="THB">฿ THB – Tayland Bahtı</option>
+            <option value="SGD">S$ SGD – Singapur Doları</option>
+            <option value="NOK">kr NOK – Norveç Kronu</option>
+            <option value="SEK">kr SEK – İsveç Kronu</option>
+            <option value="DKK">kr DKK – Danimarka Kronu</option>
+            <option value="PLN">zł PLN – Polonya Zlotısı</option>
+            <option value="HUF">Ft HUF – Macar Forinti</option>
+            <option value="CZK">Kč CZK – Çek Korunası</option>
+            <option value="RON">lei RON – Romen Leyi</option>
+            <option value="INR">₹ INR – Hint Rupisi</option>
+            <option value="CNY">¥ CNY – Çin Yuanı</option>
+            <option value="KRW">₩ KRW – Güney Kore Wonu</option>
+            <option value="MYR">RM MYR – Malezya Ringgiti</option>
+            <option value="IDR">Rp IDR – Endonezya Rupiahı</option>
+            <option value="PHP">₱ PHP – Filipin Pesosu</option>
+            <option value="BRL">R$ BRL – Brezilya Reali</option>
+            <option value="ZAR">R ZAR – G. Afrika Randı</option>
+            <option value="MXN">$MX MXN – Meksika Pesosu</option>
+            <option value="EGP">£E EGP – Mısır Poundu</option>
+            <option value="MAD">د.م. MAD – Fas Dirhemi</option>
           </select>
         </div>
       </div>
@@ -899,10 +942,35 @@ textarea.input{resize:vertical;min-height:96px}
       </button>
       <div class="field" style="margin-bottom:0"><label>Hedef Birim</label>
         <select class="input" id="fxTo" onchange="updateFxResult()">
-          <option value="TRY">₺ TRY</option>
-          <option value="EUR">€ EUR</option>
-          <option value="USD" selected>$ USD</option>
-          <option value="GBP">£ GBP</option>
+            <option value="TRY">₺ TRY – Türk Lirası</option>
+            <option value="EUR">€ EUR – Euro</option>
+            <option value="USD" selected>$ USD – Amerikan Doları</option>
+            <option value="GBP">£ GBP – İngiliz Sterlini</option>
+            <option value="CHF">₣ CHF – İsviçre Frangı</option>
+            <option value="JPY">¥ JPY – Japon Yeni</option>
+            <option value="CAD">C$ CAD – Kanada Doları</option>
+            <option value="AUD">A$ AUD – Avustralya Doları</option>
+            <option value="AED">د.إ AED – BAE Dirhemi</option>
+            <option value="THB">฿ THB – Tayland Bahtı</option>
+            <option value="SGD">S$ SGD – Singapur Doları</option>
+            <option value="NOK">kr NOK – Norveç Kronu</option>
+            <option value="SEK">kr SEK – İsveç Kronu</option>
+            <option value="DKK">kr DKK – Danimarka Kronu</option>
+            <option value="PLN">zł PLN – Polonya Zlotısı</option>
+            <option value="HUF">Ft HUF – Macar Forinti</option>
+            <option value="CZK">Kč CZK – Çek Korunası</option>
+            <option value="RON">lei RON – Romen Leyi</option>
+            <option value="INR">₹ INR – Hint Rupisi</option>
+            <option value="CNY">¥ CNY – Çin Yuanı</option>
+            <option value="KRW">₩ KRW – Güney Kore Wonu</option>
+            <option value="MYR">RM MYR – Malezya Ringgiti</option>
+            <option value="IDR">Rp IDR – Endonezya Rupiahı</option>
+            <option value="PHP">₱ PHP – Filipin Pesosu</option>
+            <option value="BRL">R$ BRL – Brezilya Reali</option>
+            <option value="ZAR">R ZAR – G. Afrika Randı</option>
+            <option value="MXN">$MX MXN – Meksika Pesosu</option>
+            <option value="EGP">£E EGP – Mısır Poundu</option>
+            <option value="MAD">د.م. MAD – Fas Dirhemi</option>
         </select>
       </div>
       <div class="fx-result" id="fxResult">
@@ -987,10 +1055,60 @@ textarea.input{resize:vertical;min-height:96px}
 const $ = s => document.querySelector(s);
 const fmt = n => "₺" + Math.round(n).toLocaleString("tr-TR");
 /* Yaklaşık kurlar (1 birim = X TL) — sadece tahmini bütçe/çevirme gösterimi için */
-const FX_RATES = { TRY: 1, EUR: 39, USD: 36, GBP: 45 };
-const FX_SYMBOLS = { TRY: "₺", EUR: "€", USD: "$", GBP: "£" };
-const fmtFx = (tl, code) => `${FX_SYMBOLS[code]}${(tl/FX_RATES[code]).toLocaleString("tr-TR",{maximumFractionDigits:0})}`;
-const convertFx = (amount, from, to) => amount * FX_RATES[from] / FX_RATES[to];
+const FX_SYMBOLS = { TRY:"₺", EUR:"€", USD:"$", GBP:"£", JPY:"¥", CHF:"₣", CAD:"C$", AUD:"A$", AED:"د.إ", THB:"฿", MXN:"$MX", SGD:"S$", NOK:"kr", SEK:"kr", DKK:"kr", PLN:"zł", HUF:"Ft", CZK:"Kč", BGN:"лв", RON:"lei", HRK:"kn", RUB:"₽", INR:"₹", BRL:"R$", CNY:"¥", KRW:"₩", ZAR:"R", MYR:"RM", IDR:"Rp", PHP:"₱", VND:"₫", EGP:"£E", MAD:"د.م.", TND:"د.ت" };
+const FX_CURRENCIES = Object.keys(FX_SYMBOLS);
+
+/* Ülke → para birimi otomatik eşleme */
+const COUNTRY_CURRENCY = {
+  "Türkiye":"TRY","Fransa":"EUR","Almanya":"EUR","İspanya":"EUR","İtalya":"EUR","Portekiz":"EUR",
+  "Hollanda":"EUR","Belçika":"EUR","Avusturya":"EUR","Yunanistan":"EUR","İsviçre":"CHF",
+  "Birleşik Krallık":"GBP","İngiltere":"GBP","ABD":"USD","Japonya":"JPY","Kanada":"CAD",
+  "Avustralya":"AUD","BAE":"AED","Tayland":"THB","Meksika":"MXN","Singapur":"SGD",
+  "Norveç":"NOK","İsveç":"SEK","Danimarka":"DKK","Polonya":"PLN","Macaristan":"HUF",
+  "Çek Cumhuriyeti":"CZK","Bulgaristan":"BGN","Romanya":"RON","Rusya":"RUB","Hindistan":"INR",
+  "Brezilya":"BRL","Çin":"CNY","Güney Kore":"KRW","Güney Afrika":"ZAR","Malezya":"MYR",
+  "Endonezya":"IDR","Filipinler":"PHP","Vietnam":"VND","Mısır":"EGP","Fas":"MAD","Tunus":"TND"
+};
+
+/* Kur önbelleği: "FROM_TO" → oran */
+const fxCache = {};
+let fxFetching = false;
+
+/* open.er-api.com — ücretsiz, key gerektirmez, TRY dahil 160+ para birimi */
+async function fetchRatesFrom(base, targets){
+  if(fxCache[`__loaded_${base}`]) return;
+  try{
+    const r = await fetch(`https://open.er-api.com/v6/latest/${base}`);
+    const d = await r.json();
+    if(d.result==="success" && d.rates){
+      Object.entries(d.rates).forEach(([to,rate])=>{
+        fxCache[`${base}_${to}`] = rate;
+        fxCache[`${to}_${base}`] = 1/rate;
+      });
+      fxCache[`__loaded_${base}`] = true;
+    }
+  }catch(e){}
+}
+
+async function fetchRate(from, to){
+  if(from === to) return 1;
+  const key = `${from}_${to}`;
+  if(fxCache[key]) return fxCache[key];
+  await fetchRatesFrom(from, [to]);
+  return fxCache[key] || null;
+}
+
+/* UI yardımcıları — senkron, önbellekten okur */
+const getCachedRate = (from, to) => from===to ? 1 : (fxCache[`${from}_${to}`] || null);
+const fmtFxVal = (amount, from, to) => {
+  const rate = getCachedRate(from, to);
+  if(!rate) return null;
+  const val = amount * rate;
+  const sym = FX_SYMBOLS[to] || to;
+  return `${sym}${val.toLocaleString("tr-TR",{maximumFractionDigits: val>=1000?0:2})}`;
+};
+/* Geriye dönük uyumluluk: eski fmtFx(tryAmount, code) */
+const fmtFx = (tl, code) => fmtFxVal(tl, "TRY", code) || `${FX_SYMBOLS[code]||code}?`;
 const cap = s => s ? s.charAt(0).toLocaleUpperCase("tr-TR") + s.slice(1) : s;
 let toastT;
 function toast(msg){
@@ -1072,12 +1190,28 @@ function go(v){
   if(v==="saved") renderSaved();
   if(v==="fx") updateFxResult();
 }
-function updateFxResult(){
+async function updateFxResult(){
   const amount = +($("#fxAmount").value) || 0;
-  const from = $("#fxFrom").value, to = $("#fxTo").value;
-  const result = convertFx(amount, from, to);
-  $("#fxOut").textContent = `${FX_SYMBOLS[to]}${result.toLocaleString("tr-TR",{maximumFractionDigits:2})}`;
-  $("#fxNote").textContent = `1 ${from} ≈ ${(FX_RATES[from]/FX_RATES[to]).toLocaleString("tr-TR",{maximumFractionDigits:4})} ${to} (yaklaşık kur, anlık piyasa koşullarına göre değişebilir).`;
+  const from = $("#fxFrom")?.value, to = $("#fxTo")?.value;
+  if(!from || !to) return;
+  const out = $("#fxOut"), note = $("#fxNote");
+  if(from === to){
+    out.textContent = `${FX_SYMBOLS[to]||to}${amount.toLocaleString("tr-TR",{maximumFractionDigits:2})}`;
+    note.textContent = "Aynı para birimi seçildi.";
+    return;
+  }
+  out.textContent = "…";
+  note.textContent = "Güncel kur çekiliyor…";
+  const rate = await fetchRate(from, to);
+  if(!rate){
+    out.textContent = "—";
+    note.textContent = "Kur verisi alınamadı. Lütfen tekrar deneyin.";
+    return;
+  }
+  const result = amount * rate;
+  const sym = FX_SYMBOLS[to] || to;
+  out.textContent = `${sym}${result.toLocaleString("tr-TR",{maximumFractionDigits:2})}`;
+  note.textContent = `1 ${from} = ${rate.toLocaleString("tr-TR",{minimumFractionDigits:4,maximumFractionDigits:4})} ${to} · Gerçek zamanlı kur`;
 }
 function swapFx(){
   const from = $("#fxFrom"), to = $("#fxTo");
@@ -1305,9 +1439,9 @@ const INTERESTS = [
   ["gece","Gece Hayatı","M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10Z"],
   ["luks","Lüks Deneyimler","M6 3h12l3 6-9 12L3 9l3-6ZM3 9h18M9 9l3 12M15 9l-3 12"]
 ];
-const blankForm = () => ({city:"",days:3,budget:25000,people:2,type:"",style:"",interests:[],transport:"",notes:"",
-  hasFlight:false, flightArrival:"", flightDeparture:"", airport:"",
-  hasHotel:false, hotelName:"", hotelAddress:""});
+const blankForm = () => ({city:"",days:3,startDate:"",endDate:"",budget:25000,people:2,type:"",style:"",interests:[],transport:"",notes:"",
+  hasFlight:null, flightArrival:"", flightArrivalCity:"", flightDeparture:"", flightDepartureCity:"", airport:"",
+  hasHotel:null, hotelName:"", hotelAddress:""});
 let form = blankForm();
 let step = 1;
 let currentPlan = null;
@@ -1349,8 +1483,16 @@ function renderWizard(){
       <input class="input" id="f-city" placeholder="örn. İstanbul, Roma, Paris…" value="${form.city}" autocomplete="off">
       <div class="city-suggest hidden" id="cityDropdown"></div>
     </div>
-    <div class="field"><label>Kaç gün kalacaksınız? <span class="hint">1–14 gün</span></label>
-      <input class="input" id="f-days" type="number" min="1" max="14" value="${form.days}" autocomplete="off">
+    <div class="field-row">
+      <div class="field"><label>Seyahat başlangıç tarihi</label>
+        <input class="input" id="f-start-date" type="date" value="${form.startDate}" min="${new Date().toISOString().slice(0,10)}" autocomplete="off" oninput="syncDatesFromInput()">
+      </div>
+      <div class="field"><label>Seyahat bitiş tarihi</label>
+        <input class="input" id="f-end-date" type="date" value="${form.endDate}" min="${form.startDate||new Date().toISOString().slice(0,10)}" autocomplete="off" oninput="syncDatesFromInput()">
+      </div>
+    </div>
+    <div class="field"><label>Kaç gün kalacaksınız? <span class="hint">1–14 gün · tarih seçince otomatik hesaplanır</span></label>
+      <input class="input" id="f-days" type="number" min="1" max="14" value="${form.days}" autocomplete="off" oninput="syncDaysFromInput()">
     </div>`;
   }
   if(step===2){
@@ -1394,23 +1536,30 @@ function renderWizard(){
     </div>`;
   }
   if(step===4){
-    h = `<h2>Uçuş ve konaklama bilgileri</h2><p class="sub">Mevcut rezervasyonunuz varsa ekleyin; planınız buna göre optimize edilsin. İsterseniz boş geçebilirsiniz.</p>
-    <div class="field"><label>Uçuş bilginiz var mı?</label>
+    h = `<h2>Uçuş ve konaklama bilgileri</h2><p class="sub">Uçuş saatlerinizi ve şehirlerinizi girin; planınız buna göre optimize edilsin. İsterseniz boş geçebilirsiniz.</p>
+    <div class="field"><label>Onaylı uçuş rezervasyonunuz var mı?</label>
       <div class="choice-grid">
-        ${chip("f-hasflight","yes","Evet","İniş/kalkış saatlerimi eklemek istiyorum","M2.5 19.5 21 12 2.5 4.5 7 12l-4.5 7.5ZM7 12h7",form.hasFlight===true)}
-        ${chip("f-hasflight","no","Hayır","Uçuş bilgisi girmek istemiyorum","M18 6 6 18M6 6l12 12",form.hasFlight===false)}
+        ${chip("f-hasflight","yes","Evet, rezervasyonum var","Havalimanı bilgisi eklemek istiyorum","M2.5 19.5 21 12 2.5 4.5 7 12l-4.5 7.5ZM7 12h7",form.hasFlight===true)}
+        ${chip("f-hasflight","no","Henüz yok","Havalimanı bilgisi girmeyeceğim","M18 6 6 18M6 6l12 12",form.hasFlight===false)}
       </div>
     </div>
-    ${form.hasFlight ? `
+    ${form.hasFlight !== null ? `
     <div class="field-row">
-      <div class="field"><label>Uçuş iniş saati <span class="hint">gidiş günü</span></label>
+      <div class="field"><label>Gidiş uçuşu — iniş saati <span class="hint">isteğe bağlı</span></label>
         <input class="input" id="f-flight-arrival" type="time" value="${form.flightArrival}" autocomplete="off"></div>
-      <div class="field"><label>Uçuş kalkış saati <span class="hint">dönüş günü</span></label>
-        <input class="input" id="f-flight-departure" type="time" value="${form.flightDeparture}" autocomplete="off"></div>
+      <div class="field"><label>Nereden geliyor? <span class="hint">kalkış şehri</span></label>
+        <input class="input" id="f-flight-arrival-city" placeholder="örn. İstanbul" value="${form.flightArrivalCity}" autocomplete="off"></div>
     </div>
+    <div class="field-row">
+      <div class="field"><label>Dönüş uçuşu — kalkış saati <span class="hint">isteğe bağlı</span></label>
+        <input class="input" id="f-flight-departure" type="time" value="${form.flightDeparture}" autocomplete="off"></div>
+      <div class="field"><label>Hangi şehre dönüyor? <span class="hint">varış şehri</span></label>
+        <input class="input" id="f-flight-departure-city" placeholder="örn. İstanbul" value="${form.flightDepartureCity}" autocomplete="off"></div>
+    </div>
+    ${form.hasFlight ? `
     <div class="field"><label>Havalimanı bilgisi</label>
       <input class="input" id="f-airport" placeholder="örn. İstanbul Havalimanı (IST)" value="${form.airport}" autocomplete="off">
-    </div>` : ""}
+    </div>` : ""}` : ""}
     <div class="field"><label>Otel rezervasyonunuz var mı?</label>
       <div class="choice-grid">
         ${chip("f-hashotel","yes","Evet","Otel adı ve adresimi eklemek istiyorum","M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 18h18M3 14h18M7 9V6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3",form.hasHotel===true)}
@@ -1435,12 +1584,14 @@ function renderWizard(){
       <h4>Plan özeti</h4>
       <dl>
         <dt>Şehir</dt><dd>${cap(form.city)}</dd>
+        <dt>Tarih</dt><dd>${form.startDate ? `${new Date(form.startDate).toLocaleDateString("tr-TR",{day:"numeric",month:"long",year:"numeric"})} – ${new Date(form.endDate||form.startDate).toLocaleDateString("tr-TR",{day:"numeric",month:"long",year:"numeric"})}` : "—"}</dd>
         <dt>Süre</dt><dd>${form.days} gün</dd>
         <dt>Bütçe</dt><dd>${fmt(form.budget)} · ${form.people} kişi</dd>
         <dt>Tip / Tarz</dt><dd>${typeLabel(form.type)} · ${cap(form.style)}</dd>
         <dt>İlgi alanları</dt><dd>${intLabels||"—"}</dd>
         <dt>Ulaşım</dt><dd>${trLabel(form.transport)}</dd>
-        ${form.hasFlight?`<dt>Uçuş</dt><dd>İniş ${form.flightArrival||"—"} · Kalkış ${form.flightDeparture||"—"}${form.airport?` · ${form.airport}`:""}</dd>`:""}
+        ${(form.flightArrival||form.flightArrivalCity||form.flightDeparture||form.flightDepartureCity)?`<dt>Gidiş uçuşu</dt><dd>${form.flightArrivalCity||"—"} → ${cap(form.city)}${form.flightArrival?" · İniş "+form.flightArrival:""}</dd><dt>Dönüş uçuşu</dt><dd>${cap(form.city)} → ${form.flightDepartureCity||"—"}${form.flightDeparture?" · Kalkış "+form.flightDeparture:""}${form.airport?" · "+form.airport:""}</dd>`:""}
+
         ${form.hasHotel?`<dt>Otel</dt><dd>${form.hotelName||"—"}${form.hotelAddress?` · ${form.hotelAddress}`:""}</dd>`:""}
       </dl>
     </div>`;
@@ -1490,8 +1641,30 @@ function initCitySuggest(){
 function typeLabel(t){return {solo:"Tek başına",cift:"Çift",aile:"Aile",arkadas:"Arkadaş grubu"}[t]||"—"}
 function trLabel(t){return {yuruyus:"Yürüyüş",toplu:"Toplu taşıma",taksi:"Taksi",karma:"Karma"}[t]||"—"}
 
+function syncDatesFromInput(){
+  const s = $("#f-start-date")?.value, e = $("#f-end-date")?.value;
+  if(s && e && e >= s){
+    const diff = Math.round((new Date(e)-new Date(s))/(1000*60*60*24)) + 1;
+    const clamped = Math.min(Math.max(diff,1),14);
+    const fd = $("#f-days"); if(fd) fd.value = clamped;
+    /* end date min güncelle */
+    const fe = $("#f-end-date"); if(fe) fe.min = s;
+  }
+}
+function syncDaysFromInput(){
+  const s = $("#f-start-date")?.value, days = +$("#f-days")?.value;
+  if(s && days>=1){
+    const end = new Date(s); end.setDate(end.getDate()+days-1);
+    const fe = $("#f-end-date"); if(fe) fe.value = end.toISOString().slice(0,10);
+  }
+}
 function collectStep(){
-  if(step===1){ form.city = $("#f-city").value.trim(); form.days = +$("#f-days").value; }
+  if(step===1){
+    form.city = $("#f-city").value.trim();
+    form.startDate = $("#f-start-date")?.value || "";
+    form.endDate   = $("#f-end-date")?.value   || "";
+    form.days = +$("#f-days").value;
+  }
   if(step===2){
     form.budget = +$("#f-budget").value; form.people = +$("#f-people").value;
     form.type = document.querySelector('input[name="f-type"]:checked')?.value || "";
@@ -1502,9 +1675,11 @@ function collectStep(){
     form.transport = document.querySelector('input[name="f-tr"]:checked')?.value || "";
   }
   if(step===4){
+    form.flightArrival = $("#f-flight-arrival")?.value || "";
+    form.flightArrivalCity = $("#f-flight-arrival-city")?.value.trim() || "";
+    form.flightDeparture = $("#f-flight-departure")?.value || "";
+    form.flightDepartureCity = $("#f-flight-departure-city")?.value.trim() || "";
     if(form.hasFlight){
-      form.flightArrival = $("#f-flight-arrival")?.value || "";
-      form.flightDeparture = $("#f-flight-departure")?.value || "";
       form.airport = $("#f-airport")?.value.trim() || "";
     }
     if(form.hasHotel){
@@ -1518,6 +1693,7 @@ function validateStep(){
   if(step===1){
     if(!form.city) return "Lütfen bir şehir yazın.";
     if(!(form.days>=1 && form.days<=14)) return "Gün sayısı 1 ile 14 arasında olmalı.";
+    if(form.startDate && form.endDate && form.endDate < form.startDate) return "Bitiş tarihi başlangıç tarihinden önce olamaz.";
   }
   if(step===2){
     if(!(form.budget>=1000)) return "Toplam bütçe en az ₺1.000 olmalı.";
@@ -1637,6 +1813,50 @@ function pickPool(city, interests, seed){
   return seededShuffle(pool, seed);
 }
 
+/* ---------- Open-Meteo API ---------- */
+async function fetchCoords(cityName){
+  try{
+    const r = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=1&language=tr&format=json`);
+    const d = await r.json();
+    if(d.results && d.results.length>0) return {lat:d.results[0].latitude, lon:d.results[0].longitude, name:d.results[0].name};
+  }catch(e){}
+  return null;
+}
+
+async function fetchWeather(lat, lon, days, startDate=""){
+  try{
+    let url;
+    if(startDate){
+      const start = new Date(startDate);
+      const end = new Date(start);
+      end.setDate(end.getDate() + days - 1);
+      const fmt = d => d.toISOString().slice(0,10);
+      url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_mean,weathercode&start_date=${fmt(start)}&end_date=${fmt(end)}&timezone=auto`;
+    } else {
+      const forecastDays = Math.min(Math.max(days+1, 3), 16);
+      url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_mean,weathercode&forecast_days=${forecastDays}&timezone=auto`;
+    }
+    const r = await fetch(url);
+    const d = await r.json();
+    if(!d.daily) return null;
+    return d.daily;
+  }catch(e){}
+  return null;
+}
+
+function weatherLabel(code){
+  if(code===0) return "açık";
+  if(code<=2) return "parçalı bulutlu";
+  if(code<=3) return "bulutlu";
+  if(code<=49) return "sisli";
+  if(code<=67) return "yağmurlu";
+  if(code<=77) return "karlı";
+  if(code<=82) return "sağanak yağışlı";
+  return "fırtınalı";
+}
+
+function avgArr(arr){ return arr.reduce((s,v)=>s+v,0)/arr.length; }
+
 /* ---------- Seyahat hazırlık rehberi ---------- */
 const SEASONS = {
   ilkbahar:{label:"İlkbahar", base:[10,20], desc:"ılık ve değişken; ani yağmur ihtimaline karşı hazırlıklı olun"},
@@ -1663,38 +1883,75 @@ function getSeason(){
   if(m>=8 && m<=10) return "sonbahar";
   return "kis";
 }
-function buildPrepCard(city, f, days){
-  const seasonKey = getSeason();
-  const season = SEASONS[seasonKey];
-  const monthName = new Date().toLocaleDateString("tr-TR",{month:"long"});
-  const lo = season.base[0] + city.climateOffset, hi = season.base[1] + city.climateOffset;
-  const weather = `${monthName} ayında ${city.name} şehrinde hava genellikle ${lo}°C - ${hi}°C arası, ${season.desc}.`;
+function buildPrepCard(city, f, days, weatherData){
+  /* Gerçek hava verisi varsa kullan, yoksa statik SEASONS fallback */
+  let seasonLabel, weatherText, isRainy=false, isCold=false, isHot=false, avgLo, avgHi, avgRain;
 
-  const clothing = [...SEASON_CLOTHES[seasonKey]];
+  if(weatherData && weatherData.temperature_2m_max){
+    const slice = n => weatherData.temperature_2m_max.slice(0,n);
+    avgHi = Math.round(avgArr(weatherData.temperature_2m_max.slice(0, f.days)));
+    avgLo = Math.round(avgArr(weatherData.temperature_2m_min.slice(0, f.days)));
+    avgRain = Math.round(avgArr(weatherData.precipitation_probability_mean.slice(0, f.days)));
+    const codes = weatherData.weathercode.slice(0, f.days);
+    const dominantCode = codes.sort((a,b)=>
+      codes.filter(v=>v===b).length - codes.filter(v=>v===a).length
+    )[0];
+    const condLabel = weatherLabel(dominantCode);
+    isRainy = avgRain >= 40;
+    isCold = avgHi < 10;
+    isHot = avgHi >= 28;
+    if(avgHi>=25) seasonLabel="Yaz";
+    else if(avgHi>=15) seasonLabel="İlkbahar/Sonbahar";
+    else seasonLabel="Kış";
+    weatherText = `Seyahat tarihlerinde ${city.name} şehrinde hava ${avgLo}°C–${avgHi}°C arası, genellikle ${condLabel}. Yağış ihtimali %${avgRain}.`;
+  } else {
+    const seasonKey = getSeason();
+    const season = SEASONS[seasonKey];
+    const monthName = new Date().toLocaleDateString("tr-TR",{month:"long"});
+    avgLo = season.base[0] + city.climateOffset;
+    avgHi = season.base[1] + city.climateOffset;
+    seasonLabel = season.label;
+    isRainy = seasonKey==="sonbahar" || seasonKey==="kis";
+    isCold = seasonKey==="kis";
+    isHot = seasonKey==="yaz";
+    weatherText = `${monthName} ayında ${city.name} şehrinde hava genellikle ${avgLo}°C–${avgHi}°C arası, ${season.desc}.`;
+  }
+
+  /* Kıyafet — hava durumuna göre optimize */
+  const clothing = [];
+  if(isCold){ clothing.push("Kalın mont / parka","Bere, atkı, eldiven","Termal iç giyim","Su geçirmez kışlık bot"); }
+  else if(isHot){ clothing.push("Hafif, nefes alan kıyafetler","Şapka veya kep","Güneş gözlüğü","Rahat yürüyüş ayakkabısı/sandalet","İnce bir hırka (klimalı mekanlar için)"); }
+  else { clothing.push("İnce mont veya yağmurluk","Hafif kazak / sweatshirt","Uzun kollu gömlek","Rahat yürüyüş ayakkabısı"); }
   if(f.interests.includes("doga") || f.interests.includes("macera")) clothing.push("Su geçirmez/spor ayakkabı ve hızlı kuruyan kıyafet");
   if(f.interests.includes("luks")) clothing.push("Şık akşam yemekleri için bir kombin");
 
-  const accessories = [...SEASON_ACCESSORIES[seasonKey]];
-  if(!accessories.includes("Su matarası")) accessories.push("Su matarası");
+  /* Aksesuar — yağış ve ilgi alanına göre optimize */
+  const accessories = [];
+  if(isRainy) accessories.push("Katlanabilir şemsiye","Su geçirmez çanta kılıfı");
+  if(isHot) accessories.push("Güneş kremi (SPF50)","Mini yelpaze / el fanı");
+  else accessories.push("Güneş kremi (SPF30+)");
+  if(isCold) accessories.push("El kremi","Termos / sıcak içecek matarası");
+  accessories.push("Su matarası","Hafif sırt çantası");
   if(f.interests.includes("fotografcilik")) accessories.push("Ekstra hafıza kartı ve lens bezi");
 
   const tech = ["Powerbank (en az 10.000 mAh)","Telefon şarj kablosu"];
   if(city.country && city.country!=="Türkiye") tech.push("Seyahat tipi priz adaptörü");
-  if(f.interests.includes("doga") || f.interests.includes("macera")) tech.push("Telefon için su geçirmez kılıf");
+  if(f.interests.includes("doga") || f.interests.includes("macera") || isRainy) tech.push("Telefon için su geçirmez kılıf");
   tech.push("Çevrimdışı harita ve seyahat uygulamaları");
 
   const health = ["Kişisel ilaçlarınızı ve reçetelerinizi yanınızda taşıyın","Seyahat sağlık sigortası yaptırın", city.tips.guvenlik];
-  if(seasonKey==="yaz") health.push("Sıcak saatlerde bol su içip güneşten korunun");
-  if(seasonKey==="kis") health.push("Soğuk havalarda katmanlı giyinip sıcak içecek tüketin");
+  if(isHot) health.push("Sıcak saatlerde bol su içip güneşten korunun");
+  if(isCold) health.push("Soğuk havalarda katmanlı giyinip sıcak içecek tüketin");
+  if(isRainy) health.push("Yağmurlu havalarda kapalı alan alternatiflerini hazır bulundurun");
 
   const totalWalk = days.reduce((sum,d)=>sum+d.walkKm, 0);
   const avgWalk = days.length ? totalWalk/days.length : 0;
   const tip = `Bu seyahatte günlük ortalama ${avgWalk.toFixed(1)} km yürüyüş planlandığı için rahat bir ayakkabı tercih edilmesi önerilir.`;
 
-  return {season: season.label, weather, clothing, accessories, tech, health, tip};
+  return {season: seasonLabel, weather: weatherText, avgHi, avgLo, avgRain: avgRain??null, isRainy, clothing, accessories, tech, health, tip};
 }
 
-function buildPlan(f, variant){
+function buildPlan(f, variant, weatherData=null){
   const city = getCity(f.city);
   const seed = (variant*131) + f.days*17 + f.people*5 + (f.budget%97);
 
@@ -1735,6 +1992,26 @@ function buildPlan(f, variant){
   const cafes = seededShuffle(city.cafes, seed+6);
   const TRANSIT_FARE = Math.round(30 * city.cost / 10) * 10;
 
+  /* Kapalı mekan aktiviteleri tercih eden seçici (yağmurlu günler için) */
+  const INDOOR_CATS = new Set(["gastronomi","tarih","fotografcilik","luks","serbest"]);
+  const OUTDOOR_CATS = new Set(["doga","macera","gece"]);
+  const nextIndoorAct = () => {
+    const start = pi;
+    for(let n=0; n<pool.length; n++){
+      const cand = pool[(pi+n) % pool.length];
+      if(INDOOR_CATS.has(cand.cat)){ pi += n+1; return cand; }
+    }
+    return nextAct();
+  };
+  const nextOutdoorAct = () => {
+    const start = pi;
+    for(let n=0; n<pool.length; n++){
+      const cand = pool[(pi+n) % pool.length];
+      if(OUTDOOR_CATS.has(cand.cat)){ pi += n+1; return cand; }
+    }
+    return nextAct();
+  };
+
   /* --- Uçuş bilgisine göre ilk/son gün uyarlaması --- */
   const flightFirstDay = f.hasFlight && !!f.flightArrival;
   const flightLastDay = f.hasFlight && !!f.flightDeparture && f.days>1;
@@ -1747,6 +2024,20 @@ function buildPlan(f, variant){
   for(let d=0; d<f.days; d++){
     const items = [];
     const s = seed + d*53;
+
+    /* Per-day weather from API */
+    const dayRain = weatherData ? Math.round(weatherData.precipitation_probability_mean[d] ?? 0) : null;
+    const dayCode = weatherData ? (weatherData.weathercode[d] ?? 0) : null;
+    const dayHi   = weatherData ? Math.round(weatherData.temperature_2m_max[d] ?? 20) : null;
+    const isDayRainy  = dayRain !== null ? dayRain >= 40 : false;
+    const isDaySunny  = dayRain !== null ? dayRain < 20 && dayCode <= 2 : false;
+    const isDayHot    = dayHi !== null ? dayHi >= 28 : false;
+    const wxNote = dayRain !== null
+      ? (isDayRainy ? ` Yağış ihtimali %${dayRain} olduğu için kapalı alan aktivitesi tercih edildi.`
+        : isDaySunny ? ` Hava açık ve güneşli (%${dayRain} yağış ihtimali) olduğu için açık hava aktivitesi planlandı.`
+        : ` Hava koşulları (%${dayRain} yağış ihtimali) gözetilerek planlandı.`)
+      : "";
+    const pickAct = isDayRainy ? nextIndoorAct : isDaySunny ? nextOutdoorAct : nextAct;
 
     if(flightFirstDay && d===0){
       /* --- Varış günü: iniş saatine göre hafif bir program --- */
@@ -1808,18 +2099,21 @@ function buildPlan(f, variant){
       }
       dayThemes.push("Dönüş Günü");
     } else {
-      const a1 = nextAct(), a2 = nextAct(), a3 = nextAct(), a4 = nextAct();
+      const a1 = pickAct(), a2 = pickAct(), a3 = pickAct(), a4 = pickAct();
+      const withWx = (act) => ({...act, reason: (act.reason||CAT_REASON[act.cat]||CAT_REASON.serbest) + wxNote});
       items.push({time: slow?"09:00":"08:30", ...mkMeal(bf[d%bf.length], "breakfast", city.key, city.cost, s+1, f.people)});
-      items.push({time:"10:00", ...mkAct(a1, a1.cat, city.cost, s+2, f.people)});
-      if(!slow) items.push({time:"12:00", ...mkAct(a2, a2.cat, city.cost, s+3, f.people)});
+      items.push({time:"10:00", ...mkAct(withWx(a1), a1.cat, city.cost, s+2, f.people)});
+      if(!slow) items.push({time:"12:00", ...mkAct(withWx(a2), a2.cat, city.cost, s+3, f.people)});
       items.push({time: slow?"12:30":"13:30", ...mkMeal(lu[d%lu.length], "lunch", city.key, city.cost, s+4, f.people)});
-      items.push({time:"15:00", ...mkAct((slow?a2:a3), (slow?a2:a3).cat, city.cost, s+5, f.people)});
+      items.push({time:"15:00", ...mkAct(withWx(slow?a2:a3), (slow?a2:a3).cat, city.cost, s+5, f.people)});
       items.push({time:"16:30", ...mkMeal(cafes[d%cafes.length], "cafe", city.key, city.cost, s+6, f.people)});
-      if(!slow && f.days<=4) items.push({time:"17:30", ...mkAct(a4, a4.cat, city.cost, s+7, f.people)});
+      if(!slow && f.days<=4) items.push({time:"17:30", ...mkAct(withWx(a4), a4.cat, city.cost, s+7, f.people)});
       items.push({time:"19:30", ...mkMeal(di[d%di.length], "dinner", city.key, city.cost, s+8, f.people)});
-      if(nightlife){
+      if(nightlife && !isDayRainy){
         const g = city.acts.gece[(d+variant)%city.acts.gece.length];
         items.push({time:"21:30", ...mkAct({t:g[0],d:g[1]}, "gece", city.cost, s+9, f.people)});
+      } else if(isDayRainy){
+        items.push({time:"21:00", ...mkAct({t:"Kapalı mekan akşamı", d:"Restoran veya cafe'de rahat bir akşam; yağmurlu havada içeriden şehri izleyin", reason:`Yağış ihtimali %${dayRain} olduğu için akşam aktivitesi kapalı alana alındı.`}, "serbest", city.cost, s+9, f.people)});
       } else {
         items.push({time:"21:00", ...mkAct({t:"Akşam yürüyüşü ve dinlenme", d:"Konaklama çevresinde kısa tur, erken dinlenme"}, "serbest", city.cost, s+9, f.people)});
       }
@@ -1827,7 +2121,8 @@ function buildPlan(f, variant){
       items.forEach(i=>{ if(i.cat && i.cat!=="yemek" && i.cat!=="serbest") catCounts[i.cat]=(catCounts[i.cat]||0)+1; });
       const top = Object.entries(catCounts).sort((a,b)=>b[1]-a[1])[0];
       const themeMap = {tarih:"Tarih Rotası",gastronomi:"Lezzet Günü",doga:"Doğa & Nefes",fotografcilik:"Kadraj Günü",macera:"Macera Günü",gece:"Şehir & Gece",luks:"Premium Gün"};
-      dayThemes.push(top?themeMap[top[0]]:"Keşif Günü");
+      const weatherTheme = isDayRainy ? " ☔" : isDaySunny ? " ☀️" : isDayHot ? " 🌡️" : "";
+      dayThemes.push((top?themeMap[top[0]]:"Keşif Günü") + weatherTheme);
     }
 
     /* --- Duraklar arası ulaşım (coğrafi yakınlığa göre optimize edilmiş rota üzerinde) --- */
@@ -1872,14 +2167,25 @@ function buildPlan(f, variant){
     premium: pickHotel("premium", 3)
   };
 
-  const prep = buildPrepCard(city, f, days);
+  const prep = buildPrepCard(city, f, days, weatherData);
+
+  /* Günlük hava şeridi (API varsa) */
+  const DAY_NAMES = ["Paz","Pzt","Sal","Çar","Per","Cum","Cts"];
+  const weatherDays = weatherData ? weatherData.temperature_2m_max.slice(0, f.days).map((hi,i)=>{
+    const code = weatherData.weathercode[i];
+    const icon = code===0?'☀️':code<=2?'🌤️':code<=3?'⛅':code<=49?'🌫️':code<=67?'🌧️':code<=77?'❄️':code<=82?'⛈️':'🌩️';
+    const base = f.startDate ? new Date(f.startDate) : new Date();
+    const date = new Date(base); date.setDate(base.getDate()+i);
+    const label = `${DAY_NAMES[date.getDay()]} ${date.getDate()}/${date.getMonth()+1}`;
+    return { label, icon, hi: Math.round(hi), lo: Math.round(weatherData.temperature_2m_min[i]), rain: Math.round(weatherData.precipitation_probability_mean[i]) };
+  }) : null;
 
   return {
     id: Date.now() + Math.random(),
     createdAt: new Date().toLocaleDateString("tr-TR",{day:"numeric",month:"long",year:"numeric"}),
     form: {...f}, cityName: city.name, country: city.country, cover: city.cover,
     variant, summary, budget, days, gems, rainy, viewpoints, locals, hotels, nights, tips: city.tips,
-    prep,
+    prep, weatherDays,
     packed: {
       clothing: prep.clothing.map(()=>false),
       accessories: prep.accessories.map(()=>false),
@@ -1894,21 +2200,44 @@ function buildPlan(f, variant){
 }
 
 /* ---------- Yükleme animasyonu + sonuç ---------- */
-function runAI(variant){
+async function runAI(variant){
   go("loading");
   $("#loadingCity").textContent = `${cap(form.city)} için ${form.days} günlük plan hazırlanıyor…`;
   const steps = [...document.querySelectorAll("#loadSteps .load-step")];
   steps.forEach(s=>s.classList.remove("on","ok"));
+
+  /* Hava durumu + döviz API çağrıları paralel başlar */
+  let weatherData = null;
+  const weatherPromise = (async()=>{
+    const coords = await fetchCoords(form.city);
+    if(coords) weatherData = await fetchWeather(coords.lat, coords.lon, form.days, form.startDate);
+  })();
+
+  /* Destinasyon para birimini belirle ve TRY kurlarını prefetch et */
+  const cityObj = getCity(form.city);
+  const destCurrency = COUNTRY_CURRENCY[cityObj.country] || "USD";
+  const fxTargets = [...new Set(["EUR","USD","GBP", destCurrency].filter(c=>c!=="TRY"))];
+  fetchRatesFrom("TRY", fxTargets);
+
   let i = 0;
-  const tick = () => {
-    if(i>0) steps[i-1].classList.add("ok");
-    if(i<steps.length){ steps[i].classList.add("on"); i++; setTimeout(tick, 620); }
-    else {
-      currentPlan = buildPlan(form, variant);
-      setTimeout(()=>{ renderResult(); go("result"); }, 350);
-    }
-  };
-  tick();
+  await new Promise(resolve => {
+    const tick = async () => {
+      if(i>0) steps[i-1].classList.add("ok");
+      if(i<steps.length){
+        steps[i].classList.add("on");
+        /* 2. adım (index 1) hava durumu adımı — API bitmesini bekle */
+        if(i===1){ await weatherPromise; }
+        i++;
+        setTimeout(tick, 620);
+      } else {
+        resolve();
+      }
+    };
+    tick();
+  });
+
+  currentPlan = buildPlan(form, variant, weatherData);
+  setTimeout(()=>{ renderResult(); go("result"); }, 350);
 }
 
 const BUDGET_COLORS = {"Konaklama":"#C96C4A","Yemek":"#E8B27D","Ulaşım":"#6B8CAE","Aktiviteler":"#5E9C76","Acil Durum Payı":"#CBB8A6"};
@@ -2060,12 +2389,6 @@ function renderResult(){
           <div id="dayBody">${dayHTML(0)}</div>
         </div>
 
-        <!-- Yağmurlu hava -->
-        <div class="r-card rain-card">
-          <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.6A5 5 0 0 0 18 7h-1.3A7 7 0 1 0 5 15.9"/><path d="M8 19v2M12 18v3M16 19v2"/></svg></span>Yağmurlu Hava Alternatifi</h3>
-          <p style="font-size:.9rem;color:var(--text-light);margin-bottom:8px">Hava bozarsa o günün açık hava duraklarını şu kapalı mekanlarla değiştirin:</p>
-          ${p.rainy.map(g=>`<div class="rain-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>${g[0]}</b> — <span style="color:var(--text-light)">${g[1]}</span></div></div>`).join("")}
-        </div>
       </div>
 
       <div>
@@ -2074,7 +2397,15 @@ function renderResult(){
           <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7" rx="1"/><rect x="12" y="7" width="3" height="11" rx="1"/><rect x="17" y="13" width="3" height="5" rx="1"/></svg></span>Bütçe Dağılımı</h3>
           <div class="budget-total"><b>${fmt(totalB)}</b><span>toplam</span></div>
           <div class="budget-pp">≈ ${fmt(totalB/f.people/f.days)} / kişi / gün</div>
-          ${p.country && p.country!=="Türkiye" ? `<div class="budget-fx">≈ ${fmtFx(totalB,"EUR")} / ${fmtFx(totalB,"USD")} <span>(yaklaşık kur, anlık döviz kuruna göre değişir)</span></div>` : ""}
+          ${(()=>{
+            if(!p.country || p.country==="Türkiye") return "";
+            const dc = COUNTRY_CURRENCY[p.country] || "EUR";
+            const dcFmt = fmtFxVal(totalB,"TRY",dc);
+            const usdFmt = dc!=="USD" ? fmtFxVal(totalB,"TRY","USD") : null;
+            const parts = [dcFmt, usdFmt].filter(Boolean);
+            const rateNote = getCachedRate("TRY",dc) ? "Frankfurter API · Gerçek zamanlı kur" : "Kur verisi bekleniyor…";
+            return `<div class="budget-fx">≈ ${parts.join(" / ")} <span>${rateNote}</span></div>`;
+          })()}
           ${Object.entries(p.budget).map(([k,v])=>`
             <div class="b-row">
               <div class="b-label"><b>${k}</b><span>${fmt(v)} · %${Math.round(v/totalB*100)}</span></div>
@@ -2113,12 +2444,58 @@ function renderResult(){
       </div>
     </div>
 
+    <!-- Hava Durumu & Yağmurlu Hava -->
+    <div class="r-card rain-card">
+      <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.6A5 5 0 0 0 18 7h-1.3A7 7 0 1 0 5 15.9"/><path d="M8 19v2M12 18v3M16 19v2"/></svg></span>Hava Durumu & Yağmurlu Hava Alternatifi</h3>
+      <div class="rain-card-body">
+        <!-- Sol: Hava durumu -->
+        <div>
+          <p style="font-size:.78rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px">Seyahat Tarihi Hava Tahmini</p>
+          ${p.prep.avgHi!=null ? `
+          <div class="wx-stats">
+            <div class="wx-stat">
+              <div class="wx-stat-icon">${p.prep.avgHi>=28?'☀️':p.prep.avgHi>=15?'⛅':'❄️'}</div>
+              <div class="wx-stat-val">${p.prep.avgHi}°C</div>
+              <div class="wx-stat-lbl">Maks Sıcaklık</div>
+            </div>
+            <div class="wx-stat">
+              <div class="wx-stat-icon">${p.prep.avgLo<=5?'🧊':p.prep.avgLo<=15?'🌙':'🌡️'}</div>
+              <div class="wx-stat-val">${p.prep.avgLo}°C</div>
+              <div class="wx-stat-lbl">Min Sıcaklık</div>
+            </div>
+            <div class="wx-stat">
+              <div class="wx-stat-icon">${p.prep.avgRain>=60?'🌧️':p.prep.avgRain>=30?'🌦️':'🌤️'}</div>
+              <div class="wx-stat-val">%${p.prep.avgRain}</div>
+              <div class="wx-stat-lbl">Yağış İhtimali</div>
+            </div>
+          </div>
+          <div class="wx-summary">${p.prep.weather}${p.prep.isRainy?' ☔ Yağışlı günlere hazırlıklı olun.':''}</div>
+          ${p.weatherDays ? `<div class="wx-days">${p.weatherDays.map(d=>`
+            <div class="wx-day">
+              <div class="wx-day-label">${d.label}</div>
+              <div class="wx-day-icon">${d.icon}</div>
+              <div class="wx-day-temp">${d.hi}° / ${d.lo}°</div>
+              <div class="wx-day-rain">💧%${d.rain}</div>
+            </div>`).join("")}</div>` : ''}
+          ` : `<div class="wx-summary">${p.prep.weather}</div>`}
+        </div>
+        <!-- Ayraç -->
+        <div class="rain-divider"></div>
+        <!-- Sağ: Yağmurlu alternatifler -->
+        <div>
+          <p style="font-size:.78rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px">🌧️ Yağmurlu Gün Planı</p>
+          <p style="font-size:.85rem;color:var(--text-light);margin-bottom:14px">Hava bozarsa açık hava duraklarını şu kapalı mekanlarla değiştirin:</p>
+          ${p.rainy.map(g=>`<div class="rain-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>${g[0]}</b> — <span style="color:var(--text-light)">${g[1]}</span></div></div>`).join("")}
+        </div>
+      </div>
+    </div>
+
     <!-- Seyahat Hazırlık Kartı -->
     <div class="r-card prep-card">
       <h3><span class="h-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></span>Seyahat Hazırlık Kartı</h3>
       <div class="prep-head">
         <div class="prep-title">📦 ${p.cityName} – ${p.prep.season} Seyahat Hazırlık Rehberi</div>
-        <div class="prep-weather"><b>Hava Durumu:</b> ${p.prep.weather}</div>
+        <div class="prep-weather"><b>Hava Durumu:</b> ${p.prep.weather}${p.prep.isRainy?' ☔ Yağışlı günlere hazırlıklı olun.':''}</div>
       </div>
       <div id="prepChecklist">${renderPrepChecklist(p)}</div>
       <div class="prep-tip"><b>Özel Tavsiye:</b> ${p.prep.tip}</div>
