@@ -366,17 +366,30 @@ textarea.input{resize:vertical;min-height:96px}
 
 /* ---------- Result v2: hotels, item cards, transit, totals ---------- */
 .hotel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.hotel-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:8px;transition:transform .2s,box-shadow .2s}
+.hotel-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s}
 .hotel-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
-.hotel-card.match{border-color:var(--primary);box-shadow:0 0 0 1px var(--primary)}
+.hotel-card.match{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary)}
 .hotel-tier{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--primary);background:var(--primary-soft);padding:4px 10px;border-radius:999px;width:fit-content}
+.hotel-type-badge{font-size:.72rem;font-weight:600;color:var(--info);background:var(--info-soft);padding:3px 9px;border-radius:999px;width:fit-content}
 .hotel-card h4{font-size:1rem;margin-top:2px}
+.hotel-card .h-region{font-size:.8rem;color:var(--text-light);display:flex;align-items:center;gap:5px}
 .hotel-card .h-price{font-family:var(--font-display);font-weight:800;font-size:1.25rem}
 .hotel-card .h-price small{font-size:.76rem;font-weight:500;color:var(--text-light)}
 .hotel-card .h-rating{font-size:.82rem;color:var(--secondary);font-weight:700;display:flex;align-items:center;gap:5px}
 .hotel-card .h-rating span{color:var(--text-light);font-weight:500}
 .hotel-card p{font-size:.86rem;color:var(--text-light)}
-.hotel-card .h-total{font-size:.78rem;color:var(--text-light);margin-top:auto;padding-top:6px;border-top:1px dashed var(--border)}
+.hotel-why{font-size:.82rem;color:var(--success);background:var(--success-soft);border-radius:8px;padding:8px 11px;line-height:1.5}
+.hotel-meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:2px}
+.hotel-meta-item{font-size:.78rem;color:var(--text-light);display:flex;flex-direction:column;gap:2px}
+.hotel-meta-item b{color:var(--text);font-size:.8rem}
+.hotel-pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.hotel-pros,.hotel-cons{font-size:.78rem;border-radius:8px;padding:8px 10px}
+.hotel-pros{background:var(--success-soft);color:var(--success)}
+.hotel-cons{background:#FEF3C7;color:#92400E}
+.hotel-pros li,.hotel-cons li{list-style:none;padding:1px 0}
+.hotel-pros li::before{content:"✓ "}
+.hotel-cons li::before{content:"⚠ "}
+.hotel-card .h-total{font-size:.78rem;color:var(--text-light);margin-top:auto;padding-top:8px;border-top:1px dashed var(--border)}
 
 .tl-item2{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:0}
 .tl-item2 .tl-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:5px}
@@ -446,6 +459,7 @@ textarea.input{resize:vertical;min-height:96px}
 .share-actions{display:flex;justify-content:flex-end;gap:10px}
 .back-to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
 .back-to-top:hover{background:var(--primary-dark,var(--primary));transform:translateY(-2px)}
+
 
 /* ---------- Saved ---------- */
 .saved-wrap{padding:56px 0 90px;min-height:60vh}
@@ -537,7 +551,7 @@ textarea.input{resize:vertical;min-height:96px}
       <a href="#" onclick="go('fx');return false;">Döviz Çevirici</a>
     </div>
     <div class="nav-cta">
-      <button class="btn btn-ghost btn-sm" onclick="go('saved')">Seyahatlerim</button>
+<button class="btn btn-ghost btn-sm" onclick="go('saved')">Seyahatlerim</button>
       <button class="btn btn-primary btn-sm" onclick="startWizard()">Seyahatimi Planla</button>
       <button class="nav-burger" aria-label="Menüyü aç" onclick="document.getElementById('mmenu').classList.toggle('open')">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -1003,15 +1017,6 @@ textarea.input{resize:vertical;min-height:96px}
         </ul>
       </div>
       <div>
-        <h4>Şirket</h4>
-        <ul>
-          <li><a href="#">Hakkımızda</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Kariyer</a></li>
-          <li><a href="#">İletişim</a></li>
-        </ul>
-      </div>
-      <div>
         <h4>Yasal</h4>
         <ul>
           <li><a href="#">Gizlilik Politikası</a></li>
@@ -1430,6 +1435,25 @@ function getCity(input){
 }
 
 /* ---------- Form durumu ---------- */
+const HOTEL_PREFS = [
+  ["merkez","Şehir Merkezi","M3 12h18M12 3v18","Ulaşım ve merkezi konuma önem veriyorum"],
+  ["turistik","Turistik Bölgelere Yakın","M12 2 19 21l-7-4-7 4Z","Gezilecek yerlere yürüme mesafesinde kalmak istiyorum"],
+  ["toplu","Toplu Taşıma Yakını","M5 17h14M7 21l1-2m9 2-1-2M6 3h12a1 1 0 0 1 1 1v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a1 1 0 0 1 1-1Zm-1 8h14","Metro, tramvay veya otobüs durağına yakın"],
+  ["sessiz","Sessiz ve Sakin Bölge","M9.5 9.5 5 5M14.5 9.5 20 5M14.5 14.5 20 20M9.5 14.5 5 20M12 12m-3 0a3 3 0 1 0 6 0 3 3 0 0 0-6 0","Kalabalıktan uzak, huzurlu bir konum istiyorum"],
+  ["sahil","Deniz / Sahil Yakını","M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7","Denize veya sahile yürüyerek ulaşmak istiyorum"],
+  ["manzara","Manzara Odaklı Konum","M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3","Oda veya teras manzarası önceliğim"],
+  ["gece","Gece Hayatına Yakın","M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10Z","Bar, restoran ve eğlence mekanlarına yakın"]
+];
+
+const HOTEL_TYPES = [
+  ["otel","Otel","M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 18h18M3 14h18M7 9V6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3"],
+  ["butik","Butik Otel","M6 3h12l3 6-9 12L3 9l3-6Z"],
+  ["apart","Apart Otel","M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10"],
+  ["hostel","Hostel","M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8 0a3 3 0 1 0 0-6M1 21v-1c0-3 3-5 7-5s7 2 7 5v1m1-6c3 .5 5 2.2 5 5v1"],
+  ["resort","Resort Otel","M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 3a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"],
+  ["tatilkoyu","Tatil Köyü","M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"]
+];
+
 const INTERESTS = [
   ["tarih","Tarih","M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"],
   ["gastronomi","Gastronomi","M7 3v8a2 2 0 0 0 4 0V3M9 3v18M17 3c-2 1-3 3-3 6v4h3v8"],
@@ -1441,7 +1465,8 @@ const INTERESTS = [
 ];
 const blankForm = () => ({city:"",days:3,startDate:"",endDate:"",budget:25000,people:2,type:"",style:"",interests:[],transport:"",notes:"",
   hasFlight:null, flightArrival:"", flightArrivalCity:"", flightDeparture:"", flightDepartureCity:"", airport:"",
-  hasHotel:null, hotelName:"", hotelAddress:""});
+  hasHotel:null, hotelName:"", hotelAddress:"",
+  hotelPrefs:[], hotelType:""});
 let form = blankForm();
 let step = 1;
 let currentPlan = null;
@@ -1450,7 +1475,9 @@ let savedTrips = [
 ];
 
 /* ---------- Sihirbaz ---------- */
-function startWizard(){ form = blankForm(); step = 1; go("planner"); renderWizard(); }
+function startWizard(){
+  form = blankForm(); step = 1; go("planner"); renderWizard();
+}
 const STEP_LABELS = ["Şehir & Süre","Bütçe & Kişi","Tarz & İlgi","Uçuş & Konaklama","Ek Bilgiler"];
 const STEP_COUNT = STEP_LABELS.length;
 
@@ -1562,16 +1589,31 @@ function renderWizard(){
     </div>` : ""}` : ""}
     <div class="field"><label>Otel rezervasyonunuz var mı?</label>
       <div class="choice-grid">
-        ${chip("f-hashotel","yes","Evet","Otel adı ve adresimi eklemek istiyorum","M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 18h18M3 14h18M7 9V6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3",form.hasHotel===true)}
-        ${chip("f-hashotel","no","Hayır","Otel önerisi almak istiyorum","M18 6 6 18M6 6l12 12",form.hasHotel===false)}
+        ${chip("f-hashotel","yes","Evet","Mevcut rezervasyonum var","M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 18h18M3 14h18M7 9V6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3",form.hasHotel===true)}
+        ${chip("f-hashotel","no","Hayır","Bana otel önerisi yap","M18 6 6 18M6 6l12 12",form.hasHotel===false)}
       </div>
     </div>
-    ${form.hasHotel ? `
+    ${form.hasHotel===true ? `
     <div class="field"><label>Otel adı</label>
       <input class="input" id="f-hotel-name" placeholder="örn. Galata Boutique Otel" value="${form.hotelName}" autocomplete="off">
     </div>
     <div class="field"><label>Otel adresi</label>
       <input class="input" id="f-hotel-address" placeholder="örn. Galata, Beyoğlu" value="${form.hotelAddress}" autocomplete="off">
+    </div>` : ""}
+    ${form.hasHotel===false ? `
+    <div class="field-row">
+      <div class="field"><label>Konaklama konumu tercihi</label>
+        <select class="input" id="f-hpref">
+          <option value="">Seçiniz</option>
+          ${HOTEL_PREFS.map(([v,l])=>`<option value="${v}"${form.hotelPrefs[0]===v?' selected':''}>${l}</option>`).join("")}
+        </select>
+      </div>
+      <div class="field"><label>Otel tipi <span class="hint">isteğe bağlı</span></label>
+        <select class="input" id="f-htype">
+          <option value="">Fark etmez</option>
+          ${HOTEL_TYPES.map(([v,l])=>`<option value="${v}"${form.hotelType===v?' selected':''}>${l}</option>`).join("")}
+        </select>
+      </div>
     </div>` : ""}`;
   }
   if(step===5){
@@ -1592,6 +1634,8 @@ function renderWizard(){
         <dt>Ulaşım</dt><dd>${trLabel(form.transport)}</dd>
         ${(form.flightArrival||form.flightArrivalCity||form.flightDeparture||form.flightDepartureCity)?`<dt>Gidiş uçuşu</dt><dd>${form.flightArrivalCity||"—"} → ${cap(form.city)}${form.flightArrival?" · İniş "+form.flightArrival:""}</dd><dt>Dönüş uçuşu</dt><dd>${cap(form.city)} → ${form.flightDepartureCity||"—"}${form.flightDeparture?" · Kalkış "+form.flightDeparture:""}${form.airport?" · "+form.airport:""}</dd>`:""}
 
+        ${form.hotelPrefs.length?`<dt>Konaklama tercihi</dt><dd>${form.hotelPrefs.map(p=>HOTEL_PREFS.find(x=>x[0]===p)?.[1]).join(", ")}</dd>`:""}
+        ${form.hotelType?`<dt>Otel tipi</dt><dd>${HOTEL_TYPES.find(x=>x[0]===form.hotelType)?.[1]||""}</dd>`:""}
         ${form.hasHotel?`<dt>Otel</dt><dd>${form.hotelName||"—"}${form.hotelAddress?` · ${form.hotelAddress}`:""}</dd>`:""}
       </dl>
     </div>`;
@@ -1679,8 +1723,11 @@ function collectStep(){
     form.flightArrivalCity = $("#f-flight-arrival-city")?.value.trim() || "";
     form.flightDeparture = $("#f-flight-departure")?.value || "";
     form.flightDepartureCity = $("#f-flight-departure-city")?.value.trim() || "";
-    if(form.hasFlight){
-      form.airport = $("#f-airport")?.value.trim() || "";
+    if(form.hasFlight){ form.airport = $("#f-airport")?.value.trim() || ""; }
+    if(form.hasHotel===false){
+      const hpref = document.getElementById("f-hpref");
+      form.hotelPrefs = hpref?.value ? [hpref.value] : [];
+      form.hotelType = document.getElementById("f-htype")?.value || "";
     }
     if(form.hasHotel){
       form.hotelName = $("#f-hotel-name")?.value.trim() || "";
@@ -2155,11 +2202,70 @@ function buildPlan(f, variant, weatherData=null){
   const viewpoints = seededShuffle(city.viewpoints, seed+10).slice(0,3);
   const locals = seededShuffle(city.locals, seed+11).slice(0,3);
 
-  /* --- Bütçenize uygun otel önerileri (ekonomik / orta segment / premium) --- */
+  /* --- Bütçenize uygun otel önerileri --- */
   const nights = Math.max(1, f.days-1);
+
+  /* Konum ve tipi tercihe göre üret */
+  const TIER_META = {
+    economic:{
+      region:`${city.name} merkez yakını`,
+      distCenter:"500m – 1.5km",
+      transit:"Yakın metro/otobüs durağı",
+      tourismAccess:"Yürüme mesafesinde ana turistik bölgeler",
+      prefs:["merkez","toplu","turistik"],
+      types:["otel","hostel"],
+      pros:["Ekonomik fiyat","Ulaşım kolaylığı","Merkezi konum"],
+      cons:["Küçük odalar olabilir","Yoğun cadde gürültüsü"]
+    },
+    mid:{
+      region:`${city.name} tarihi bölge`,
+      distCenter:"200m – 800m",
+      transit:"Metro/tramvay 5 dk yürüme",
+      tourismAccess:"Başlıca cazibe merkezlerine yürüme mesafesi",
+      prefs:["merkez","turistik","manzara"],
+      types:["butik","otel","apart"],
+      pros:["Konforlu odalar","Kahvaltı dahil seçenekler","İyi konum"],
+      cons:["Otopark kısıtlı olabilir","Yoğun sezonda doluluk yüksek"]
+    },
+    premium:{
+      region:`${city.name} prestij bölgesi`,
+      distCenter:"100m – 500m",
+      transit:"Taksi/özel transfer dahil",
+      tourismAccess:"Tüm önemli noktalara kolayca erişim",
+      prefs:["manzara","sessiz","gece","turistik"],
+      types:["butik","resort","otel"],
+      pros:["Manzaralı odalar","Premium hizmetler","Spa & restoran"],
+      cons:["Yüksek fiyat","Rezervasyon önceden gerekli"]
+    }
+  };
+
+  const buildHotelDetails = (h, tier) => {
+    const meta = TIER_META[tier];
+    const userPrefs = f.hotelPrefs || [];
+    const userType = f.hotelType || "";
+    const matchedPrefs = userPrefs.filter(p => meta.prefs.includes(p));
+    const typeLabel = HOTEL_TYPES.find(t=>t[0]===userType)?.[1] || meta.types[0];
+    const whyText = matchedPrefs.length
+      ? `Seçtiğiniz "${matchedPrefs.map(p=>HOTEL_PREFS.find(x=>x[0]===p)?.[1]).join(", ")}" tercihlerine uygun: ${meta.region} konumlu bu otel, ${meta.tourismAccess.toLowerCase()}.`
+      : `${meta.region} konumunda, ${meta.tourismAccess.toLowerCase()}.`;
+    return {
+      ...h,
+      region: meta.region,
+      hotelType: userType && meta.types.includes(userType) ? typeLabel : meta.types[0].charAt(0).toUpperCase()+meta.types[0].slice(1),
+      distCenter: meta.distCenter,
+      transit: meta.transit,
+      tourismAccess: meta.tourismAccess,
+      why: whyText,
+      pros: meta.pros,
+      cons: meta.cons,
+      prefMatch: matchedPrefs.length > 0
+    };
+  };
+
   const pickHotel = (tier, offset) => {
     const h = city.hotels[tier][(seed+offset) % city.hotels[tier].length];
-    return {name:h[0], price:h[1], desc:h[2], rating: ratingFor(seed+offset+5), total: h[1]*nights};
+    const base = {name:h[0], price:h[1], desc:h[2], rating: ratingFor(seed+offset+5), total: h[1]*nights};
+    return buildHotelDetails(base, tier);
   };
   const hotels = {
     economic: pickHotel("economic", 1),
@@ -2365,13 +2471,29 @@ function renderResult(){
         ${["economic","mid","premium"].map(tier=>{
           const h = p.hotels[tier];
           const tierLabel = {economic:"Ekonomik", mid:"Orta Segment", premium:"Premium"}[tier];
-          const match = (f.style==="ekonomik"&&tier==="economic") || (f.style==="dengeli"&&tier==="mid") || (f.style==="luks"&&tier==="premium");
-          return `<div class="hotel-card ${match?'match':''}">
-            <span class="hotel-tier">${tierLabel}${match?' · Tarzınıza uygun':''}</span>
+          const styleMatch = (f.style==="ekonomik"&&tier==="economic") || (f.style==="dengeli"&&tier==="mid") || (f.style==="luks"&&tier==="premium");
+          const prefMatch = h.prefMatch;
+          const isMatch = styleMatch || prefMatch;
+          return `<div class="hotel-card ${isMatch?'match':''}">
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <span class="hotel-tier">${tierLabel}${isMatch?' · Tarzınıza uygun':''}</span>
+              <span class="hotel-type-badge">${h.hotelType}</span>
+            </div>
             <h4>${h.name}</h4>
+            <div class="h-region"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${h.region}</div>
             <div class="h-price">${fmt(h.price)}<small> / gece</small></div>
             <div class="h-rating">${ICON_STAR} ${h.rating} <span>puan</span></div>
             <p>${h.desc}</p>
+            ${h.why ? `<div class="hotel-why">💡 ${h.why}</div>` : ""}
+            <div class="hotel-meta-grid">
+              <div class="hotel-meta-item"><b>🏙️ Merkeze Uzaklık</b>${h.distCenter}</div>
+              <div class="hotel-meta-item"><b>🚇 En Yakın Ulaşım</b>${h.transit}</div>
+              <div class="hotel-meta-item" style="grid-column:1/-1"><b>🗺️ Turistik Erişim</b>${h.tourismAccess}</div>
+            </div>
+            <div class="hotel-pros-cons">
+              <div class="hotel-pros"><b>Artıları</b><ul>${h.pros.map(p=>`<li>${p}</li>`).join("")}</ul></div>
+              <div class="hotel-cons"><b>Dikkat</b><ul>${h.cons.map(c=>`<li>${c}</li>`).join("")}</ul></div>
+            </div>
             <div class="h-total">${p.nights} gece için toplam ≈ ${fmt(h.total)}</div>
           </div>`;
         }).join("")}
@@ -2685,6 +2807,7 @@ function deleteTrip(id){
   ex2.createdAt = "9 Nisan 2026";
   savedTrips = [ex1, ex2];
 })();
+
 </script>
 </body>
 </html>
