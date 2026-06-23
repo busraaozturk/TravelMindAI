@@ -266,12 +266,21 @@ textarea.input{resize:vertical;min-height:96px}
 .summary-box dd{font-weight:600}
 
 /* ---------- Yorumlar ve Sorular ---------- */
-.fb-card{max-width:640px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);padding:32px}
-.fb-tabs{display:inline-flex;gap:8px;margin-bottom:18px;background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px}
-.fb-tab{padding:10px 26px;border:none;border-radius:999px;background:none;font-family:var(--font-display);font-weight:600;font-size:.92rem;color:var(--text-light);cursor:pointer;transition:all .15s}
-.fb-tab:hover{color:var(--primary)}
-.fb-tab.active{color:#fff;background:var(--primary);box-shadow:var(--shadow-sm)}
-.fb-form.hidden{display:none}
+/* Yorum formu */
+.review-form-wrap{margin-top:28px;padding:28px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+.review-star-row{display:flex;gap:8px;font-size:2.2rem;line-height:1;margin-top:4px}
+.review-star-row .rstar{background:none;border:none;cursor:pointer;color:var(--border);transition:color .12s,transform .12s;padding:0;line-height:1}
+.review-star-row .rstar:hover,.review-star-row .rstar.on{color:#F5A623;transform:scale(1.12)}
+.review-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.review-tag{padding:7px 14px;border:1.5px solid var(--border);border-radius:999px;font-size:.82rem;cursor:pointer;transition:all .15s;background:var(--card);color:var(--text)}
+.review-tag.on{background:var(--primary-soft);border-color:var(--primary);color:var(--primary);font-weight:600}
+.review-success{display:flex;align-items:center;gap:10px;padding:18px 20px;background:var(--success-soft);border:1px solid var(--success);border-radius:12px;color:var(--success);font-weight:600;font-size:.95rem}
+.review-err{color:#B91C1C;font-size:.85rem;margin-top:6px;display:none}
+.review-err.show{display:block}
+/* Plan kart yorum özeti */
+.trip-review-badge{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--secondary);font-weight:600;margin-top:6px}
+.trip-review-snippet{font-size:.78rem;color:var(--text-light);margin-top:2px;font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Yıldız oranı (statik) */
 .star-rate{display:flex;gap:10px;font-size:2.6rem;line-height:1;margin-top:4px}
 .star-rate .star{background:none;border:none;cursor:pointer;color:var(--border);transition:color .12s,transform .12s;padding:0;line-height:1}
 .star-rate .star:hover{transform:scale(1.15)}
@@ -447,6 +456,58 @@ textarea.input{resize:vertical;min-height:96px}
 .booking-item b{font-size:.85rem;color:var(--primary)}
 .booking-item span{font-size:.92rem}
 .booking-note{margin-top:12px;font-size:.88rem;color:var(--text-light);display:flex;gap:8px;align-items:flex-start;background:var(--primary-soft);border-radius:10px;padding:10px 14px}
+/* ---------- Auth ---------- */
+.nav-auth{display:flex;align-items:center;gap:10px}
+.nav-avatar-wrap{position:relative}
+.nav-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;font-family:var(--font-display);font-weight:700;font-size:.85rem;display:flex;align-items:center;justify-content:center;cursor:pointer;border:2px solid transparent;transition:border-color .2s}
+.nav-avatar:hover{border-color:var(--primary)}
+.nav-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.nav-dropdown{position:absolute;top:calc(100% + 10px);right:0;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-md);min-width:220px;z-index:500;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .2s}
+.nav-dropdown.open{opacity:1;visibility:visible;transform:translateY(0)}
+.nav-dd-user{padding:14px 16px;border-bottom:1px solid var(--border);background:var(--primary-soft)}
+.nav-dd-user b{display:block;font-size:.92rem}
+.nav-dd-user span{font-size:.78rem;color:var(--text-light)}
+.nav-dd-item{display:flex;align-items:center;gap:10px;padding:11px 16px;font-size:.88rem;color:var(--text);cursor:pointer;transition:background .15s;border:none;background:none;width:100%;text-align:left}
+.nav-dd-item:hover{background:var(--bg)}
+.nav-dd-item svg{color:var(--text-light)}
+.nav-dd-sep{height:1px;background:var(--border);margin:4px 0}
+.nav-dd-logout{color:#DC2626}
+.nav-dd-logout svg{color:#DC2626}
+/* Auth Modal */
+.auth-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:all .25s}
+.auth-modal-overlay.open{opacity:1;visibility:visible}
+.auth-modal{background:var(--card);border-radius:20px;padding:40px 44px;max-width:520px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.2);position:relative;transform:translateY(20px);transition:transform .25s}
+.auth-modal-overlay.open .auth-modal{transform:translateY(0)}
+.auth-modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:none;background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-light);font-size:1.1rem;transition:background .15s}
+.auth-modal-close:hover{background:var(--border)}
+.auth-modal-logo{display:flex;align-items:center;gap:9px;margin-bottom:20px}
+.auth-modal-logo .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--primary);display:grid;place-items:center;color:#fff}
+.auth-modal-logo span{font-family:var(--font-display);font-weight:700;font-size:1.1rem}
+.auth-modal-logo em{color:var(--primary);font-style:normal}
+.auth-modal h2{font-size:1.3rem;margin-bottom:6px}
+.auth-modal .sub{font-size:.9rem;color:var(--text-light);margin-bottom:22px}
+.btn-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px;border:1.5px solid var(--border);border-radius:12px;background:#fff;font-size:.95rem;font-weight:600;cursor:pointer;transition:box-shadow .2s,border-color .2s;color:#3c4043}
+.btn-google:hover{box-shadow:0 2px 12px rgba(0,0,0,.12);border-color:#c9c9c9}
+.auth-benefits{list-style:none;margin:20px 0;display:grid;gap:8px}
+.auth-benefits li{display:flex;align-items:center;gap:9px;font-size:.88rem;color:var(--text-light)}
+.auth-benefits li::before{content:"✓";color:var(--success);font-weight:700;font-size:1rem}
+.auth-legal{font-size:.75rem;color:var(--text-light);text-align:center;margin-top:16px;line-height:1.6}
+.auth-legal a{color:var(--primary);text-decoration:underline}
+.auth-err{background:#FEE2E2;color:#B91C1C;border-radius:8px;padding:9px 13px;font-size:.85rem;margin-bottom:12px}
+.auth-err.hidden{display:none}
+.auth-divider{display:flex;align-items:center;gap:12px;margin:14px 0;color:var(--text-light);font-size:.82rem}
+.auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--border)}
+.auth-switch{text-align:center;font-size:.85rem;color:var(--text-light);margin-top:14px}
+.auth-switch a{color:var(--primary);font-weight:600;text-decoration:none}
+.auth-switch a:hover{text-decoration:underline}
+/* Auth uyarı modalı */
+.auth-warn-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:all .2s}
+.auth-warn-overlay.open{opacity:1;visibility:visible}
+.auth-warn-modal{background:var(--card);border-radius:16px;padding:28px 28px 22px;max-width:380px;width:100%;box-shadow:var(--shadow-md);text-align:center}
+.auth-warn-modal h3{font-size:1.1rem;margin-bottom:8px}
+.auth-warn-modal p{font-size:.9rem;color:var(--text-light);margin-bottom:20px}
+.auth-warn-btns{display:flex;gap:10px;justify-content:center}
+
 .toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,80px);background:var(--text);color:#fff;padding:13px 22px;border-radius:999px;font-size:.92rem;font-weight:500;display:flex;align-items:center;gap:9px;box-shadow:0 10px 30px rgba(0,0,0,.22);opacity:0;transition:all .35s;z-index:200;pointer-events:none}
 .toast.show{transform:translate(-50%,0);opacity:1}
 .back-to-top{position:fixed;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(0,0,0,.18);opacity:0;visibility:hidden;transform:translateY(12px);transition:all .25s;z-index:190}
@@ -550,8 +611,8 @@ textarea.input{resize:vertical;min-height:96px}
       <a href="#" onclick="go('saved');return false;">Kayıtlı Seyahatler</a>
       <a href="#" onclick="go('fx');return false;">Döviz Çevirici</a>
     </div>
-    <div class="nav-cta">
-<button class="btn btn-ghost btn-sm" onclick="go('saved')">Seyahatlerim</button>
+    <div class="nav-cta nav-auth" id="navCta">
+      <!-- JS tarafından doldurulur -->
       <button class="btn btn-primary btn-sm" onclick="startWizard()">Seyahatimi Planla</button>
       <button class="nav-burger" aria-label="Menüyü aç" onclick="document.getElementById('mmenu').classList.toggle('open')">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -567,6 +628,81 @@ textarea.input{resize:vertical;min-height:96px}
     <a href="#" onclick="go('fx');return false;">Döviz Çevirici</a>
   </div>
 </nav>
+
+<!-- ============ AUTH MODAL ============ -->
+<!-- GİRİŞ MODAL -->
+<div class="auth-modal-overlay" id="authOverlay" onclick="if(event.target===this)closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal()">✕</button>
+    <div class="auth-modal-logo">
+      <span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 19 21l-7-4-7 4Z"/></svg></span>
+      <span>TravelMind <em>AI</em></span>
+    </div>
+    <h2>Giriş Yap</h2>
+    <div class="auth-err hidden" id="loginErr"></div>
+    <div class="field"><label>E-posta</label>
+      <input class="input" type="email" id="loginEmail" placeholder="ornek@mail.com" autocomplete="email" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="field"><label>Şifre</label>
+      <input class="input" type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="btn btn-primary" style="width:100%;margin-top:4px" id="btnLogin">Giriş Yap</button>
+    <div class="auth-divider"><span>veya</span></div>
+    <button class="btn-google" onclick="handleGoogleLogin()">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      Google ile Giriş Yap
+    </button>
+    <p class="auth-switch">Hesabın yok mu? <a href="#" onclick="switchToRegister();return false;">Kayıt ol →</a></p>
+  </div>
+</div>
+
+<!-- KAYIT MODAL -->
+<div class="auth-modal-overlay" id="registerOverlay" onclick="if(event.target===this)closeRegisterModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeRegisterModal()">✕</button>
+    <div class="auth-modal-logo">
+      <span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 19 21l-7-4-7 4Z"/></svg></span>
+      <span>TravelMind <em>AI</em></span>
+    </div>
+    <h2>Kayıt Ol</h2>
+    <div class="auth-err hidden" id="registerErr"></div>
+    <div class="field-row">
+      <div class="field"><label>Ad Soyad</label>
+        <input class="input" type="text" id="registerName" placeholder="Ad Soyad" autocomplete="name">
+      </div>
+      <div class="field"><label>E-posta</label>
+        <input class="input" type="email" id="registerEmail" placeholder="ornek@mail.com" autocomplete="email">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Şifre</label>
+        <input class="input" type="password" id="registerPass" placeholder="••••••••" autocomplete="new-password">
+      </div>
+      <div class="field"><label>Şifre Tekrar</label>
+        <input class="input" type="password" id="registerPass2" placeholder="••••••••" autocomplete="new-password" onkeydown="if(event.key==='Enter')doRegister()">
+      </div>
+    </div>
+    <button class="btn btn-primary" style="width:100%;margin-top:4px" id="btnRegister">Kayıt Ol</button>
+    <div class="auth-divider"><span>veya</span></div>
+    <button class="btn-google" onclick="handleGoogleLogin()">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      Google ile Kayıt Ol
+    </button>
+    <p class="auth-switch">Zaten hesabın var mı? <a href="#" onclick="switchToLogin();return false;">Giriş yap →</a></p>
+  </div>
+</div>
+
+<!-- ============ AUTH UYARI MODAL ============ -->
+<div class="auth-warn-overlay" id="authWarnOverlay" onclick="if(event.target===this)closeAuthWarn()">
+  <div class="auth-warn-modal">
+    <h3 id="authWarnTitle">Giriş yapmanız gerekiyor</h3>
+    <p id="authWarnMsg">Bu işlemi gerçekleştirmek için giriş yapmanız gerekli.</p>
+    <div class="auth-warn-btns">
+      <button class="btn btn-primary" onclick="closeAuthWarn();openAuthModal()">Giriş Yap</button>
+      <button class="btn btn-ghost" onclick="closeAuthWarn()">Vazgeç</button>
+    </div>
+  </div>
+</div>
 
 <!-- ============ HOME ============ -->
 <main id="view-home">
@@ -798,51 +934,6 @@ textarea.input{resize:vertical;min-height:96px}
     </div>
   </section>
 
-  <!-- Yorumlar ve Sorular -->
-  <section class="block" id="feedback">
-    <div class="container">
-      <div class="section-head">
-        <div class="fb-tabs">
-          <button class="fb-tab active" id="fb-tab-sorular" onclick="fbTab('sorular')">Sorular</button>
-          <button class="fb-tab" id="fb-tab-yorumlar" onclick="fbTab('yorumlar')">Yorumlar</button>
-        </div>
-        <h2>Görüşlerinizi ve sorularınızı bizimle paylaşın</h2>
-        <p>Yukarıdaki butonlardan birini seçerek bir soru sorabilir veya deneyiminizi diğer kullanıcılarla paylaşabilirsiniz.</p>
-      </div>
-      <div class="fb-card">
-        <form class="fb-form" id="fb-form-sorular" onsubmit="submitQuestion(event)">
-          <div class="field"><label>Adınız ve soyadınız</label>
-            <input class="input" id="q-name" placeholder="örn. Ayşe Yılmaz" autocomplete="off" required></div>
-          <div class="field"><label>Sorunuz</label>
-            <textarea class="input" id="q-text" placeholder="Sormak istediğiniz soruyu yazın…" autocomplete="off" required></textarea></div>
-          <div class="field"><label>Email bilgisi</label>
-            <input class="input" id="q-email" type="email" placeholder="ornek@mail.com" autocomplete="off" required></div>
-          <button class="btn btn-primary" type="submit">Soruyu Gönder</button>
-        </form>
-
-        <form class="fb-form hidden" id="fb-form-yorumlar" onsubmit="submitReview(event)">
-          <div class="field"><label>Puanınız</label>
-            <div class="star-rate" id="r-stars">
-              <button type="button" class="star" data-v="1">★</button>
-              <button type="button" class="star" data-v="2">★</button>
-              <button type="button" class="star" data-v="3">★</button>
-              <button type="button" class="star" data-v="4">★</button>
-              <button type="button" class="star" data-v="5">★</button>
-            </div>
-            <input type="hidden" id="r-rating" value="0"></div>
-          <div class="field"><label>Yorumunuz</label>
-            <textarea class="input" id="r-text" placeholder="Deneyiminizi anlatın…" autocomplete="off" required></textarea></div>
-          <div class="field"><label>Adınız ve soyadınız</label>
-            <input class="input" id="r-name" placeholder="örn. Mehmet Demir" autocomplete="off" required></div>
-          <div class="field"><label>Seyahat ettiğiniz şehir</label>
-            <input class="input" id="r-city" placeholder="örn. İstanbul" autocomplete="off" required></div>
-          <div class="field"><label>Email bilgisi</label>
-            <input class="input" id="r-email" type="email" placeholder="ornek@mail.com" autocomplete="off" required></div>
-          <button class="btn btn-primary" type="submit">Yorumu Gönder</button>
-        </form>
-      </div>
-    </div>
-  </section>
 
   <!-- CTA -->
   <section class="block" style="padding-top:20px">
@@ -1127,68 +1218,310 @@ window.addEventListener("scroll", ()=>{
 });
 
 /* ---------- Yorumlar ve Sorular ---------- */
-function fbTab(tab){
-  $("#fb-tab-sorular").classList.toggle("active", tab==="sorular");
-  $("#fb-tab-yorumlar").classList.toggle("active", tab==="yorumlar");
-  $("#fb-form-sorular").classList.toggle("hidden", tab!=="sorular");
-  $("#fb-form-yorumlar").classList.toggle("hidden", tab!=="yorumlar");
-}
-document.querySelectorAll("#r-stars .star").forEach(btn=>{
-  btn.addEventListener("click", ()=>{
-    const v = +btn.dataset.v;
-    $("#r-rating").value = v;
-    document.querySelectorAll("#r-stars .star").forEach(s=> s.classList.toggle("on", +s.dataset.v <= v));
-  });
-});
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xpqeyzwo";
-function submitQuestion(e){
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector("button[type=submit]");
-  const data = new FormData();
-  data.append("_subject", "TravelMind AI - Yeni Soru");
-  data.append("form_type", "Soru");
-  data.append("name", $("#q-name").value);
-  data.append("email", $("#q-email").value);
-  data.append("message", $("#q-text").value);
-  btn.disabled = true;
-  fetch(FORMSPREE_ENDPOINT, { method:"POST", body:data, headers:{"Accept":"application/json"} })
-    .then(res=>{
-      if(res.ok){ form.reset(); toast("Sorunuz alındı, en kısa sürede yanıtlanacaktır."); }
-      else toast("Bir hata oluştu, lütfen tekrar deneyin.");
-    })
-    .catch(()=> toast("Bir hata oluştu, lütfen tekrar deneyin."))
-    .finally(()=> btn.disabled = false);
-}
-function submitReview(e){
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector("button[type=submit]");
-  const data = new FormData();
-  data.append("_subject", "TravelMind AI - Yeni Yorum");
-  data.append("form_type", "Yorum");
-  data.append("name", $("#r-name").value);
-  data.append("email", $("#r-email").value);
-  data.append("city", $("#r-city").value);
-  data.append("rating", $("#r-rating").value);
-  data.append("message", $("#r-text").value);
-  btn.disabled = true;
-  fetch(FORMSPREE_ENDPOINT, { method:"POST", body:data, headers:{"Accept":"application/json"} })
-    .then(res=>{
-      if(res.ok){
-        form.reset();
-        document.querySelectorAll("#r-stars .star").forEach(s=> s.classList.remove("on"));
-        $("#r-rating").value = 0;
-        toast("Yorumunuz için teşekkürler!");
-      } else toast("Bir hata oluştu, lütfen tekrar deneyin.");
-    })
-    .catch(()=> toast("Bir hata oluştu, lütfen tekrar deneyin."))
-    .finally(()=> btn.disabled = false);
+/* ============ YORUM SİSTEMİ ============ */
+const REVIEWS_KEY = "tm_reviews";
+const REVIEW_TAGS = ["Bütçe tuttu","Rota mantıklıydı","Gizli mekanlar harikaydı","Yemek önerileri iyiydi","Tekrar kullanacağım"];
+const AVATAR_COLORS = ["#C96C4A","#E8B27D","#6B8CAE","#5E9C76","#B07B3E","#9B59B6"];
+
+function getReviews(){ try{ return JSON.parse(localStorage.getItem(REVIEWS_KEY)||"[]"); }catch(e){ return []; } }
+function saveReviews(r){ localStorage.setItem(REVIEWS_KEY, JSON.stringify(r)); }
+
+function getUserReview(planId){
+  if(!currentUser) return null;
+  return getReviews().find(r=>r.planId===planId && r.userId===currentUser.uid)||null;
 }
 
-/* ---------- Görünüm yönlendirme ---------- */
+function renderReviewSection(p){
+  if(!currentUser) return "";
+  const existing = getUserReview(p.id);
+  if(existing){
+    return `<div class="r-card" style="margin-top:0">
+      <div class="review-success">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
+        Yorumunuz paylaşıldı. Teşekkür ederiz!
+      </div>
+      <p style="font-size:.85rem;color:var(--text-light);margin-top:10px">
+        <a href="#" onclick="openEditReview('${p.id}');return false;" style="color:var(--primary)">Yorumunuzu düzenleyin →</a>
+      </p>
+    </div>`;
+  }
+  return `<div class="r-card" id="reviewCard_${p.id}" style="margin-top:0">
+    <button class="btn btn-ghost" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px"
+      onclick="openReviewForm('${p.id}')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 19.5 21 12 2.5 4.5 7 12l-4.5 7.5ZM7 12h7"/></svg>
+      Bu Seyahat Planı İçin Yorum Yap
+    </button>
+  </div>`;
+}
+
+function openReviewForm(planId){
+  const card = document.getElementById("reviewCard_"+planId);
+  if(!card) return;
+  card.innerHTML = `
+    <h3 style="font-size:1.05rem;margin-bottom:16px">✈ Bu Seyahat Planı İçin Yorum Yap</h3>
+    <div class="field"><label>Genel Puanınız</label>
+      <div class="review-star-row" id="rStarRow">
+        ${[1,2,3,4,5].map(v=>`<button type="button" class="rstar" data-v="${v}" onclick="setReviewStar(${v})">★</button>`).join("")}
+      </div>
+      <div class="review-err" id="rErrStar">Lütfen bir puan seçin.</div>
+    </div>
+    <div class="field"><label>Deneyiminizi anlatın</label>
+      <textarea class="input" id="rText" rows="4" placeholder="Deneyiminizi paylaşın…" style="resize:vertical"></textarea>
+      <div class="review-err" id="rErrText">Yorumunuz en az 20 karakter olmalıdır.</div>
+    </div>
+    <div class="field"><label>Etiketler <span class="hint">birden fazla seçilebilir</span></label>
+      <div class="review-tags" id="rTags">
+        ${REVIEW_TAGS.map(t=>`<span class="review-tag" onclick="this.classList.toggle('on')">${t}</span>`).join("")}
+      </div>
+    </div>
+    <input type="hidden" id="rRating" value="0">
+    <button class="btn btn-primary" style="margin-top:8px" onclick="submitPlanReview('${planId}')">Yorumu Paylaş</button>
+    <button class="btn btn-ghost" style="margin-top:8px;margin-left:8px" onclick="openReviewFormCancel('${planId}')">Vazgeç</button>`;
+}
+
+function openReviewFormCancel(planId){
+  const card = document.getElementById("reviewCard_"+planId);
+  if(!card) return;
+  card.innerHTML = `<button class="btn btn-ghost" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px" onclick="openReviewForm('${planId}')">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 19.5 21 12 2.5 4.5 7 12l-4.5 7.5ZM7 12h7"/></svg>
+    Bu Seyahat Planı İçin Yorum Yap
+  </button>`;
+}
+
+function setReviewStar(v){
+  document.getElementById("rRating").value = v;
+  document.querySelectorAll(".rstar").forEach(s=> s.classList.toggle("on", +s.dataset.v <= v));
+}
+
+function submitPlanReview(planId){
+  const rating = +document.getElementById("rRating").value;
+  const text   = (document.getElementById("rText")?.value||"").trim();
+  const errS   = document.getElementById("rErrStar");
+  const errT   = document.getElementById("rErrText");
+  errS.classList.remove("show"); errT.classList.remove("show");
+  if(!rating){ errS.classList.add("show"); return; }
+  if(text.length < 20){ errT.classList.add("show"); return; }
+  const tags = [...document.querySelectorAll(".review-tag.on")].map(t=>t.textContent);
+  const plan = savedTrips.find(t=>String(t.id)===String(planId)) || currentPlan;
+  const initials = (currentUser.name||"U").split(" ").map(w=>w[0]||"").join("").slice(0,2).toUpperCase();
+  const color = AVATAR_COLORS[Math.abs(currentUser.uid.split("").reduce((a,c)=>a+c.charCodeAt(0),0)) % AVATAR_COLORS.length];
+  const review = {
+    id: Date.now()+"", planId: String(planId), userId: currentUser.uid,
+    userName: currentUser.name||"Kullanıcı", userInitials: initials, avatarColor: color,
+    cityName: plan?.cityName||"", days: plan?.form?.days||0,
+    style: plan?.form?.style||"", interests: plan?.form?.interests||[],
+    rating, text, tags,
+    createdAt: new Date().toLocaleDateString("tr-TR",{day:"numeric",month:"long",year:"numeric"})
+  };
+  const reviews = getReviews();
+  const idx = reviews.findIndex(r=>r.planId===String(planId)&&r.userId===currentUser.uid);
+  if(idx>=0) reviews[idx]=review; else reviews.unshift(review);
+  saveReviews(reviews);
+  const card = document.getElementById("reviewCard_"+planId);
+  if(card) card.innerHTML = `<div class="review-success">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
+    Yorumunuz paylaşıldı. Teşekkür ederiz!
+  </div>
+  <p style="font-size:.85rem;color:var(--text-light);margin-top:10px">
+    <a href="#" onclick="openReviewForm('${planId}');return false;" style="color:var(--primary)">Yorumunuzu düzenleyin →</a>
+  </p>`;
+  renderQuotesGrid();
+}
+
+function openEditReview(planId){ openReviewForm(planId); }
+
+const STAR_FILLED = "★", STAR_EMPTY = "☆";
+function starsHTML(n){ return STAR_FILLED.repeat(n)+STAR_EMPTY.repeat(5-n); }
+
+function renderQuotesGrid(){
+  const grid = document.getElementById("quotesGrid");
+  if(!grid) return;
+  const reviews = getReviews().slice(0,3);
+  if(!reviews.length){
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--text-light);padding:32px 0;font-size:.95rem">
+      Henüz yorum yok. Seyahat planladıktan sonra ilk yorumu sen bırak!
+    </div>`;
+    return;
+  }
+  grid.innerHTML = reviews.map(r=>`
+    <div class="quote-card">
+      <div class="stars">${starsHTML(r.rating)}</div>
+      <p>"${r.text}"</p>
+      ${r.tags?.length ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px">${r.tags.map(t=>`<span class="review-tag on" style="font-size:.75rem;padding:4px 10px">${t}</span>`).join("")}</div>` : ""}
+      <div class="quote-who">
+        <span class="avatar" style="background:${r.avatarColor}">${r.userInitials}</span>
+        <div><b>${r.userName}</b><span>${r.cityName}${r.days?` · ${r.days} gün`:""}</span><span style="color:var(--text-light);font-size:.75rem;display:block">${r.createdAt}</span></div>
+      </div>
+    </div>`).join("");
+}
+
+/* ============ AUTH ============ */
+const AUTH_KEY = "tm_user";
+let currentUser = null;
+
+function loadAuth(){
+  try{ currentUser = JSON.parse(localStorage.getItem(AUTH_KEY)); }catch(e){ currentUser = null; }
+  renderNavAuth();
+  var b = document.getElementById("btnLogin");
+  if(b) b.addEventListener("click", doLogin);
+  var rBtn = document.getElementById("btnRegister");
+  if(rBtn) rBtn.addEventListener("click", doRegister);
+}
+
+function renderNavAuth(){
+  const cta = document.getElementById("navCta");
+  if(!cta) return;
+  const planBtn = `<button class="btn btn-primary btn-sm" onclick="startWizard()">Seyahatimi Planla</button>`;
+  const burger = `<button class="nav-burger" aria-label="Menüyü aç" onclick="document.getElementById('mmenu').classList.toggle('open')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>`;
+  if(currentUser){
+    const initials = (currentUser.name||"U").split(" ").map(w=>w[0]||"").join("").slice(0,2).toUpperCase();
+    cta.innerHTML = `
+      <div class="nav-avatar-wrap">
+        <div class="nav-avatar" id="navAvatar" onclick="toggleDropdown()">${initials}</div>
+        <div class="nav-dropdown" id="navDropdown">
+          <div class="nav-dd-user"><b>${currentUser.name||"Kullanıcı"}</b><span>${currentUser.email||""}</span></div>
+          <button class="nav-dd-item" onclick="closeDropdown();go('saved')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 19 21l-7-4-7 4Z"/></svg>Seyahatlerim
+          </button>
+          <button class="nav-dd-item" onclick="closeDropdown();toast('Profil sayfası yakında aktif olacak.')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>Profil Ayarları
+          </button>
+          <div class="nav-dd-sep"></div>
+          <button class="nav-dd-item nav-dd-logout" onclick="doLogout()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>Çıkış Yap
+          </button>
+        </div>
+      </div>
+      ${planBtn}${burger}`;
+  } else {
+    cta.innerHTML = `<button class="btn btn-ghost btn-sm" onclick="openAuthModal()">Giriş Yap</button>${planBtn}${burger}`;
+  }
+}
+
+function toggleDropdown(){
+  document.getElementById("navDropdown")?.classList.toggle("open");
+}
+function closeDropdown(){
+  document.getElementById("navDropdown")?.classList.remove("open");
+}
+document.addEventListener("click", e=>{
+  if(!e.target.closest(".nav-avatar-wrap")) closeDropdown();
+});
+
+/* Test hesabı */
+const TEST_EMAIL = "test@travelmind.com";
+const TEST_PASS  = "Test1234";
+const TEST_NAME  = "Test Kullanıcı";
+
+/* Kayıtlı kullanıcılar (localStorage'da saklanır) */
+function getUsers(){ try{ return JSON.parse(localStorage.getItem("tm_users")||"[]"); }catch(e){ return []; } }
+function saveUsers(u){ localStorage.setItem("tm_users", JSON.stringify(u)); }
+
+function authErr(id, msg){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.textContent = msg;
+  el.classList.remove("hidden");
+}
+function clearAuthErr(id){ const el=document.getElementById(id); if(el){ el.textContent=""; el.classList.add("hidden"); } }
+
+function openAuthModal(){
+  clearAuthErr("loginErr");
+  document.getElementById("authOverlay").classList.add("open");
+}
+function closeAuthModal(){ document.getElementById("authOverlay").classList.remove("open"); }
+function openRegisterModal(){
+  clearAuthErr("registerErr");
+  document.getElementById("registerOverlay").classList.add("open");
+}
+function closeRegisterModal(){ document.getElementById("registerOverlay").classList.remove("open"); }
+
+function switchToRegister(){ closeAuthModal(); openRegisterModal(); }
+function switchToLogin(){ closeRegisterModal(); openAuthModal(); }
+
+function openAuthWarn(title, msg){
+  document.getElementById("authWarnTitle").textContent = title;
+  document.getElementById("authWarnMsg").textContent = msg;
+  document.getElementById("authWarnOverlay").classList.add("open");
+}
+function closeAuthWarn(){ document.getElementById("authWarnOverlay").classList.remove("open"); }
+
+function loginSuccess(user){
+  currentUser = user;
+  localStorage.setItem(AUTH_KEY, JSON.stringify(user));
+  closeAuthModal();
+  closeRegisterModal();
+  renderNavAuth();
+  toast("Hoş geldin, " + (user.name||user.email) + " ✓");
+  if(pendingAction){ pendingAction(); pendingAction=null; }
+}
+
+function doLogin(){
+  var email = (document.getElementById("loginEmail")||{}).value||"";
+  var pass  = (document.getElementById("loginPass")||{}).value||"";
+  var errEl = document.getElementById("loginErr");
+  email = email.trim(); pass = pass.trim();
+  function showErr(msg){ if(errEl){ errEl.textContent=msg; errEl.classList.remove("hidden"); } }
+  if(errEl){ errEl.classList.add("hidden"); errEl.textContent=""; }
+  if(!email||!pass){ showErr("Lütfen tüm alanları doldurun."); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ showErr("Geçerli bir e-posta adresi girin."); return; }
+  if(email==="test@travelmind.com" && pass==="Test1234"){
+    loginSuccess({uid:"test_001",name:"Test Kullanıcı",email:"test@travelmind.com",photo:null}); return;
+  }
+  var users=getUsers(), found=users.find(function(u){return u.email===email&&u.pass===pass;});
+  if(found){ loginSuccess({uid:found.uid,name:found.name,email:found.email,photo:null}); return; }
+  showErr("E-posta veya şifre hatalı.");
+}
+
+function doRegister(){
+  clearAuthErr("registerErr");
+  const name  = (document.getElementById("registerName")?.value||"").trim();
+  const email = (document.getElementById("registerEmail")?.value||"").trim();
+  const pass  = document.getElementById("registerPass")?.value||"";
+  const pass2 = document.getElementById("registerPass2")?.value||"";
+  if(!name||!email||!pass||!pass2){ authErr("registerErr","Lütfen tüm alanları doldurun."); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ authErr("registerErr","Geçerli bir e-posta adresi girin."); return; }
+  if(pass.length<6){ authErr("registerErr","Şifre en az 6 karakter olmalıdır."); return; }
+  if(pass!==pass2){ authErr("registerErr","Şifreler uyuşmuyor."); return; }
+  const users = getUsers();
+  if(users.find(u=>u.email===email)){ authErr("registerErr","Bu e-posta zaten kayıtlı."); return; }
+  const newUser = {uid:"u_"+Date.now(), name, email, pass};
+  users.push(newUser);
+  saveUsers(users);
+  loginSuccess({uid:newUser.uid, name, email, photo:null});
+}
+
+/* Google OAuth — Firebase bağlandığında gerçek implementasyon */
+function handleGoogleLogin(){
+  /* TODO: Firebase Auth signInWithPopup(googleProvider) */
+  const demo = {uid:"g_001", name:"Google Kullanıcı", email:"google@travelmind.ai", photo:null};
+  loginSuccess(demo);
+}
+
+let pendingAction = null;
+
+function requireAuth(title, msg, action){
+  if(currentUser){ action(); return; }
+  pendingAction = action;
+  openAuthWarn(title, msg);
+}
+
+function doLogout(){
+  currentUser = null;
+  localStorage.removeItem(AUTH_KEY);
+  closeDropdown();
+  renderNavAuth();
+  go("home");
+  toast("Çıkış yapıldı");
+}
+
+/* ============ Görünüm yönlendirme ============ */
 const views = ["home","planner","loading","result","saved","fx"];
 function go(v){
+  if(v==="saved" && !currentUser){
+    openAuthWarn("Seyahatlerim için giriş yapın","Kayıtlı planlarınızı görmek için giriş yapmanız gerekli.");
+    return;
+  }
   views.forEach(x => $("#view-"+x).classList.toggle("hidden", x!==v));
   $("#mmenu").classList.remove("open");
   window.scrollTo({top:0, behavior:"instant"});
@@ -2621,7 +2954,10 @@ function renderResult(){
       </div>
       <div id="prepChecklist">${renderPrepChecklist(p)}</div>
       <div class="prep-tip"><b>Özel Tavsiye:</b> ${p.prep.tip}</div>
-    </div>`;
+    </div>
+
+    <!-- Yorum alanı -->
+    <div id="reviewSection">${renderReviewSection(p)}</div>`;
 
   $("#dayTabs").addEventListener("click", e=>{
     const b = e.target.closest(".day-tab"); if(!b) return;
@@ -2689,9 +3025,15 @@ function altPlan(){
   runAI(v);
 }
 function saveTrip(){
-  if(savedTrips.some(t=>t.id===currentPlan.id)){ toast("Bu plan zaten kayıtlı ✓"); return; }
-  savedTrips.unshift(currentPlan);
-  toast(`"${currentPlan.cityName}" planı kaydedildi ✓`);
+  requireAuth(
+    "Planı kaydetmek için giriş yapın",
+    "Bu planı kaydetmek için giriş yapmanız gerekli. Giriş tamamlandıktan sonra plan otomatik kaydedilir.",
+    ()=>{
+      if(savedTrips.some(t=>t.id===currentPlan.id)){ toast("Bu plan zaten kayıtlı ✓"); return; }
+      savedTrips.unshift(currentPlan);
+      toast(`"${currentPlan.cityName}" planı kaydedildi ✓`);
+    }
+  );
 }
 
 async function exportPdf(){
@@ -2783,6 +3125,7 @@ function renderSaved(){
           <span class="trip-tag" style="background:var(--secondary-soft);color:#8A6232">${cap(t.form.style)}</span>
         </div>
         <div style="font-size:.8rem;color:var(--text-light)">Oluşturulma: ${t.createdAt}</div>
+        ${(()=>{ const rv=currentUser?getReviews().find(r=>String(r.planId)===String(t.id)&&r.userId===currentUser.uid):null; return rv?`<div class="trip-review-badge">${starsHTML(rv.rating)} ${rv.rating}/5</div><div class="trip-review-snippet">"${rv.text.slice(0,60)}${rv.text.length>60?"…":""}"</div>`:""; })()}
         <div class="trip-foot">
           <button class="btn btn-soft btn-sm" style="flex:1" onclick="openTrip(${JSON.stringify(t.id)})">Planı Aç</button>
           <button class="btn btn-ghost btn-sm" onclick="deleteTrip(${JSON.stringify(t.id)})" aria-label="Planı sil"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2m1 0-1 14H8L7 6"/></svg></button>
@@ -2807,6 +3150,9 @@ function deleteTrip(id){
   ex2.createdAt = "9 Nisan 2026";
   savedTrips = [ex1, ex2];
 })();
+
+loadAuth();
+renderQuotesGrid();
 
 </script>
 </body>
