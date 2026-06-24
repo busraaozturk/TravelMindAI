@@ -790,7 +790,7 @@ textarea.input{resize:vertical;min-height:96px}
       <div>
         <span class="eyebrow"><span class="dot"></span> Gerçek zamanlı hava durumu · Canlı döviz kuru · Kişisel seyahat planı</span>
         <h1>Seyahatinizi planlamayın, <span class="accent">danışın<svg viewBox="0 0 200 12" preserveAspectRatio="none" fill="none"><path d="M3 9 C 60 2, 140 2, 197 8" stroke="#E8B27D" stroke-width="5" stroke-linecap="round"/></svg></span></h1>
-        <p class="lead">TravelMind AI; tercihlerinizi öğrenir, gideceğiniz tarihe ait gerçek hava durumunu çeker ve bütçenize, ilgi alanlarınıza, ulaşım tercihinize göre saat saat optimize edilmiş kişisel bir seyahat planı oluşturur.</p>
+        <p class="lead">TravelMind AI; tercihlerinizi öğrenir, gideceğiniz tarihe ait gerçek hava durumunu çeker ve bütçenize, ilgi alanlarınıza, ulaşım tercihinize göre saat saat optimize edilmiş kişisel seyahat planı oluşturur.</p>
         <div class="hero-actions">
           <button class="btn btn-primary" onclick="startWizard()">Seyahatimi Planla
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
@@ -798,7 +798,7 @@ textarea.input{resize:vertical;min-height:96px}
           <button class="btn btn-ghost" onclick="goSection('ornek')">Örnek Planı İncele</button>
         </div>
         <div class="hero-stats">
-          <div class="hero-stat"><b>5 adım</b><span>form süreci</span></div>
+          <div class="hero-stat"><b>5 adım</b><span>rehberli form süreci</span></div>
           <div class="hero-stat"><b>16 güne</b><span>kadar hava tahmini</span></div>
           <div class="hero-stat"><b>29 para</b><span>birimi döviz desteği</span></div>
         </div>
@@ -857,12 +857,12 @@ textarea.input{resize:vertical;min-height:96px}
         <div class="step-card">
           <div class="step-num">1</div>
           <h3>Tercihlerinizi girin</h3>
-          <p>5 adımlık rehberli formda şehir, tarih, bütçe, kişi sayısı, ilgi alanları, ulaşım tercihi ve varsa uçuş / otel bilgilerinizi paylaşın.</p>
+          <p>5 adımlık rehberli formda şehir, tarih, bütçe, kişi sayısı, ilgi alanları, ulaşım tercihi ve varsa uçuş ile otel bilgilerinizi paylaşın.</p>
         </div>
         <div class="step-card">
           <div class="step-num">2</div>
           <h3>Sistem verileri toplar ve planı oluşturur</h3>
-          <p>Gideceğiniz tarihe ait gerçek hava durumu çekilir, döviz kuru hesaplanır; bütçeniz kalemlere bölünür ve günlük rota hava koşullarına göre optimize edilir.</p>
+          <p>Gideceğiniz tarihe ait gerçek hava durumu çekilir, döviz kuru hesaplanır; bütçeniz kalemlere bölünür ve rota hava koşullarına göre optimize edilir.</p>
         </div>
         <div class="step-card">
           <div class="step-num">3</div>
@@ -885,27 +885,27 @@ textarea.input{resize:vertical;min-height:96px}
         <div class="feature-card">
           <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
           <h3>Saat saat günlük rota</h3>
-          <p>Kahvaltıdan akşam programına her durak planlanır. Duraklar arası yürüyüş, toplu taşıma ve taksi süreleri gösterilir. Her aktiviteye "neden önerildi" açıklaması eklenir.</p>
+          <p>Kahvaltıdan akşama her durak planlanır. Duraklar arası yürüyüş, toplu taşıma ve taksi süreleri gösterilir. Her aktiviteye "neden önerildi" açıklaması eklenir.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.6A5 5 0 0 0 18 7h-1.3A7 7 0 1 0 5 15.9"/><path d="M8 19v2M12 18v3M16 19v2"/></svg></div>
           <h3>Gerçek zamanlı hava durumu</h3>
-          <p>Open-Meteo API ile seyahat tarihinize ait günlük sıcaklık ve yağış tahminleri çekilir. Yağmurlu günlerde rota otomatik olarak kapalı alanlara yönlendirilir.</p>
+          <p>Open-Meteo API ile seyahat tarihinize ait günlük sıcaklık ve yağış tahmini çekilir. Yağmurlu günlerde rota otomatik olarak kapalı alanlara yönlendirilir.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7" rx="1"/><rect x="12" y="7" width="3" height="11" rx="1"/><rect x="17" y="13" width="3" height="5" rx="1"/></svg></div>
           <h3>Akıllı bütçe dağılımı</h3>
-          <p>Toplam bütçeniz konaklama, yemek, ulaşım, aktivite ve acil pay olarak otomatik bölünür. Yurt dışı planlarında hedef ülkenin para birimine canlı döviz kuruyla çevrilir.</p>
+          <p>Toplam bütçeniz 5 kalemde otomatik bölünür, seyahat tarzına göre oranlar değişir. Yurt dışı planlarında hedef ülkenin para birimine canlı döviz kuruyla çevrilir.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 18h18M3 14h18M7 9V6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3"/></svg></div>
           <h3>Konum bazlı otel önerileri</h3>
-          <p>Ekonomik, orta segment ve premium olmak üzere 3 farklı seçenek sunulur. Her otelde bölge, merkeze mesafe, toplu taşıma erişimi, artıları ve dikkat edilmesi gerekenler gösterilir.</p>
+          <p>Ekonomik, orta segment ve premium 3 seçenek sunulur. Her otelde bölge, merkeze mesafe, toplu taşıma erişimi, artıları ve dikkat edilmesi gerekenler gösterilir.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></div>
           <h3>Seyahat hazırlık kartı</h3>
-          <p>Seyahat tarihinize ve şehrin iklimine göre mevsimsel kıyafet, aksesuar, teknoloji ve sağlık önerileri listelenir. İşaretlenebilir bavul listesiyle hiçbir şey unutulmaz.</p>
+          <p>Tarihe ve şehrin iklimine göre mevsimsel kıyafet, aksesuar, teknoloji ve sağlık önerileri listelenir. İşaretlenebilir bavul listesiyle hiçbir şey unutulmaz.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg></div>
@@ -922,17 +922,17 @@ textarea.input{resize:vertical;min-height:96px}
       <div class="section-head">
         <span class="tag">Örnek Çıktı</span>
         <h2>Plan çıktısında neler var?</h2>
-        <p>Metin yığını değil; sekmeli günlük rota, interaktif bütçe grafiği ve hava durumu kartıyla okunabilir bir plan.</p>
+        <p>Metin yığını değil; sekmeli günlük rota, interaktif bütçe grafiği ve gerçek hava durumu kartıyla okunabilir bir plan.</p>
       </div>
       <div class="sample-wrap">
         <div class="sample-info">
           <h3>İstanbul · 3 gün · 2 kişi · ₺25.000</h3>
           <p>"Tarih ve gastronomi ağırlıklı deneyimler sunarken bütçeyi koruyarak şehri verimli keşfetmenizi sağlar." — Seyahat özeti</p>
           <ul class="sample-list">
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Seyahat özeti</b> — size özel kısa değerlendirme ve ilgi etiketleri</span></li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Seyahat özeti</b> — ilgi alanları ve seyahat tipine özel kısa değerlendirme</span></li>
             <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Saat saat günlük rota</b> — duraklar arası ulaşım süresi ve "neden önerildi" açıklamaları</span></li>
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Otel önerileri</b> — 3 segment, konum & fiyat detayıyla</span></li>
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Bütçe dağılımı</b> — 5 kalem, görsel grafik, yurt dışında döviz karşılığı</span></li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Otel önerileri</b> — 3 segment, konum ve fiyat detayıyla</span></li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Bütçe dağılımı</b> — 5 kalem görsel grafik, yurt dışında döviz karşılığı</span></li>
             <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Hava durumu &amp; yağmurlu gün planı</b> — gerçek zamanlı tahmin ve B rotası</span></li>
             <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Bavul listesi</b> — mevsim ve ilgi alanına göre kıyafet &amp; aksesuar önerileri</span></li>
             <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Gizli mekanlar, yerel tavsiyeler, manzara noktaları</b></span></li>
@@ -978,6 +978,154 @@ textarea.input{resize:vertical;min-height:96px}
           <div class="stars">★★★★☆</div>
           <p>"Tek başıma Amsterdam'a gittim. Plan saat saat hazırdı; ben sadece 'yeniden oluştur' deyip gece hayatı ağırlıklı versiyonu seçtim. Saatlerce blog okumaktan kurtardı."</p>
           <div class="quote-who"><span class="avatar" style="background:#5E9C76">SD</span><div><b>Selin D.</b><span>Amsterdam</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobil Uygulama -->
+  <section class="block app-section" id="mobil">
+    <div class="container">
+      <div class="app-grid">
+        <!-- Sol: Metin -->
+        <div class="app-left">
+          <span class="app-tag">Mobil Uygulama</span>
+          <h2 class="app-title">TravelMind AI her zaman cebinizde</h2>
+          <p class="app-desc">Seyahat planınızı oluşturduktan sonra telefonunuzdan takip edin, günlük rotanıza bakın ve anlık önerilere ulaşın.</p>
+          <ul class="app-features">
+            <li>
+              <span class="feat-icon"><svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg></span>
+              Çevrimdışı plan görüntüleme
+            </li>
+            <li>
+              <span class="feat-icon"><svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6 6 0 0 0-5-5.917V4a1 1 0 0 0-2 0v1.083A6 6 0 0 0 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 0 1-6 0v-1m6 0H9"/></svg></span>
+              Günlük rota bildirimleri
+            </li>
+            <li>
+              <span class="feat-icon"><svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg></span>
+              Konum bazlı yerel öneriler
+            </li>
+            <li>
+              <span class="feat-icon"><svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg></span>
+              Planlarınıza her yerden erişin
+            </li>
+          </ul>
+          <div class="app-store-btns">
+            <button class="store-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              <div class="store-btn-text"><small>App Store'dan</small><strong>İndir</strong></div>
+            </button>
+            <button class="store-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 0 0 2.73.76l.1-.06 9.43-5.45-2.61-2.61-9.65 7.36zm16.09-10.93L16.44 11l-2.87 2.87 2.87 2.87 2.86-1.65a1.36 1.36 0 0 0 0-2.26zM3 1.25A1.37 1.37 0 0 0 2.5 2.4V21.6a1.37 1.37 0 0 0 .5 1.15l.06.05 10.74-10.74v-.25L3.06 1.2zm10.57 9.28L3.18.24A2 2 0 0 0 .45 1l12.73 9.5.39-.01z"/></svg>
+              <div class="store-btn-text"><small>Google Play'den</small><strong>İndir</strong></div>
+            </button>
+          </div>
+          <div class="app-qr">
+            <div class="app-qr-img" aria-hidden="true">
+              <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="60" fill="white" rx="8"/>
+                <rect x="8" y="8" width="20" height="20" rx="2" fill="#1a1a1a"/>
+                <rect x="11" y="11" width="14" height="14" rx="1" fill="white"/>
+                <rect x="14" y="14" width="8" height="8" fill="#1a1a1a"/>
+                <rect x="32" y="8" width="20" height="20" rx="2" fill="#1a1a1a"/>
+                <rect x="35" y="11" width="14" height="14" rx="1" fill="white"/>
+                <rect x="38" y="14" width="8" height="8" fill="#1a1a1a"/>
+                <rect x="8" y="32" width="20" height="20" rx="2" fill="#1a1a1a"/>
+                <rect x="11" y="35" width="14" height="14" rx="1" fill="white"/>
+                <rect x="14" y="38" width="8" height="8" fill="#1a1a1a"/>
+                <rect x="32" y="32" width="6" height="6" fill="#1a1a1a"/>
+                <rect x="40" y="32" width="6" height="6" fill="#1a1a1a"/>
+                <rect x="32" y="40" width="6" height="6" fill="#1a1a1a"/>
+                <rect x="40" y="40" width="6" height="6" fill="#1a1a1a"/>
+                <rect x="46" y="32" width="6" height="6" fill="#1a1a1a"/>
+                <rect x="46" y="46" width="6" height="6" fill="#1a1a1a"/>
+                <rect x="32" y="46" width="6" height="6" fill="#1a1a1a"/>
+              </svg>
+            </div>
+            <div class="app-qr-text">Hızlı indirmek için<br><strong>telefonunuzla tarayın</strong></div>
+          </div>
+        </div>
+
+        <!-- Sağ: Telefon Mockup -->
+        <div class="app-right">
+          <div class="phone-wrap">
+            <div class="phone-scene">
+              <!-- Taşan chip'ler -->
+              <div class="chip-float chip-tl">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2.5 19.5 21 12 2.5 4.5 7 12l-4.5 7.5ZM7 12h7"/></svg>
+                <div class="chip-float-text"><strong>Planın hazır</strong><small>İstanbul rotası</small></div>
+              </div>
+              <div class="chip-float chip-mr">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+                <div class="chip-float-text"><strong>12 durak</strong><small>Bugünkü rota</small></div>
+              </div>
+              <div class="chip-float chip-bl">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                <div class="chip-float-text"><strong>3 gün</strong><small>Seyahat süresi</small></div>
+              </div>
+
+              <!-- Telefon -->
+              <div class="phone-outer">
+                <div class="phone-inner">
+                  <div class="phone-screen">
+                    <div class="phone-statusbar">
+                      <span>9:41</span>
+                      <span style="display:flex;gap:4px;align-items:center">
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3a4.237 4.237 0 0 0-6 0zm-4-4 2 2a7.074 7.074 0 0 1 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+                        <svg width="14" height="12" viewBox="0 0 22 12" fill="currentColor"><rect x="0" y="2" width="16" height="8" rx="2" opacity=".3"/><rect x="0" y="2" width="12" height="8" rx="2"/><rect x="17" y="4" width="2" height="4" rx="1"/></svg>
+                      </span>
+                    </div>
+                    <div class="phone-topbar">
+                      <div class="phone-topbar-logo">
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 2 19 21l-7-4-7 4Z"/></svg>
+                      </div>
+                      <span>TravelMind AI</span>
+                    </div>
+                    <div class="phone-content">
+                      <div class="phone-scroll">
+                        <div class="plan-card-ph">
+                          <div class="plan-card-ph-img"><span>İstanbul · 3 Gün</span></div>
+                          <h5>Kültür & Lezzet Turu</h5>
+                          <p>Bütçe: ₺4.200 · 2 kişi</p>
+                        </div>
+                        <div style="padding:0 2px">
+                          <p style="font-size:.65rem;font-weight:700;color:#333;margin-bottom:6px">Bugünkü Rota</p>
+                          <div style="display:flex;flex-direction:column;gap:5px">
+                            <div class="rota-row"><div class="rota-dot"></div><div class="rota-info"><span>Topkapı Sarayı</span><small>09:00 · Müze</small></div></div>
+                            <div class="rota-row"><div class="rota-dot" style="background:#a0c4b0"></div><div class="rota-info"><span>Kapalıçarşı</span><small>11:30 · Alışveriş</small></div></div>
+                            <div class="rota-row"><div class="rota-dot" style="background:#c4a0b0"></div><div class="rota-info"><span>Sultanahmet Meydanı</span><small>14:00 · Tarihi Alan</small></div></div>
+                          </div>
+                        </div>
+                        <div class="plan-card-ph">
+                          <div class="plan-card-ph-img" style="background:linear-gradient(135deg,#6a8dd4 0%,#8ab4e8 100%)"><span>Kapadokya · 4 Gün</span></div>
+                          <h5>Doğa & Macera Turu</h5>
+                          <p>Bütçe: ₺6.800 · 2 kişi</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="phone-nav">
+                      <div class="nav-item active">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0 7-7 7 7M5 10v10a1 1 0 0 0 1 1h3m10-11 2 2m-2-2v10a1 1 0 0 1-1 1h-3m-6 0a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1m-6 0h6"/></svg>
+                        <span>Ana Sayfa</span>
+                      </div>
+                      <div class="nav-item">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 0 1 3 16.382V5.618a1 1 0 0 1 1.447-.894L9 7m0 13 6-3m-6 3V7m6 10 4.553 2.276A1 1 0 0 0 21 18.382V7.618a1 1 0 0 0-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                        <span>Rotam</span>
+                      </div>
+                      <div class="nav-item">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 0 0 0 6.364L12 20.364l7.682-7.682a4.5 4.5 0 0 0-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 0 0-6.364 0z"/></svg>
+                        <span>Favoriler</span>
+                      </div>
+                      <div class="nav-item">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                        <span>Profil</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -993,11 +1141,11 @@ textarea.input{resize:vertical;min-height:96px}
       <div class="faq-list">
         <details class="faq" open>
           <summary>Planı oluşturmak için ne girmem gerekiyor?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-          <div class="faq-body">5 adımlık rehberli form: (1) Şehir, seyahat tarihi ve gün sayısı, (2) Bütçe, kişi sayısı ve seyahat tipi, (3) Tarz, ilgi alanları ve ulaşım tercihi, (4) Varsa uçuş saatleri ve otel konum tercihi, (5) Ek notlar. Tüm adımlar yaklaşık 2 dakika sürer.</div>
+          <div class="faq-body">5 adımlık rehberli form: şehir ve seyahat tarihleri, bütçe ve kişi sayısı, ilgi alanları ve ulaşım tercihi, varsa uçuş saatleri ve otel tercihi, ek notlar. Tüm adımlar yaklaşık 2 dakika sürer.</div>
         </details>
         <details class="faq">
           <summary>Hava durumu bilgisi gerçek mi, yoksa tahmini mi?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-          <div class="faq-body">Gerçek zamanlı ve tarihe özel. Open-Meteo API üzerinden şehrin koordinatları bulunur, seyahat tarihlerinize ait günlük sıcaklık ve yağış tahmini çekilir. Yağış ihtimali yüksek günlerde rota otomatik olarak kapalı alanlara yönlendirilir.</div>
+          <div class="faq-body">Gerçek zamanlı ve tarihe özel. Open-Meteo API ile şehrin koordinatları bulunur, seyahat tarihlerinize ait günlük sıcaklık ve yağış tahmini çekilir. Yağış ihtimali yüksek günlerde rota otomatik olarak kapalı alanlara yönlendirilir.</div>
         </details>
         <details class="faq">
           <summary>Yurt dışı planlarında döviz nasıl hesaplanıyor?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
@@ -1005,1028 +1153,15 @@ textarea.input{resize:vertical;min-height:96px}
         </details>
         <details class="faq">
           <summary>Planı beğenmezsem ne olur?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-          <div class="faq-body">&quot;Yeniden Oluştur&quot; ile aynı tercihlerle farklı plan alabilir, &quot;Alternatif Plan&quot; ile öncelik ağırlıkları değiştirilmiş versiyon görebilir ya da forma dönüp tercihlerinizi tamamen değiştirebilirsiniz.</div>
+          <div class="faq-body">"Yeniden Oluştur" ile aynı tercihlerle farklı bir plan alabilir, "Alternatif Plan" ile öncelik ağırlıkları değiştirilmiş bir versiyon görebilir ya da forma dönüp tercihlerinizi tamamen değiştirebilirsiniz.</div>
         </details>
         <details class="faq">
           <summary>Otel veya uçak rezervasyonu yapıyor musunuz?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-          <div class="faq-body">Hayır. TravelMind AI bir seyahat danışmanıdır; rezervasyon motoru değil. Uçuş saatinizi ve otel tercihlerinizi forma girerek planı buna göre optimize edebilirsiniz; satın alma işlemini istediğiniz platformda yaparsınız.</div>
+          <div class="faq-body">Hayır. TravelMind AI bir seyahat danışmanıdır; rezervasyon motoru değil. Uçuş saatlerinizi ve otel tercihlerinizi forma girerek planı buna göre optimize edebilirsiniz; satın alma işlemini istediğiniz platformda yaparsınız.</div>
         </details>
         <details class="faq">
           <summary>Planları kaydedip tekrar açabilir miyim?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-          <div class="faq-body">Evet. Giriş yaptıktan sonra &quot;Planı Kaydet&quot; ile planı hesabınıza bağlayabilirsiniz. Seyahatlerim sayfasında kart görünümünde listelenir; dilediğinizde açabilir, PDF indirebilir veya yorum bırakabilirsiniz.</div>
-        </details>
-      </div>tml>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TravelMind AI — Yapay Zeka Destekli Kişisel Seyahat Danışmanı</title>
-<meta name="description" content="Bütçenize, seyahat sürenize ve ilgi alanlarınıza göre saat saat planlanmış, kişiselleştirilmiş seyahat rotaları.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<style>
-:root{
-  --primary:#C96C4A;
-  --primary-dark:#B05A3A;
-  --primary-soft:#F6E3DA;
-  --secondary:#E8B27D;
-  --secondary-soft:#FBEEDD;
-  --bg:#FFF8F2;
-  --card:#FFFFFF;
-  --text:#2D3748;
-  --text-light:#718096;
-  --border:#F1E4D8;
-  --success:#5E9C76;
-  --success-soft:#E7F2EB;
-  --info:#6B8CAE;
-  --info-soft:#EAF1F7;
-  --radius:16px;
-  --radius-sm:10px;
-  --shadow-sm:0 1px 3px rgba(45,55,72,.05), 0 4px 14px rgba(201,108,74,.06);
-  --shadow-md:0 4px 10px rgba(45,55,72,.06), 0 14px 38px rgba(201,108,74,.10);
-  --font-display:"DM Sans",system-ui,sans-serif;
-  --font-body:"Inter",system-ui,sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;letter-spacing:-.01em}
-img{max-width:100%;display:block}
-button{font-family:inherit;cursor:pointer;border:none;background:none}
-input,select,textarea{font-family:inherit;font-size:1rem;color:var(--text)}
-a{color:inherit;text-decoration:none}
-.container{max-width:1140px;margin:0 auto;padding:0 24px}
-.hidden{display:none !important}
-
-/* ---------- Buttons ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-display);font-weight:600;font-size:1rem;padding:14px 28px;border-radius:999px;transition:all .2s ease;white-space:nowrap}
-.btn-primary{background:var(--primary);color:#fff;box-shadow:0 6px 18px rgba(201,108,74,.28)}
-.btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 8px 22px rgba(201,108,74,.34)}
-.btn-ghost{background:transparent;color:var(--primary);border:1.5px solid var(--border)}
-.btn-ghost:hover{border-color:var(--primary);background:var(--primary-soft)}
-.btn-soft{background:var(--primary-soft);color:var(--primary-dark)}
-.btn-soft:hover{background:#F0D5C8}
-.btn-sm{padding:9px 18px;font-size:.9rem}
-.btn:focus-visible,a:focus-visible{outline:3px solid var(--secondary);outline-offset:2px}
-.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
-
-/* ---------- Navbar ---------- */
-.navbar{position:sticky;top:0;z-index:100;background:rgba(255,248,242,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
-.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1.25rem;color:var(--text);flex-shrink:0;white-space:nowrap}
-.logo-mark{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:grid;place-items:center;color:#fff;flex-shrink:0}
-.logo span em{font-style:normal;color:var(--primary)}
-.nav-links{display:flex;align-items:center;gap:20px;font-size:.88rem;font-weight:500;color:var(--text-light);white-space:nowrap}
-.nav-links a{transition:color .15s;white-space:nowrap}
-.nav-links a:hover{color:var(--primary)}
-.nav-cta{display:flex;align-items:center;gap:12px}
-.nav-burger{display:none;width:42px;height:42px;border-radius:10px;border:1.5px solid var(--border);color:var(--text);place-items:center}
-.mobile-menu{display:none;border-top:1px solid var(--border);padding:14px 24px 20px;background:var(--bg)}
-.mobile-menu a{display:block;padding:10px 0;font-weight:500;color:var(--text)}
-.mobile-menu.open{display:block}
-
-/* ---------- Hero ---------- */
-.hero{padding:84px 0 64px;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-220px;right:-180px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,var(--secondary-soft) 0%,transparent 68%);pointer-events:none}
-.hero::after{content:"";position:absolute;bottom:-260px;left:-200px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--primary-soft) 0%,transparent 68%);pointer-events:none}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative;z-index:1}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:7px 16px;font-size:.85rem;font-weight:600;color:var(--primary);box-shadow:var(--shadow-sm)}
-.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--success);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.hero h1{font-size:clamp(2.3rem,5vw,3.6rem);font-weight:800;margin:22px 0 18px}
-.hero h1 .accent{color:var(--primary);position:relative;white-space:nowrap}
-.hero h1 .accent svg{position:absolute;left:0;bottom:-8px;width:100%;height:12px}
-.hero p.lead{font-size:1.13rem;color:var(--text-light);max-width:520px;margin-bottom:30px}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
-.hero-stats{display:flex;gap:36px;flex-wrap:wrap}
-.hero-stat b{display:block;font-family:var(--font-display);font-size:1.45rem;font-weight:800;color:var(--text)}
-.hero-stat span{font-size:.85rem;color:var(--text-light)}
-
-/* hero mock plan card — signature element */
-.mock-card{background:var(--card);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow-md);padding:26px;position:relative}
-.mock-card::before{content:"";position:absolute;inset:14px -14px -14px 14px;border-radius:22px;border:1.5px dashed var(--border);z-index:-1}
-.mock-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.mock-head h3{font-size:1.05rem;font-weight:700}
-.mock-head small{color:var(--text-light);font-size:.8rem}
-.mock-badge{background:var(--success-soft);color:var(--success);font-size:.75rem;font-weight:600;padding:5px 12px;border-radius:999px;display:flex;align-items:center;gap:6px}
-.mock-item{display:flex;gap:14px;padding:11px 0;border-bottom:1px dashed var(--border);opacity:0;animation:rise .6s ease forwards}
-.mock-item:last-of-type{border-bottom:none}
-.mock-item:nth-child(3){animation-delay:.25s}
-.mock-item:nth-child(4){animation-delay:.5s}
-.mock-item:nth-child(5){animation-delay:.75s}
-@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.mock-time{font-family:var(--font-display);font-weight:700;font-size:.85rem;color:var(--primary);min-width:48px;padding-top:2px}
-.mock-item b{display:block;font-size:.95rem;font-weight:600}
-.mock-item span{font-size:.82rem;color:var(--text-light)}
-.mock-budget{margin-top:18px;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:16px}
-.mock-budget small{font-size:.78rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:.05em}
-.mock-bars{display:flex;gap:6px;margin-top:10px;height:10px;border-radius:99px;overflow:hidden}
-.mock-bars i{display:block;height:100%;border-radius:99px;animation:grow 1s ease .6s backwards}
-@keyframes grow{from{width:0 !important}}
-.mock-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:.76rem;color:var(--text-light)}
-.mock-legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
-.float-chip{position:absolute;width:54px;height:54px;background:var(--card);border:1px solid var(--border);border-radius:50%;box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center}
-.float-chip.c1{top:-18px;left:-26px;animation:drift1 7s ease-in-out infinite}
-.float-chip.c2{bottom:36px;right:-22px;animation:drift2 8s ease-in-out infinite;animation-delay:1.4s}
-.float-chip .sparkle{position:absolute;width:7px;height:7px;border-radius:50%;background:#F5A623;box-shadow:0 0 6px #F5A623;animation:twinkle 2.6s ease-in-out infinite}
-.float-chip .sparkle.s1{top:-3px;right:2px;animation-delay:.4s}
-.float-chip .sparkle.s2{bottom:4px;left:-5px;width:5px;height:5px;animation-delay:1.3s}
-@keyframes twinkle{0%,40%,100%{opacity:0;transform:scale(.3)}20%{opacity:1;transform:scale(1)}}
-@keyframes drift1{
-  0%,100%{transform:translate(0,0) rotate(0deg)}
-  25%{transform:translate(5px,-11px) rotate(-3deg)}
-  50%{transform:translate(-3px,-18px) rotate(2deg)}
-  75%{transform:translate(-6px,-7px) rotate(-1deg)}
-}
-@keyframes drift2{
-  0%,100%{transform:translate(0,0) rotate(0deg)}
-  25%{transform:translate(-6px,-9px) rotate(3deg)}
-  50%{transform:translate(4px,-16px) rotate(-2deg)}
-  75%{transform:translate(6px,-5px) rotate(1deg)}
-}
-
-/* ---------- Sections ---------- */
-section.block{padding:84px 0}
-.section-head{text-align:center;max-width:640px;margin:0 auto 54px}
-.section-head .tag{display:inline-block;font-size:.82rem;font-weight:700;color:var(--primary);background:var(--primary-soft);padding:6px 16px;border-radius:999px;margin-bottom:16px;letter-spacing:.04em;text-transform:uppercase}
-.section-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:800;margin-bottom:14px}
-.section-head p{color:var(--text-light);font-size:1.05rem}
-
-/* nasıl çalışır */
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;position:relative}
-.step-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);position:relative;transition:transform .2s,box-shadow .2s}
-.step-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-.step-num{font-family:var(--font-display);font-weight:800;font-size:.85rem;color:var(--primary);background:var(--primary-soft);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;margin-bottom:18px}
-.step-card h3{font-size:1.15rem;margin-bottom:10px}
-.step-card p{color:var(--text-light);font-size:.95rem}
-
-/* özellikler */
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.feature-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s}
-.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-.feature-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;color:var(--primary);background:var(--primary-soft)}
-.feature-card:nth-child(3n+2) .feature-icon{color:#B07B3E;background:var(--secondary-soft)}
-.feature-card:nth-child(3n) .feature-icon{color:var(--success);background:var(--success-soft)}
-.feature-card h3{font-size:1.12rem;margin-bottom:9px}
-.feature-card p{color:var(--text-light);font-size:.94rem}
-
-/* örnek plan */
-.sample-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
-.sample-info h3{font-size:1.5rem;margin-bottom:14px}
-.sample-info p{color:var(--text-light);margin-bottom:20px}
-.sample-list{list-style:none;display:grid;gap:12px;margin-bottom:26px}
-.sample-list li{display:flex;gap:11px;align-items:flex-start;font-size:.96rem}
-.sample-list svg{flex-shrink:0;margin-top:3px;color:var(--success)}
-.sample-card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);overflow:hidden}
-.sample-card-head{background:linear-gradient(120deg,var(--primary),var(--secondary));color:#fff;padding:22px 26px}
-.sample-card-head h4{font-size:1.15rem}
-.sample-card-head span{font-size:.85rem;opacity:.9}
-.sample-card-body{padding:10px 26px 24px}
-.tl-item{display:flex;gap:16px;position:relative;padding:13px 0}
-.tl-rail{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
-.tl-dot{width:11px;height:11px;border-radius:50%;background:var(--primary);border:2.5px solid var(--primary-soft);margin-top:6px;flex-shrink:0}
-.tl-line{flex:1;width:2px;background:var(--border);margin-top:4px}
-.tl-item:last-child .tl-line{display:none}
-.tl-time{font-family:var(--font-display);font-weight:700;color:var(--primary);font-size:.86rem;min-width:46px;padding-top:3px}
-.tl-body b{display:block;font-weight:600;font-size:.96rem}
-.tl-body span{color:var(--text-light);font-size:.85rem}
-.tl-cost{margin-left:auto;align-self:flex-start;font-size:.8rem;font-weight:600;color:var(--primary-dark);background:var(--primary-soft);border-radius:999px;padding:3px 11px;white-space:nowrap}
-
-/* yorumlar */
-.quotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.quote-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;height:100%}
-.stars{color:var(--secondary);letter-spacing:3px;margin-bottom:14px;font-size:.95rem}
-.quote-card p{font-size:.95rem;color:var(--text);margin-bottom:20px}
-.quote-who{display:flex;align-items:center;gap:12px;margin-top:auto}
-.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;color:rgba(0,0,0,.8);font-size:.9rem}
-.quote-who span.avatar{color:rgba(0,0,0,.8)}
-.quote-who b{display:block;font-size:.92rem}
-.quote-who span{font-size:.8rem;color:var(--text-light)}
-
-/* Mobil Uygulama Bölümü */
-.app-section{background:#FDF3EA;border-block:1px solid #F1E4D8}
-.app-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.app-tag{display:inline-block;font-size:.78rem;font-weight:700;color:var(--primary);background:var(--primary-soft);padding:5px 14px;border-radius:999px;margin-bottom:18px;letter-spacing:.05em;text-transform:uppercase}
-.app-title{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:14px}
-.app-desc{color:var(--text-light);font-size:1rem;line-height:1.7;margin-bottom:28px}
-.app-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
-.app-features li{display:flex;align-items:center;gap:10px;font-size:.95rem;font-weight:500}
-.app-features li .feat-icon{width:28px;height:28px;background:var(--primary-soft);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.app-features li .feat-icon svg{width:15px;height:15px;color:var(--primary)}
-.app-store-btns{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
-.store-btn{display:flex;align-items:center;gap:10px;background:#111;color:#fff;border:none;border-radius:12px;padding:11px 20px;cursor:pointer;font-family:var(--font-display);transition:opacity .2s}
-.store-btn:hover{opacity:.82}
-.store-btn svg{width:22px;height:22px;flex-shrink:0}
-.store-btn-text{text-align:left}
-.store-btn-text small{display:block;font-size:.68rem;opacity:.7;line-height:1}
-.store-btn-text strong{display:block;font-size:.95rem;font-weight:700;line-height:1.3}
-.app-qr{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #F1E4D8;border-radius:14px;padding:14px 18px;width:fit-content;box-shadow:0 2px 12px rgba(0,0,0,.05)}
-.app-qr-img{width:60px;height:60px;border-radius:8px;background:linear-gradient(135deg,#222 25%,transparent 25%) -10px 0,linear-gradient(225deg,#222 25%,transparent 25%) -10px 0,linear-gradient(315deg,#222 25%,transparent 25%),linear-gradient(45deg,#222 25%,transparent 25%);background-size:20px 20px;background-color:#fff;border:1px solid #eee}
-.app-qr-text{font-size:.78rem;color:var(--text-light);line-height:1.5}
-/* Phone mockup */
-.phone-wrap{position:relative;display:flex;justify-content:center;align-items:center;padding:60px 40px;background:radial-gradient(ellipse 80% 70% at 50% 50%,#f0ddd0 0%,#FDF3EA 70%);border-radius:32px}
-.phone-scene{position:relative;width:260px}
-.phone-outer{width:260px;height:520px;background:linear-gradient(160deg,#2a2a2a 0%,#111 100%);border-radius:44px;padding:10px 9px;box-shadow:0 40px 100px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.06),inset 0 0 0 1px rgba(255,255,255,.04);transform:rotate(15deg)}
-.phone-inner{width:100%;height:100%;background:#fff;border-radius:34px;overflow:hidden;position:relative;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
-.phone-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,rgba(255,255,255,.15) 0%,transparent 100%);z-index:10;pointer-events:none;border-radius:34px 34px 0 0}
-.phone-screen{height:100%;display:flex;flex-direction:column;background:#f9f6f2}
-.phone-statusbar{height:44px;background:#fff;display:flex;align-items:flex-end;justify-content:space-between;padding:0 20px 8px;font-size:.62rem;font-weight:600;color:#333;position:relative}
-.phone-statusbar::after{content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:26px;background:#111;border-radius:20px}
-.phone-topbar{background:#fff;padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #f0ece7}
-.phone-topbar-logo{width:24px;height:24px;background:var(--primary);border-radius:6px;display:flex;align-items:center;justify-content:center}
-.phone-topbar-logo svg{width:14px;height:14px;color:#fff}
-.phone-topbar span{font-size:.75rem;font-weight:700;font-family:var(--font-display)}
-.phone-content{flex:1;overflow:hidden;position:relative}
-.phone-scroll{display:flex;flex-direction:column;gap:10px;padding:12px;animation:screenscroll 14s linear infinite}
-.plan-card-ph{background:#fff;border-radius:14px;padding:12px;border:1px solid #f0ece7;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-.plan-card-ph-img{width:100%;height:72px;border-radius:10px;background:linear-gradient(135deg,#d4956a 0%,#e8b48a 100%);display:flex;align-items:flex-end;padding:8px;margin-bottom:8px}
-.plan-card-ph-img span{font-size:.65rem;font-weight:700;color:#fff;background:rgba(0,0,0,.3);border-radius:6px;padding:2px 7px}
-.plan-card-ph h5{font-size:.72rem;font-weight:700;margin-bottom:4px}
-.plan-card-ph p{font-size:.62rem;color:#888}
-.rota-row{display:flex;align-items:center;gap:7px;padding:7px 10px;background:#fff;border-radius:10px;border:1px solid #f0ece7}
-.rota-dot{width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0}
-.rota-info{flex:1}
-.rota-info span{display:block;font-size:.65rem;font-weight:600}
-.rota-info small{font-size:.58rem;color:#999}
-.phone-nav{height:48px;background:#fff;border-top:1px solid #f0ece7;display:flex;align-items:center;justify-content:space-around}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px}
-.nav-item svg{width:18px;height:18px;color:#ccc}
-.nav-item.active svg{color:var(--primary)}
-.nav-item span{font-size:.5rem;color:#ccc;font-weight:600}
-.nav-item.active span{color:var(--primary)}
-/* Floating chips */
-.chip-float{position:absolute;background:#fff;border:1px solid #F1E4D8;border-radius:12px;padding:8px 12px;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,.1);z-index:10;white-space:nowrap}
-.chip-float svg{width:16px;height:16px;color:var(--primary);flex-shrink:0}
-.chip-float-text strong{display:block;font-size:.7rem;font-weight:700;line-height:1.2}
-.chip-float-text small{font-size:.62rem;color:#999}
-.chip-tl{top:20px;left:-60px;animation:chipfloat1 3s ease-in-out infinite}
-.chip-mr{top:50%;right:-70px;transform:translateY(-50%);animation:chipfloat2 3s ease-in-out infinite 1s}
-.chip-bl{bottom:60px;left:-55px;animation:chipfloat3 3s ease-in-out infinite 2s}
-/* Animations */
-@keyframes phonefloat{0%,100%{transform:rotate(15deg) translateY(0)}50%{transform:rotate(15deg) translateY(0)}}
-@keyframes chipfloat1{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes chipfloat2{0%,100%{transform:translateY(-50%)}50%{transform:translateY(calc(-50% - 6px))}}
-@keyframes chipfloat3{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes screenscroll{0%{transform:translateY(0)}45%{transform:translateY(-50%)}50%{transform:translateY(-50%)}95%{transform:translateY(0)}100%{transform:translateY(0)}}
-@media(prefers-reduced-motion:reduce){.phone-outer,.chip-tl,.chip-mr,.chip-bl,.phone-scroll{animation:none!important}}
-@media(max-width:768px){
-.app-grid{grid-template-columns:1fr;gap:40px}
-.app-qr{display:none}
-.chip-tl{left:-30px;top:10px}
-.chip-mr{right:-30px}
-.chip-bl{left:-25px}
-.chip-float{padding:6px 9px;border-radius:9px}
-.chip-float svg{width:13px;height:13px}
-.chip-float-text strong{font-size:.62rem}
-.phone-scene{width:220px}
-.phone-outer{width:220px;height:440px}
-}
-
-/* SSS */
-.faq-list{max-width:760px;margin:0 auto;display:grid;gap:14px}
-.faq{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
-.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:19px 24px;font-family:var(--font-display);font-weight:600;cursor:pointer}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary svg{flex-shrink:0;color:var(--primary);transition:transform .25s}
-.faq[open] summary svg{transform:rotate(45deg)}
-.faq .faq-body{padding:0 24px 20px;color:var(--text-light);font-size:.95rem}
-
-/* CTA band */
-.cta-band{background:linear-gradient(120deg,var(--primary),#D98B5F 55%,var(--secondary));border-radius:26px;padding:58px 48px;text-align:center;color:#fff;position:relative;overflow:hidden}
-.cta-band::before{content:"";position:absolute;top:-90px;right:-60px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.12)}
-.cta-band h2{font-size:clamp(1.6rem,3.2vw,2.2rem);margin-bottom:12px;position:relative}
-.cta-band p{opacity:.93;margin-bottom:28px;position:relative}
-.cta-band .btn{background:#fff;color:var(--primary-dark);position:relative}
-.cta-band .btn:hover{transform:translateY(-2px)}
-
-/* ---------- Footer ---------- */
-footer{background:#FBF1E8;border-top:1px solid var(--border);padding:56px 0 30px;margin-top:40px}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px}
-.footer-grid p{color:var(--text-light);font-size:.92rem;margin-top:14px;max-width:300px}
-.footer-grid h4{font-size:.95rem;margin-bottom:16px}
-.footer-grid ul{list-style:none;display:grid;gap:10px}
-.footer-grid ul a{color:var(--text-light);font-size:.92rem;transition:color .15s}
-.footer-grid ul a:hover{color:var(--primary)}
-.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--text-light);font-size:.86rem}
-
-/* ---------- Wizard ---------- */
-.wizard-wrap{max-width:720px;margin:0 auto;padding:56px 24px 90px}
-.wizard-head{text-align:center;margin-bottom:34px}
-.wizard-head h1{font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:8px}
-.wizard-head p{color:var(--text-light)}
-.progress{display:flex;align-items:center;gap:0;margin-bottom:38px}
-.p-step{display:flex;flex-direction:column;align-items:center;gap:8px;flex:0 0 auto;width:84px}
-.p-dot{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:.9rem;background:var(--card);border:2px solid var(--border);color:var(--text-light);transition:all .25s}
-.p-step.active .p-dot{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 4px 14px rgba(201,108,74,.35)}
-.p-step.done .p-dot{background:var(--success);border-color:var(--success);color:#fff}
-.p-step span{font-size:.74rem;font-weight:600;color:var(--text-light);text-align:center}
-.p-step.active span{color:var(--primary)}
-.p-bar{flex:1;height:3px;background:var(--border);border-radius:99px;margin:0 4px 26px;position:relative;overflow:hidden}
-.p-bar i{position:absolute;inset:0;background:var(--success);transform:scaleX(0);transform-origin:left;transition:transform .4s}
-.p-bar.filled i{transform:scaleX(1)}
-.wizard-card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);padding:38px}
-.wizard-card h2{font-size:1.3rem;margin-bottom:6px}
-.wizard-card .sub{color:var(--text-light);font-size:.94rem;margin-bottom:28px}
-.field{margin-bottom:22px}
-.city-field{position:relative}
-.city-suggest{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-md);max-height:220px;overflow-y:auto;z-index:50}
-.city-suggest.hidden{display:none}
-.city-suggest-item{padding:10px 16px;font-size:.95rem;cursor:pointer;transition:background .1s}
-.city-suggest-item:hover,.city-suggest-item.active{background:var(--primary-soft)}
-.field label{display:block;font-family:var(--font-display);font-weight:600;font-size:.93rem;margin-bottom:8px}
-.field .hint{font-weight:400;color:var(--text-light);font-size:.82rem;margin-left:6px}
-.input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg);transition:border .15s,box-shadow .15s}
-.input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px var(--primary-soft);background:#fff}
-textarea.input{resize:vertical;min-height:96px}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.choice-grid.cols-3{grid-template-columns:repeat(3,1fr)}
-.choice{position:relative}
-.choice input{position:absolute;opacity:0;inset:0}
-.choice .chip{display:flex;flex-direction:column;gap:3px;border:1.5px solid var(--border);border-radius:13px;padding:13px 15px;cursor:pointer;transition:all .15s;background:var(--bg);height:100%}
-.choice .chip b{font-family:var(--font-display);font-weight:600;font-size:.93rem;display:flex;align-items:center;gap:8px}
-.choice .chip small{color:var(--text-light);font-size:.78rem}
-.choice input:checked + .chip{border-color:var(--primary);background:var(--primary-soft);box-shadow:0 0 0 1px var(--primary)}
-.choice input:focus-visible + .chip{outline:3px solid var(--secondary);outline-offset:2px}
-.choice .chip svg{color:var(--primary);flex-shrink:0}
-.wizard-nav{display:flex;justify-content:space-between;gap:14px;margin-top:32px}
-.err{display:none;color:#C0392B;font-size:.85rem;margin-top:14px;background:#FDEDEA;border:1px solid #F5C9C0;border-radius:10px;padding:10px 14px}
-.err.show{display:block}
-.summary-box{background:var(--bg);border:1.5px dashed var(--border);border-radius:14px;padding:18px 20px;margin-top:6px}
-.summary-box h4{font-size:.9rem;margin-bottom:10px;color:var(--primary)}
-.summary-box dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:.88rem}
-.summary-box dt{color:var(--text-light)}
-.summary-box dd{font-weight:600}
-
-/* ---------- Yorumlar ve Sorular ---------- */
-/* Yorum formu */
-.review-form-wrap{margin-top:28px;padding:28px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
-.review-star-row{display:flex;gap:8px;font-size:2.2rem;line-height:1;margin-top:4px}
-.review-star-row .rstar{background:none;border:none;cursor:pointer;color:var(--border);transition:color .12s,transform .12s;padding:0;line-height:1}
-.review-star-row .rstar:hover,.review-star-row .rstar.on{color:#F5A623;transform:scale(1.12)}
-.review-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.review-tag{padding:7px 14px;border:1.5px solid var(--border);border-radius:999px;font-size:.82rem;cursor:pointer;transition:all .15s;background:var(--card);color:var(--text)}
-.review-tag.on{background:var(--primary-soft);border-color:var(--primary);color:var(--primary);font-weight:600}
-.review-success{display:flex;align-items:center;gap:10px;padding:18px 20px;background:var(--success-soft);border:1px solid var(--success);border-radius:12px;color:var(--success);font-weight:600;font-size:.95rem}
-.review-err{color:#B91C1C;font-size:.85rem;margin-top:6px;display:none}
-.review-err.show{display:block}
-/* Plan kart yorum özeti */
-.trip-review-badge{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--secondary);font-weight:600;margin-top:6px}
-.trip-review-snippet{font-size:.78rem;color:var(--text-light);margin-top:2px;font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-/* Yıldız oranı (statik) */
-.star-rate{display:flex;gap:10px;font-size:2.6rem;line-height:1;margin-top:4px}
-.star-rate .star{background:none;border:none;cursor:pointer;color:var(--border);transition:color .12s,transform .12s;padding:0;line-height:1}
-.star-rate .star:hover{transform:scale(1.15)}
-.star-rate .star.on{color:#F5A623}
-
-/* ---------- Loading ---------- */
-.loading-wrap{max-width:560px;margin:0 auto;padding:110px 24px;text-align:center}
-.brain{width:84px;height:84px;border-radius:26px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:grid;place-items:center;margin:0 auto 28px;color:#fff;animation:breathe 1.8s ease-in-out infinite;box-shadow:0 14px 34px rgba(201,108,74,.35)}
-@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
-.loading-wrap h2{font-size:1.5rem;margin-bottom:10px}
-.loading-wrap > p{color:var(--text-light);margin-bottom:34px}
-.load-steps{display:grid;gap:13px;text-align:left;max-width:380px;margin:0 auto}
-.load-step{display:flex;align-items:center;gap:12px;font-size:.94rem;color:var(--text-light);opacity:.4;transition:opacity .3s}
-.load-step.on{opacity:1;color:var(--text)}
-.load-step .ic{width:26px;height:26px;border-radius:50%;border:2px solid var(--border);display:grid;place-items:center;flex-shrink:0;font-size:.7rem;transition:all .3s}
-.load-step.on .ic{border-color:var(--primary)}
-.load-step.ok .ic{background:var(--success);border-color:var(--success);color:#fff}
-.load-step.on:not(.ok) .ic::after{content:"";width:10px;height:10px;border-radius:50%;border:2px solid var(--primary);border-top-color:transparent;animation:spin .7s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* ---------- Result ---------- */
-.result-wrap{padding:48px 0 90px}
-.result-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:30px}
-.result-top h1{font-size:clamp(1.6rem,3vw,2.2rem)}
-.result-top .meta{color:var(--text-light);margin-top:6px;font-size:.95rem}
-.result-actions{display:flex;gap:10px;flex-wrap:wrap}
-.exporting-pdf .result-actions, .exporting-pdf .day-tabs, .exporting-pdf .alt-note, .exporting-pdf .prep-actions{display:none!important}
-.exporting-pdf .r-card{box-shadow:none;border:1px solid #ddd}
-@media print{
-  .navbar, footer, .back-to-top, .mobile-menu, .result-actions, .day-tabs, .alt-note, .prep-actions{display:none!important}
-  body{background:#fff}
-  .r-card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
-  .result-wrap{padding:0}
-}
-.r-grid{display:grid;grid-template-columns:1.65fr 1fr;gap:26px;align-items:start}
-.r-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:28px;margin-bottom:26px}
-.r-card h3{font-size:1.12rem;display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.r-card h3 .h-ic{width:34px;height:34px;border-radius:10px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;flex-shrink:0}
-.ai-summary{background:linear-gradient(135deg,#FFF4EC,#FDF8F1);border:1px solid var(--border)}
-.ai-summary p{color:var(--text);font-size:.98rem}
-.ai-tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-.ai-tag{font-size:.78rem;font-weight:600;background:#fff;border:1px solid var(--border);color:var(--primary-dark);padding:5px 12px;border-radius:999px}
-.day-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.day-tab{font-family:var(--font-display);font-weight:600;font-size:.88rem;padding:9px 16px;border-radius:999px;border:1.5px solid var(--border);background:var(--bg);color:var(--text-light);transition:all .15s}
-.day-tab.on{background:var(--primary);border-color:var(--primary);color:#fff}
-.day-title{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--primary-dark);margin-bottom:6px}
-.day-sub{color:var(--text-light);font-size:.88rem;margin-bottom:14px}
-.budget-total{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
-.budget-total b{font-family:var(--font-display);font-size:1.9rem;font-weight:800}
-.budget-total span{color:var(--text-light);font-size:.88rem}
-.budget-pp{color:var(--text-light);font-size:.85rem;margin-bottom:8px}
-.budget-fx{color:var(--text-light);font-size:.85rem;margin-bottom:18px;padding-top:8px;border-top:1px dashed var(--border)}
-.budget-fx span{display:block;font-size:.76rem;margin-top:2px;opacity:.8}
-.b-row{margin-bottom:15px}
-.b-row .b-label{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:6px}
-.b-row .b-label b{font-weight:600}
-.b-row .b-label span{color:var(--text-light)}
-.b-track{height:9px;border-radius:99px;background:var(--bg);border:1px solid var(--border);overflow:hidden}
-.b-fill{height:100%;border-radius:99px;transition:width .8s ease}
-.tip-grid{display:grid;gap:14px}
-.tip{display:flex;gap:13px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:13px;padding:14px 16px}
-.tip .t-ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex-shrink:0;background:var(--card);border:1px solid var(--border);color:var(--primary)}
-.tip b{display:block;font-size:.9rem;font-family:var(--font-display)}
-.tip span{font-size:.86rem;color:var(--text-light)}
-.gem{display:flex;gap:13px;padding:13px 0;border-bottom:1px dashed var(--border)}
-.gem:last-child{border-bottom:none;padding-bottom:0}
-.gem .g-ic{width:34px;height:34px;border-radius:50%;background:var(--secondary-soft);color:#B07B3E;display:grid;place-items:center;flex-shrink:0}
-.gem b{display:block;font-size:.93rem}
-.gem span{font-size:.85rem;color:var(--text-light)}
-.rain-card{background:var(--info-soft);border:1px solid #D8E4EF}
-.rain-card h3 .h-ic{background:#fff;color:var(--info)}
-.rain-card-body{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-top:20px}
-.rain-divider{width:1px;background:#D8E4EF;margin:0 28px}
-/* Hava istatistik kartları */
-.wx-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
-.wx-stat{background:#fff;border:1px solid #D8E4EF;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
-.wx-stat-icon{font-size:1.7rem;line-height:1}
-.wx-stat-val{font-size:1.15rem;font-weight:700;color:var(--text)}
-.wx-stat-lbl{font-size:.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:.04em}
-.wx-summary{font-size:.85rem;color:var(--text-light);line-height:1.6;padding:12px 14px;background:#fff;border:1px solid #D8E4EF;border-radius:10px}
-/* Günlük tahmin şeridi */
-.wx-days{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px;margin-top:14px}
-.wx-day{background:#fff;border:1px solid #D8E4EF;border-radius:10px;padding:10px 8px;text-align:center;font-size:.8rem}
-.wx-day-label{font-weight:600;color:var(--text-light);margin-bottom:4px;font-size:.75rem}
-.wx-day-icon{font-size:1.3rem;margin:2px 0}
-.wx-day-temp{color:var(--text);font-weight:600}
-.wx-day-rain{color:var(--info);font-size:.72rem;margin-top:2px}
-/* Yağmurlu plan */
-.rain-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #D8E4EF;font-size:.92rem}
-.rain-item:last-child{border-bottom:none}
-.rain-item svg{flex-shrink:0;margin-top:3px;color:var(--info)}
-
-/* ---------- Result v2: hotels, item cards, transit, totals ---------- */
-.hotel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.hotel-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s}
-.hotel-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
-.hotel-card.match{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary)}
-.hotel-tier{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--primary);background:var(--primary-soft);padding:4px 10px;border-radius:999px;width:fit-content}
-.hotel-type-badge{font-size:.72rem;font-weight:600;color:var(--info);background:var(--info-soft);padding:3px 9px;border-radius:999px;width:fit-content}
-.hotel-card h4{font-size:1rem;margin-top:2px}
-.hotel-card .h-region{font-size:.8rem;color:var(--text-light);display:flex;align-items:center;gap:5px}
-.hotel-card .h-price{font-family:var(--font-display);font-weight:800;font-size:1.25rem}
-.hotel-card .h-price small{font-size:.76rem;font-weight:500;color:var(--text-light)}
-.hotel-card .h-rating{font-size:.82rem;color:var(--secondary);font-weight:700;display:flex;align-items:center;gap:5px}
-.hotel-card .h-rating span{color:var(--text-light);font-weight:500}
-.hotel-card p{font-size:.86rem;color:var(--text-light)}
-.hotel-why{font-size:.82rem;color:var(--success);background:var(--success-soft);border-radius:8px;padding:8px 11px;line-height:1.5}
-.hotel-meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:2px}
-.hotel-meta-item{font-size:.78rem;color:var(--text-light);display:flex;flex-direction:column;gap:2px}
-.hotel-meta-item b{color:var(--text);font-size:.8rem}
-.hotel-pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
-.hotel-pros,.hotel-cons{font-size:.78rem;border-radius:8px;padding:8px 10px}
-.hotel-pros{background:var(--success-soft);color:var(--success)}
-.hotel-cons{background:#FEF3C7;color:#92400E}
-.hotel-pros li,.hotel-cons li{list-style:none;padding:1px 0}
-.hotel-pros li::before{content:"✓ "}
-.hotel-cons li::before{content:"⚠ "}
-.hotel-card .h-total{font-size:.78rem;color:var(--text-light);margin-top:auto;padding-top:8px;border-top:1px dashed var(--border)}
-
-.tl-item2{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:0}
-.tl-item2 .tl-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:5px}
-.tl-item2 .tl-headline{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.tl-item2 .tl-name{font-family:var(--font-display);font-weight:700;font-size:.98rem}
-.tl-item2 .tl-cat{font-size:.7rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.05em;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:2px 9px}
-.tl-item2 .tl-desc{font-size:.88rem;color:var(--text-light);margin-bottom:8px}
-.tl-item2 .tl-reason{font-size:.85rem;color:var(--primary-dark);background:var(--primary-soft);border-radius:10px;padding:8px 12px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start}
-.tl-item2 .tl-reason svg{flex-shrink:0;margin-top:2px}
-.tl-meta-row{display:flex;gap:8px;flex-wrap:wrap}
-.meta-chip{display:flex;align-items:center;gap:5px;font-size:.78rem;font-weight:600;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:999px;padding:4px 11px}
-.meta-chip svg{color:var(--primary);flex-shrink:0}
-.meta-chip.rating{color:#8A6232}
-.meta-chip.rating svg{color:var(--secondary)}
-
-.transit-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 14px;margin:6px 0;font-size:.8rem;color:var(--text-light);background:var(--card);border:1px dashed var(--border);border-radius:12px}
-.transit-row b{color:var(--text);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;flex-shrink:0}
-.transit-opts{display:flex;gap:14px;flex-wrap:wrap}
-.transit-opt{display:flex;align-items:center;gap:5px}
-.transit-opt svg{flex-shrink:0;color:var(--text-light)}
-.transit-opt.rec{color:var(--primary-dark);font-weight:700}
-.transit-opt.rec svg{color:var(--primary)}
-
-.day-footer{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px dashed var(--border)}
-.day-stat{flex:1;min-width:130px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 14px;text-align:center}
-.day-stat b{display:block;font-family:var(--font-display);font-size:1.15rem}
-.day-stat span{font-size:.78rem;color:var(--text-light)}
-
-.local-card{display:flex;gap:13px;padding:13px 0;border-bottom:1px dashed var(--border)}
-.local-card:last-child{border-bottom:none;padding-bottom:0}
-.local-card .l-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
-.local-card b{display:block;font-size:.93rem}
-.local-card span{font-size:.85rem;color:var(--text-light)}
-.prep-card{margin-top:24px}
-.prep-head{margin-bottom:16px}
-.prep-title{font-family:var(--font-display);font-weight:700;font-size:1.02rem;margin-bottom:6px}
-.prep-weather{font-size:.9rem;color:var(--text-light);background:var(--info-soft);border-radius:10px;padding:10px 14px}
-.prep-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:16px}
-.prep-section h4{font-size:.86rem;font-weight:700;color:var(--primary);margin-bottom:8px}
-.prep-section ul{list-style:none;display:flex;flex-direction:column;gap:6px}
-.prep-section li{font-size:.88rem}
-.prep-check{display:flex;align-items:flex-start;gap:9px;cursor:pointer;line-height:1.35}
-.prep-check input{margin-top:3px;width:16px;height:16px;accent-color:var(--primary);cursor:pointer;flex-shrink:0}
-.prep-check.checked span{color:var(--text-light);text-decoration:line-through}
-.prep-tip{font-size:.9rem;color:var(--primary-dark);background:var(--primary-soft);border-radius:10px;padding:10px 14px;margin-bottom:16px}
-.prep-progress{display:flex;align-items:center;gap:12px;margin:2px 0 14px;font-size:.85rem;color:var(--text-light)}
-.prep-progress .b-track{flex:1}
-.prep-actions{display:flex;gap:10px;margin-bottom:18px}
-
-.alt-note{background:var(--secondary-soft);border:1px solid #F0DCC0;border-radius:12px;padding:13px 16px;font-size:.88rem;color:#8A6232;margin-bottom:18px;display:none}
-.alt-note.show{display:block}
-.booking-card{margin-bottom:24px}
-.booking-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:6px}
-.booking-item{display:flex;flex-direction:column;gap:4px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
-.booking-item b{font-size:.85rem;color:var(--primary)}
-.booking-item span{font-size:.92rem}
-.booking-note{margin-top:12px;font-size:.88rem;color:var(--text-light);display:flex;gap:8px;align-items:flex-start;background:var(--primary-soft);border-radius:10px;padding:10px 14px}
-/* ---------- Auth ---------- */
-.nav-auth{display:flex;align-items:center;gap:10px}
-.nav-avatar-wrap{position:relative}
-.nav-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;font-family:var(--font-display);font-weight:700;font-size:.85rem;display:flex;align-items:center;justify-content:center;cursor:pointer;border:2px solid transparent;transition:border-color .2s}
-.nav-avatar:hover{border-color:var(--primary)}
-.nav-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-.nav-dropdown{position:absolute;top:calc(100% + 10px);right:0;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-md);min-width:220px;z-index:500;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .2s}
-.nav-dropdown.open{opacity:1;visibility:visible;transform:translateY(0)}
-.nav-dd-user{padding:14px 16px;border-bottom:1px solid var(--border);background:var(--primary-soft)}
-.nav-dd-user b{display:block;font-size:.92rem}
-.nav-dd-user span{font-size:.78rem;color:var(--text-light)}
-.nav-dd-item{display:flex;align-items:center;gap:10px;padding:11px 16px;font-size:.88rem;color:var(--text);cursor:pointer;transition:background .15s;border:none;background:none;width:100%;text-align:left}
-.nav-dd-item:hover{background:var(--bg)}
-.nav-dd-item svg{color:var(--text-light)}
-.nav-dd-sep{height:1px;background:var(--border);margin:4px 0}
-.nav-dd-logout{color:#DC2626}
-.nav-dd-logout svg{color:#DC2626}
-/* Auth Modal */
-.auth-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:all .25s}
-.auth-modal-overlay.open{opacity:1;visibility:visible}
-.auth-modal{background:var(--card);border-radius:20px;padding:40px 44px;max-width:520px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.2);position:relative;transform:translateY(20px);transition:transform .25s}
-.auth-modal-overlay.open .auth-modal{transform:translateY(0)}
-.auth-modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:none;background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-light);font-size:1.1rem;transition:background .15s}
-.auth-modal-close:hover{background:var(--border)}
-.auth-modal-logo{display:flex;align-items:center;gap:9px;margin-bottom:20px}
-.auth-modal-logo .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--primary);display:grid;place-items:center;color:#fff}
-.auth-modal-logo span{font-family:var(--font-display);font-weight:700;font-size:1.1rem}
-.auth-modal-logo em{color:var(--primary);font-style:normal}
-.auth-modal h2{font-size:1.3rem;margin-bottom:6px}
-.auth-modal .sub{font-size:.9rem;color:var(--text-light);margin-bottom:22px}
-.btn-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px;border:1.5px solid var(--border);border-radius:12px;background:#fff;font-size:.95rem;font-weight:600;cursor:pointer;transition:box-shadow .2s,border-color .2s;color:#3c4043}
-.btn-google:hover{box-shadow:0 2px 12px rgba(0,0,0,.12);border-color:#c9c9c9}
-.auth-benefits{list-style:none;margin:20px 0;display:grid;gap:8px}
-.auth-benefits li{display:flex;align-items:center;gap:9px;font-size:.88rem;color:var(--text-light)}
-.auth-benefits li::before{content:"✓";color:var(--success);font-weight:700;font-size:1rem}
-.auth-legal{font-size:.75rem;color:var(--text-light);text-align:center;margin-top:16px;line-height:1.6}
-.auth-legal a{color:var(--primary);text-decoration:underline}
-.auth-err{background:#FEE2E2;color:#B91C1C;border-radius:8px;padding:9px 13px;font-size:.85rem;margin-bottom:12px}
-.auth-err.hidden{display:none}
-.auth-divider{display:flex;align-items:center;gap:12px;margin:14px 0;color:var(--text-light);font-size:.82rem}
-.auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--border)}
-.auth-switch{text-align:center;font-size:.85rem;color:var(--text-light);margin-top:14px}
-.auth-switch a{color:var(--primary);font-weight:600;text-decoration:none}
-.auth-switch a:hover{text-decoration:underline}
-/* Auth uyarı modalı */
-.auth-warn-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:all .2s}
-.auth-warn-overlay.open{opacity:1;visibility:visible}
-.auth-warn-modal{background:var(--card);border-radius:16px;padding:28px 28px 22px;max-width:380px;width:100%;box-shadow:var(--shadow-md);text-align:center}
-.auth-warn-modal h3{font-size:1.1rem;margin-bottom:8px}
-.auth-warn-modal p{font-size:.9rem;color:var(--text-light);margin-bottom:20px}
-.auth-warn-btns{display:flex;gap:10px;justify-content:center}
-
-.toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,80px);background:var(--text);color:#fff;padding:13px 22px;border-radius:999px;font-size:.92rem;font-weight:500;display:flex;align-items:center;gap:9px;box-shadow:0 10px 30px rgba(0,0,0,.22);opacity:0;transition:all .35s;z-index:200;pointer-events:none}
-.toast.show{transform:translate(-50%,0);opacity:1}
-.back-to-top{position:fixed;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(0,0,0,.18);opacity:0;visibility:hidden;transform:translateY(12px);transition:all .25s;z-index:190}
-.share-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:300;padding:20px}
-.share-overlay.hidden{display:none}
-.share-modal{background:var(--card);border-radius:16px;padding:26px;max-width:480px;width:100%;box-shadow:var(--shadow-md)}
-.share-modal h3{font-family:var(--font-display);font-size:1.2rem;margin-bottom:10px}
-.share-modal p{color:var(--text-light);font-size:.9rem;margin-bottom:14px}
-.share-modal textarea{resize:vertical;font-family:inherit;font-size:.88rem;margin-bottom:16px}
-.share-actions{display:flex;justify-content:flex-end;gap:10px}
-.back-to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
-.back-to-top:hover{background:var(--primary-dark,var(--primary));transform:translateY(-2px)}
-
-
-/* ---------- Saved ---------- */
-.saved-wrap{padding:56px 0 90px;min-height:60vh}
-.fx-row-input{display:flex;gap:14px;align-items:flex-start}
-.fx-row-input select{flex:0 0 120px}
-.fx-swap{display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin:14px auto;border-radius:50%;border:1.5px solid var(--border);background:var(--bg);color:var(--primary);cursor:pointer;transition:background .15s,transform .2s}
-.fx-swap:hover{background:var(--primary-soft);transform:rotate(180deg)}
-.fx-result{display:flex;flex-direction:column;gap:10px;margin:18px 0}
-.fx-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 18px;border-radius:12px;background:var(--bg);border:1px solid var(--border)}
-.fx-row span{color:var(--text-light);font-size:.92rem}
-.fx-row b{font-family:var(--font-display);font-size:1.5rem;font-weight:800}
-.fx-note{color:var(--text-light);font-size:.85rem}
-@media(max-width:520px){
-  .fx-row-input{flex-direction:column}
-  .fx-row-input select{flex:1;width:100%}
-}
-.saved-head{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:34px}
-.saved-head h1{font-size:clamp(1.6rem,3vw,2.1rem)}
-.trips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.trip-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
-.trip-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-.trip-cover{height:108px;display:flex;align-items:flex-end;padding:16px 20px;color:#fff;position:relative}
-.trip-cover h3{font-size:1.25rem;position:relative;z-index:1}
-.trip-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 20%,rgba(0,0,0,.25))}
-.trip-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:14px;flex:1}
-.trip-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:.84rem;color:var(--text-light)}
-.trip-meta span{display:flex;align-items:center;gap:5px}
-.trip-tags{display:flex;gap:7px;flex-wrap:wrap}
-.trip-tag{font-size:.74rem;font-weight:600;background:var(--primary-soft);color:var(--primary-dark);padding:4px 10px;border-radius:999px}
-.trip-foot{display:flex;gap:10px;margin-top:auto}
-.empty-state{text-align:center;padding:70px 24px;background:var(--card);border:1.5px dashed var(--border);border-radius:20px}
-.empty-state .e-ic{width:70px;height:70px;border-radius:22px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;margin:0 auto 20px}
-.empty-state h3{font-size:1.25rem;margin-bottom:8px}
-.empty-state p{color:var(--text-light);margin-bottom:24px}
-
-/* ---------- Responsive ---------- */
-@media(max-width:1100px){
-  .nav-links,.nav-cta .btn-ghost{display:none}
-  .nav-burger{display:grid}
-}
-@media(max-width:960px){
-  .hero-grid{grid-template-columns:1fr;gap:48px}
-  .hero{padding:56px 0 48px}
-  .steps-grid,.features-grid,.quotes-grid,.trips-grid{grid-template-columns:repeat(2,1fr)}
-  .sample-wrap{grid-template-columns:1fr}
-  .r-grid{grid-template-columns:1fr}
-  .hotel-grid{grid-template-columns:1fr}
-  .booking-grid{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){
-  section.block{padding:60px 0}
-  .steps-grid,.features-grid,.quotes-grid,.trips-grid{grid-template-columns:1fr}
-  .field-row,.choice-grid,.choice-grid.cols-3{grid-template-columns:1fr}
-  .wizard-card{padding:26px 20px}
-  .p-step{width:64px}
-  .p-step span{display:none}
-  .footer-grid{grid-template-columns:1fr}
-  .float-chip{display:none}
-  .cta-band{padding:44px 24px}
-  .hero-stats{gap:22px}
-  .result-actions{width:100%}
-  .result-actions .btn{flex:1}
-  .day-footer{flex-direction:column}
-  .transit-row{flex-direction:column;align-items:flex-start;gap:8px}
-  .prep-grid{grid-template-columns:1fr}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none !important;transition:none !important}
-  html{scroll-behavior:auto}
-}
-</style>
-</head>
-<body>
-
-<!-- ============ NAVBAR ============ -->
-<nav class="navbar">
-  <div class="container nav-inner">
-    <a href="#" class="logo" onclick="go('home');return false;">
-      <span class="logo-mark"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 19 21l-7-4-7 4Z"/></svg></span>
-      <span>TravelMind <em>AI</em></span>
-    </a>
-    <div class="nav-links">
-      <a href="#nasil" onclick="goSection('nasil');return false;">Nasıl Çalışır</a>
-      <a href="#ozellikler" onclick="goSection('ozellikler');return false;">Özellikler</a>
-      <a href="#ornek" onclick="goSection('ornek');return false;">Örnek Plan</a>
-      <a href="#sss" onclick="goSection('sss');return false;">SSS</a>
-      <a href="#" onclick="go('saved');return false;">Kayıtlı Seyahatler</a>
-      <a href="#" onclick="go('fx');return false;">Döviz Çevirici</a>
-    </div>
-    <div class="nav-cta nav-auth" id="navCta">
-      <!-- JS tarafından doldurulur -->
-      <button class="btn btn-primary btn-sm" onclick="startWizard()">Seyahatimi Planla</button>
-      <button class="nav-burger" aria-label="Menüyü aç" onclick="document.getElementById('mmenu').classList.toggle('open')">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </div>
-  </div>
-  <div class="mobile-menu" id="mmenu">
-    <a href="#" onclick="goSection('nasil');return false;">Nasıl Çalışır</a>
-    <a href="#" onclick="goSection('ozellikler');return false;">Özellikler</a>
-    <a href="#" onclick="goSection('ornek');return false;">Örnek Plan</a>
-    <a href="#" onclick="goSection('sss');return false;">SSS</a>
-    <a href="#" onclick="go('saved');return false;">Kayıtlı Seyahatler</a>
-    <a href="#" onclick="go('fx');return false;">Döviz Çevirici</a>
-  </div>
-</nav>
-
-<!-- ============ AUTH MODAL ============ -->
-<!-- GİRİŞ MODAL -->
-<div class="auth-modal-overlay" id="authOverlay" onclick="if(event.target===this)closeAuthModal()">
-  <div class="auth-modal">
-    <button class="auth-modal-close" onclick="closeAuthModal()">✕</button>
-    <div class="auth-modal-logo">
-      <span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 19 21l-7-4-7 4Z"/></svg></span>
-      <span>TravelMind <em>AI</em></span>
-    </div>
-    <h2>Giriş Yap</h2>
-    <div class="auth-err hidden" id="loginErr"></div>
-    <div class="field"><label>E-posta</label>
-      <input class="input" type="email" id="loginEmail" placeholder="ornek@mail.com" autocomplete="email" onkeydown="if(event.key==='Enter')doLogin()">
-    </div>
-    <div class="field"><label>Şifre</label>
-      <input class="input" type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
-    </div>
-    <button class="btn btn-primary" style="width:100%;margin-top:4px" id="btnLogin">Giriş Yap</button>
-    <div class="auth-divider"><span>veya</span></div>
-    <button class="btn-google" onclick="handleGoogleLogin()">
-      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-      Google ile Giriş Yap
-    </button>
-    <p class="auth-switch">Hesabın yok mu? <a href="#" onclick="switchToRegister();return false;">Kayıt ol →</a></p>
-  </div>
-</div>
-
-<!-- KAYIT MODAL -->
-<div class="auth-modal-overlay" id="registerOverlay" onclick="if(event.target===this)closeRegisterModal()">
-  <div class="auth-modal">
-    <button class="auth-modal-close" onclick="closeRegisterModal()">✕</button>
-    <div class="auth-modal-logo">
-      <span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 19 21l-7-4-7 4Z"/></svg></span>
-      <span>TravelMind <em>AI</em></span>
-    </div>
-    <h2>Kayıt Ol</h2>
-    <div class="auth-err hidden" id="registerErr"></div>
-    <div class="field-row">
-      <div class="field"><label>Ad Soyad</label>
-        <input class="input" type="text" id="registerName" placeholder="Ad Soyad" autocomplete="name">
-      </div>
-      <div class="field"><label>E-posta</label>
-        <input class="input" type="email" id="registerEmail" placeholder="ornek@mail.com" autocomplete="email">
-      </div>
-    </div>
-    <div class="field-row">
-      <div class="field"><label>Şifre</label>
-        <input class="input" type="password" id="registerPass" placeholder="••••••••" autocomplete="new-password">
-      </div>
-      <div class="field"><label>Şifre Tekrar</label>
-        <input class="input" type="password" id="registerPass2" placeholder="••••••••" autocomplete="new-password" onkeydown="if(event.key==='Enter')doRegister()">
-      </div>
-    </div>
-    <button class="btn btn-primary" style="width:100%;margin-top:4px" id="btnRegister">Kayıt Ol</button>
-    <div class="auth-divider"><span>veya</span></div>
-    <button class="btn-google" onclick="handleGoogleLogin()">
-      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-      Google ile Kayıt Ol
-    </button>
-    <p class="auth-switch">Zaten hesabın var mı? <a href="#" onclick="switchToLogin();return false;">Giriş yap →</a></p>
-  </div>
-</div>
-
-<!-- ============ AUTH UYARI MODAL ============ -->
-<div class="auth-warn-overlay" id="authWarnOverlay" onclick="if(event.target===this)closeAuthWarn()">
-  <div class="auth-warn-modal">
-    <h3 id="authWarnTitle">Giriş yapmanız gerekiyor</h3>
-    <p id="authWarnMsg">Bu işlemi gerçekleştirmek için giriş yapmanız gerekli.</p>
-    <div class="auth-warn-btns">
-      <button class="btn btn-primary" onclick="closeAuthWarn();openAuthModal()">Giriş Yap</button>
-      <button class="btn btn-ghost" onclick="closeAuthWarn()">Vazgeç</button>
-    </div>
-  </div>
-</div>
-
-<!-- ============ HOME ============ -->
-<main id="view-home">
-  <header class="hero">
-    <div class="container hero-grid">
-      <div>
-        <span class="eyebrow"><span class="dot"></span> Gerçek zamanlı hava durumu · Canlı döviz kuru · Kişisel seyahat planı</span>
-        <h1>Seyahatinizi planlamayın, <span class="accent">danışın<svg viewBox="0 0 200 12" preserveAspectRatio="none" fill="none"><path d="M3 9 C 60 2, 140 2, 197 8" stroke="#E8B27D" stroke-width="5" stroke-linecap="round"/></svg></span></h1>
-        <p class="lead">TravelMind AI; tercihlerinizi öğrenir, gideceğiniz tarihe ait gerçek hava durumunu çeker ve bütçenize, ilgi alanlarınıza, ulaşım tercihinize göre saat saat optimize edilmiş kişisel bir seyahat planı oluşturur.</p>
-        <div class="hero-actions">
-          <button class="btn btn-primary" onclick="startWizard()">Seyahatimi Planla
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-          </button>
-          <button class="btn btn-ghost" onclick="goSection('ornek')">Örnek Planı İncele</button>
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat"><b>5 adım</b><span>form süreci</span></div>
-          <div class="hero-stat"><b>16 güne</b><span>kadar hava tahmini</span></div>
-          <div class="hero-stat"><b>29 para</b><span>birimi döviz desteği</span></div>
-        </div>
-      </div>
-      <div style="position:relative">
-        <div class="float-chip c1">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C96C4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 19.5 21 12 2.5 4.5 7 12l-4.5 7.5ZM7 12h7"/></svg>
-          <span class="sparkle s1"></span>
-          <span class="sparkle s2"></span>
-        </div>
-        <div class="float-chip c2">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5E9C76" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 4.8a2 2 0 0 1-1.3 1.3L4 11l4.8 1.9a2 2 0 0 1 1.3 1.3L12 19l1.9-4.8a2 2 0 0 1 1.3-1.3L20 11l-4.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
-          <span class="sparkle s1"></span>
-          <span class="sparkle s2"></span>
-        </div>
-        <div class="mock-card" aria-hidden="true">
-          <div class="mock-head">
-            <div><h3>Roma · 2. Gün</h3><small>Tarih + Gastronomi ağırlıklı</small></div>
-            <span class="mock-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>AI planı hazır</span>
-          </div>
-          <div class="mock-item"><span class="mock-time">08:30</span><div><b>Trastevere'de kahvaltı</b><span>Mahalle fırınında cornetto &amp; espresso</span></div></div>
-          <div class="mock-item"><span class="mock-time">10:00</span><div><b>Kolezyum turu</b><span>Sıra beklemeden giriş, ~2 saat</span></div></div>
-          <div class="mock-item"><span class="mock-time">13:00</span><div><b>Testaccio pazarında öğle</b><span>Yerel lezzet durakları</span></div></div>
-          <div class="mock-item"><span class="mock-time">16:30</span><div><b>Aventino Tepesi</b><span>Anahtar deliği manzarası · gizli mekan</span></div></div>
-          <div class="mock-budget">
-            <small>Bütçe dağılımı · ₺38.500</small>
-            <div class="mock-bars">
-              <i style="width:42%;background:#C96C4A"></i>
-              <i style="width:24%;background:#E8B27D"></i>
-              <i style="width:14%;background:#5E9C76"></i>
-              <i style="width:12%;background:#6B8CAE"></i>
-              <i style="width:8%;background:#CBB8A6"></i>
-            </div>
-            <div class="mock-legend">
-              <span><i style="background:#C96C4A"></i>Konaklama</span>
-              <span><i style="background:#E8B27D"></i>Yemek</span>
-              <span><i style="background:#5E9C76"></i>Aktivite</span>
-              <span><i style="background:#6B8CAE"></i>Ulaşım</span>
-              <span><i style="background:#CBB8A6"></i>Acil</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Nasıl Çalışır -->
-  <section class="block" id="nasil">
-    <div class="container">
-      <div class="section-head">
-        <span class="tag">Nasıl Çalışır</span>
-        <h2>Birkaç dakikada eksiksiz seyahat planı</h2>
-        <p>Tercihlerinizi girin, sistem gerçek verilerle planı hazırlasın; siz sadece seyahatin keyfini çıkarın.</p>
-      </div>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-num">1</div>
-          <h3>Tercihlerinizi girin</h3>
-          <p>5 adımlık rehberli formda şehir, tarih, bütçe, kişi sayısı, ilgi alanları, ulaşım tercihi ve varsa uçuş / otel bilgilerinizi paylaşın.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">2</div>
-          <h3>Sistem verileri toplar ve planı oluşturur</h3>
-          <p>Gideceğiniz tarihe ait gerçek hava durumu çekilir, döviz kuru hesaplanır; bütçeniz kalemlere bölünür ve günlük rota hava koşullarına göre optimize edilir.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">3</div>
-          <h3>Planı keşfedin, kaydedin, paylaşın</h3>
-          <p>Saat saat rota, bütçe grafiği, otel önerileri, bavul listesi ve yağmurlu gün alternatifi tek ekranda. PDF indirin, planı kaydedin, yorum bırakın.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Özellikler -->
-  <section class="block" id="ozellikler" style="background:#FDF3EA;border-block:1px solid var(--border)">
-    <div class="container">
-      <div class="section-head">
-        <span class="tag">Özellikler</span>
-        <h2>Gerçek verilerle çalışan eksiksiz planlama aracı</h2>
-        <p>Sabit şablonlar değil; tarihinize özel hava durumu, canlı döviz kuru ve tercihlerinize göre şekillenen kişisel plan.</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-          <h3>Saat saat günlük rota</h3>
-          <p>Kahvaltıdan akşam programına her durak planlanır. Duraklar arası yürüyüş, toplu taşıma ve taksi süreleri gösterilir. Her aktiviteye "neden önerildi" açıklaması eklenir.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.6A5 5 0 0 0 18 7h-1.3A7 7 0 1 0 5 15.9"/><path d="M8 19v2M12 18v3M16 19v2"/></svg></div>
-          <h3>Gerçek zamanlı hava durumu</h3>
-          <p>Open-Meteo API ile seyahat tarihinize ait günlük sıcaklık ve yağış tahminleri çekilir. Yağmurlu günlerde rota otomatik olarak kapalı alanlara yönlendirilir.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7" rx="1"/><rect x="12" y="7" width="3" height="11" rx="1"/><rect x="17" y="13" width="3" height="5" rx="1"/></svg></div>
-          <h3>Akıllı bütçe dağılımı</h3>
-          <p>Toplam bütçeniz konaklama, yemek, ulaşım, aktivite ve acil pay olarak otomatik bölünür. Yurt dışı planlarında hedef ülkenin para birimine canlı döviz kuruyla çevrilir.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 18h18M3 14h18M7 9V6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3"/></svg></div>
-          <h3>Konum bazlı otel önerileri</h3>
-          <p>Ekonomik, orta segment ve premium olmak üzere 3 farklı seçenek sunulur. Her otelde bölge, merkeze mesafe, toplu taşıma erişimi, artıları ve dikkat edilmesi gerekenler gösterilir.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></div>
-          <h3>Seyahat hazırlık kartı</h3>
-          <p>Seyahat tarihinize ve şehrin iklimine göre mevsimsel kıyafet, aksesuar, teknoloji ve sağlık önerileri listelenir. İşaretlenebilir bavul listesiyle hiçbir şey unutulmaz.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg></div>
-          <h3>Kaydet, PDF indir, yorum yap</h3>
-          <p>Planlarınız hesabınıza bağlı olarak saklanır. PDF olarak indirip telefonsuz kullanın. Seyahat sonrası yıldızlı yorum ve etiketlerle deneyiminizi paylaşın.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Örnek Plan -->
-  <section class="block" id="ornek">
-    <div class="container">
-      <div class="section-head">
-        <span class="tag">Örnek Çıktı</span>
-        <h2>Plan çıktısında neler var?</h2>
-        <p>Metin yığını değil; sekmeli günlük rota, interaktif bütçe grafiği ve hava durumu kartıyla okunabilir bir plan.</p>
-      </div>
-      <div class="sample-wrap">
-        <div class="sample-info">
-          <h3>İstanbul · 3 gün · 2 kişi · ₺25.000</h3>
-          <p>"Tarih ve gastronomi ağırlıklı deneyimler sunarken bütçeyi koruyarak şehri verimli keşfetmenizi sağlar." — Seyahat özeti</p>
-          <ul class="sample-list">
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Seyahat özeti</b> — size özel kısa değerlendirme ve ilgi etiketleri</span></li>
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Saat saat günlük rota</b> — duraklar arası ulaşım süresi ve "neden önerildi" açıklamaları</span></li>
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Otel önerileri</b> — 3 segment, konum & fiyat detayıyla</span></li>
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Bütçe dağılımı</b> — 5 kalem, görsel grafik, yurt dışında döviz karşılığı</span></li>
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Hava durumu &amp; yağmurlu gün planı</b> — gerçek zamanlı tahmin ve B rotası</span></li>
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Bavul listesi</b> — mevsim ve ilgi alanına göre kıyafet &amp; aksesuar önerileri</span></li>
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Gizli mekanlar, yerel tavsiyeler, manzara noktaları</b></span></li>
-          </ul>
-          <button class="btn btn-primary" onclick="startWizard()">Kendi planımı oluştur</button>
-        </div>
-        <div class="sample-card">
-          <div class="sample-card-head">
-            <h4>1. Gün — Tarihi Yarımada</h4>
-            <span>Yürüyüş ağırlıklı · tahmini günlük harcama ₺2.600</span>
-          </div>
-          <div class="sample-card-body">
-            <div class="tl-item"><div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div><span class="tl-time">08:30</span><div class="tl-body"><b>Karaköy'de kahvaltı</b><span>Sahil hattında klasik serpme kahvaltı</span></div><span class="tl-cost">₺450</span></div>
-            <div class="tl-item"><div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div><span class="tl-time">10:00</span><div class="tl-body"><b>Ayasofya &amp; Sultanahmet</b><span>Erken saat, kalabalık öncesi giriş</span></div><span class="tl-cost">₺800</span></div>
-            <div class="tl-item"><div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div><span class="tl-time">13:00</span><div class="tl-body"><b>Esnaf lokantasında öğle</b><span>Sirkeci'de yerel mutfak</span></div><span class="tl-cost">₺500</span></div>
-            <div class="tl-item"><div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div><span class="tl-time">15:00</span><div class="tl-body"><b>Yerebatan Sarnıcı</b><span>Fotoğraf için ideal ışık saati</span></div><span class="tl-cost">₺600</span></div>
-            <div class="tl-item"><div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div><span class="tl-time">19:30</span><div class="tl-body"><b>Galata'da akşam yemeği</b><span>Kule manzaralı meyhane</span></div><span class="tl-cost">₺1.100</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Yorumlar -->
-  <section class="block" id="yorumlar" style="background:#FDF3EA;border-block:1px solid var(--border)">
-    <div class="container">
-      <div class="section-head">
-        <span class="tag">Kullanıcı Yorumları</span>
-        <h2>Gezginler TravelMind AI hakkında ne diyor?</h2>
-      </div>
-      <div class="quotes-grid">
-        <div class="quote-card">
-          <div class="stars">★★★★★</div>
-          <p>"Barselona için 4 günlük plan istedim; bütçe dağılımı o kadar gerçekçiydi ki dönüşte hesap yaptım, sapma %5'in altındaydı. Gizli mekan önerileri gezinin en iyi kısmıydı."</p>
-          <div class="quote-who"><span class="avatar" style="background:#C96C4A">EK</span><div><b>Elif K.</b><span>Barselona</span></div></div>
-        </div>
-        <div class="quote-card">
-          <div class="stars">★★★★★</div>
-          <p>"Ailecek Roma'ya gittik. Çocuklu seyahat için tempo ayarı ve öğle araları kusursuzdu. Yağmur bastırınca B planını açtık, gün boşa gitmedi."</p>
-          <div class="quote-who"><span class="avatar" style="background:#E8B27D">MA</span><div><b>Murat A.</b><span>Roma</span></div></div>
-        </div>
-        <div class="quote-card">
-          <div class="stars">★★★★☆</div>
-          <p>"Tek başıma Amsterdam'a gittim. Plan saat saat hazırdı; ben sadece 'yeniden oluştur' deyip gece hayatı ağırlıklı versiyonu seçtim. Saatlerce blog okumaktan kurtardı."</p>
-          <div class="quote-who"><span class="avatar" style="background:#5E9C76">SD</span><div><b>Selin D.</b><span>Amsterdam</span></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SSS -->
-  <section class="block" id="sss">
-    <div class="container">
-      <div class="section-head">
-        <span class="tag">SSS</span>
-        <h2>Sık sorulan sorular</h2>
-      </div>
-      <div class="faq-list">
-        <details class="faq" open>
-          <summary>TravelMind AI planı neye göre oluşturuyor?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-          <div class="faq-body">Şehir, gün sayısı, toplam bütçe, kişi sayısı, seyahat tipi, ilgi alanları ve ulaşım tercihinizi birlikte değerlendirir. Bütçeyi kalemlere dağıtır, mekanları ilgi alanlarınıza göre seçer ve günü coğrafi olarak mantıklı bir sıraya koyar.</div>
-        </details>
-        <details class="faq">
-          <summary>Otel veya uçak rezervasyonu yapıyor musunuz?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-          <div class="faq-body">Hayır, bilinçli olarak yapmıyoruz. TravelMind AI bir rezervasyon motoru değil, bir seyahat danışmanıdır. Konaklama ve ulaşım için bütçe payı ile öneri verir; satın almayı dilediğiniz platformda yaparsınız.</div>
-        </details>
-        <details class="faq">
-          <summary>Planı beğenmezsem ne olur?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-          <div class="faq-body">Sonuç sayfasındaki "Yeniden Oluştur" ile aynı tercihlerle farklı bir kurgu alabilir, "Alternatif Plan" ile farklı ağırlıkta bir versiyon görebilir ya da forma dönüp tercihlerinizi değiştirebilirsiniz.</div>
-        </details>
-        <details class="faq">
-          <summary>Bütçe dağılımı ne kadar gerçekçi?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-          <div class="faq-body">Dağılım; şehir, kişi sayısı, gün sayısı ve seyahat tarzınıza (ekonomik, dengeli, lüks) göre hesaplanır. Her planda öngörülemeyen harcamalar için ayrı bir acil durum payı bulunur.</div>
-        </details>
-        <details class="faq">
-          <summary>Kaydettiğim planlara nereden ulaşırım?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-          <div class="faq-body">Üst menüdeki "Kayıtlı Seyahatler" sayfasında tüm planlarınız kart görünümünde listelenir. Buradan planı açabilir veya silebilirsiniz.</div>
+          <div class="faq-body">Evet. Giriş yaptıktan sonra "Planı Kaydet" ile planı hesabınıza bağlayabilirsiniz. Seyahatlerim sayfasında kart görünümünde listelenir; dilediğinizde açabilir, PDF indirebilir veya yorum bırakabilirsiniz.</div>
         </details>
       </div>
     </div>
